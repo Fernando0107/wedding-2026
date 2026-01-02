@@ -1,16 +1,26 @@
-<svg width="600" height="800" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="galleryGradient6" x1="100%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#f5d9d9;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f9e9e9;stop-opacity:1" />
+    <linearGradient id="gallery6Gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#f7e5e5"/>
+      <stop offset="100%" style="stop-color:#f9e9e9"/>
+    </linearGradient>
+    <linearGradient id="gallery6Accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a5a5;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#b87f7f;stop-opacity:0.08"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="800" fill="url(#galleryGradient6)" rx="12"/>
-  <text x="300" y="390" font-family="serif" font-size="24" fill="#8b5a5a" text-anchor="middle" opacity="0.2">
-    Galería 6
+  
+  <rect width="100%" height="100%" fill="url(#gallery6Gradient)"/>
+  <ellipse cx="150" cy="250" rx="220" ry="180" fill="url(#gallery6Accent)"/>
+  <ellipse cx="450" cy="550" rx="190" ry="220" fill="url(#gallery6Accent)"/>
+  
+  <!-- Double heart decoration -->
+  <g transform="translate(300, 380)" opacity="0.12">
+    <path d="M-20 0 C-20 -10, -10 -18, 0 -18 C10 -18, 20 -10, 20 0 C20 15, 0 30, 0 30 C0 30, -20 15, -20 0" fill="#8b5a5a" transform="translate(-15, 0) scale(0.8)"/>
+    <path d="M-20 0 C-20 -10, -10 -18, 0 -18 C10 -18, 20 -10, 20 0 C20 15, 0 30, 0 30 C0 30, -20 15, -20 0" fill="#8b5a5a" transform="translate(15, 0) scale(0.8)"/>
+  </g>
+  
+  <text x="300" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#8b5a5a" opacity="0.45">
+    Galería foto 6
   </text>
-  <path d="M 280 400 Q 300 420 320 400" stroke="#b87f7f" stroke-width="2" fill="none" opacity="0.15"/>
-  <circle cx="290" cy="395" r="3" fill="#b87f7f" opacity="0.15"/>
-  <circle cx="310" cy="395" r="3" fill="#b87f7f" opacity="0.15"/>
 </svg>
-

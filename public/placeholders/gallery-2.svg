@@ -1,14 +1,25 @@
-<svg width="600" height="800" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="galleryGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#f7e5e5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f9e9e9;stop-opacity:1" />
+    <linearGradient id="gallery2Gradient" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7e5e5"/>
+      <stop offset="100%" style="stop-color:#f5d9d9"/>
+    </linearGradient>
+    <linearGradient id="gallery2Accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c08787;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#b87f7f;stop-opacity:0.05"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="800" fill="url(#galleryGradient2)" rx="12"/>
-  <text x="300" y="390" font-family="serif" font-size="24" fill="#7a4a4a" text-anchor="middle" opacity="0.2">
-    Galería 2
+  
+  <rect width="100%" height="100%" fill="url(#gallery2Gradient)"/>
+  <ellipse cx="100" cy="200" rx="200" ry="180" fill="url(#gallery2Accent)"/>
+  <ellipse cx="500" cy="600" rx="180" ry="200" fill="url(#gallery2Accent)"/>
+  
+  <!-- Star decoration -->
+  <g transform="translate(300, 380)" opacity="0.12">
+    <polygon points="0,-40 10,-10 40,-10 15,10 25,40 0,20 -25,40 -15,10 -40,-10 -10,-10" fill="#8b5a5a"/>
+  </g>
+  
+  <text x="300" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#8b5a5a" opacity="0.45">
+    Galería foto 2
   </text>
-  <circle cx="300" cy="430" r="50" fill="none" stroke="#b87f7f" stroke-width="2" opacity="0.15"/>
 </svg>
-

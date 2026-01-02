@@ -13,46 +13,50 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src={siteConfig.photos.hero}
-          alt="Hero"
+          alt="Carol y Juan Fernando"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
         {/* Overlay suave */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blush/80 via-dusty-blush/70 to-vintage-pink/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blush/85 via-dusty-blush/75 to-vintage-pink/85" />
       </div>
 
       {/* Contenido */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto py-20">
         <FadeIn delay={0.2}>
-          <p className="text-rosewood/70 text-lg md:text-xl mb-4 font-serif italic">
+          <p className="text-rosewood/70 text-lg md:text-xl mb-6 font-sans tracking-widest uppercase">
             {siteConfig.content.hero.subtitle}
           </p>
         </FadeIn>
 
         <FadeIn delay={0.4}>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-rosewood mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-rosewood mb-8 leading-tight">
             {siteConfig.content.hero.title}
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.6}>
-          <div className="mb-8">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mb-4">
-              {siteConfig.couple.name1}
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mb-3">
+              {siteConfig.couple.shortName1}
             </h2>
-            <p className="text-2xl md:text-4xl font-serif text-old-rose">&</p>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mt-4">
-              {siteConfig.couple.name2}
+            <p className="text-4xl md:text-5xl font-serif text-dusty-rose my-2">&</p>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mt-3">
+              {siteConfig.couple.shortName2}
             </h2>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.8}>
-          <p className="text-xl md:text-3xl font-serif text-rosewood mb-12">
-            {siteConfig.wedding.day} · {siteConfig.wedding.month} · {siteConfig.wedding.year}
-          </p>
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <div className="w-16 md:w-24 h-px bg-rosewood/30" />
+            <p className="text-xl md:text-2xl lg:text-3xl font-serif text-rosewood tracking-wider">
+              {siteConfig.wedding.day} · {siteConfig.wedding.month} · {siteConfig.wedding.year}
+            </p>
+            <div className="w-16 md:w-24 h-px bg-rosewood/30" />
+          </div>
         </FadeIn>
 
         <FadeIn delay={1}>
@@ -61,7 +65,7 @@ export default function Hero() {
               variant="primary"
               size="lg"
               onClick={() => scrollToSection("rsvp")}
-              className="min-w-[200px]"
+              className="min-w-[220px] text-lg"
             >
               Confirmar Asistencia
             </Button>
@@ -69,7 +73,7 @@ export default function Hero() {
               variant="outline"
               size="lg"
               onClick={() => scrollToSection("calendar")}
-              className="min-w-[200px]"
+              className="min-w-[220px] text-lg"
             >
               Agregar al Calendario
             </Button>
@@ -80,10 +84,14 @@ export default function Hero() {
       {/* Indicador de scroll */}
       <FadeIn delay={1.5}>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="flex flex-col items-center gap-2 animate-bounce">
-            <span className="text-rosewood/60 text-sm font-sans">Desliza</span>
+          <button
+            onClick={() => scrollToSection("story")}
+            className="flex flex-col items-center gap-2 text-rosewood/60 hover:text-rosewood transition-colors cursor-pointer"
+            aria-label="Desplazarse hacia abajo"
+          >
+            <span className="text-sm font-sans tracking-wide">Desliza</span>
             <svg
-              className="w-6 h-6 text-rosewood/60"
+              className="w-6 h-6 animate-bounce"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -93,10 +101,9 @@ export default function Hero() {
             >
               <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
-          </div>
+          </button>
         </div>
       </FadeIn>
     </section>
   );
 }
-

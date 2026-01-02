@@ -1,3 +1,5 @@
+"use client";
+
 import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
@@ -9,35 +11,75 @@ export default function DressCode() {
       <Container size="md">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-vintage-pink mb-6">
+            {/* Icono */}
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-vintage-pink to-blush mb-8 shadow-soft">
               <svg
-                className="w-8 h-8 text-rosewood"
+                className="w-10 h-10 text-rosewood"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2"
+                strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <path d="M12 2l3 7h-6l3-7zM5 9h14l-1 11H6L5 9z" />
+                <path d="M8 14v3m4-3v3m4-3v3" />
               </svg>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-serif text-rosewood mb-4">
+            <h2 className="text-4xl md:text-5xl font-serif text-rosewood mb-6">
               {siteConfig.content.dressCode.title}
             </h2>
 
-            <p className="text-2xl md:text-3xl font-serif text-mulberry mb-6">
-              {siteConfig.content.dressCode.description}
-            </p>
+            {/* Badge de etiqueta */}
+            <div className="inline-block mb-8">
+              <span className="px-6 py-2 bg-dusty-rose/10 border border-dusty-rose/30 rounded-full text-lg md:text-xl font-serif text-mulberry">
+                {siteConfig.content.dressCode.description}
+              </span>
+            </div>
 
-            <p className="text-lg text-mauve font-sans leading-relaxed">
+            <p className="text-lg text-mauve font-sans leading-relaxed mb-10">
               {siteConfig.content.dressCode.details}
             </p>
+
+            {/* Sugerencias visuales */}
+            <div className="grid grid-cols-2 gap-6 mt-8">
+              <FadeIn delay={0.2}>
+                <div className="bg-blush rounded-xl p-6 shadow-soft">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-dusty-rose/20 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-rosewood" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25c0-4.3 3.7-7.75 8-7.75s8 3.45 8 7.75" />
+                    </svg>
+                  </div>
+                  <h3 className="font-serif text-lg text-rosewood mb-2">Caballeros</h3>
+                  <p className="text-sm text-mauve">Traje oscuro o smoking</p>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.3}>
+                <div className="bg-blush rounded-xl p-6 shadow-soft">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-dusty-rose/20 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-rosewood" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25c0-4.3 3.7-7.75 8-7.75s8 3.45 8 7.75" />
+                    </svg>
+                  </div>
+                  <h3 className="font-serif text-lg text-rosewood mb-2">Damas</h3>
+                  <p className="text-sm text-mauve">Vestido largo o cocktail</p>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* Nota sobre el color blanco */}
+            <FadeIn delay={0.4}>
+              <div className="mt-8 p-4 bg-vintage-pink/50 rounded-lg border border-dusty-rose/20">
+                <p className="text-sm text-rosewood/80 font-sans italic">
+                  ✨ Por favor evitar el color blanco, reservado para la novia.
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </FadeIn>
       </Container>
     </Section>
   );
 }
-

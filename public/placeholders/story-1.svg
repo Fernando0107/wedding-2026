@@ -1,18 +1,31 @@
-<svg width="800" height="1000" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="storyGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f7e5e5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f9e9e9;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#f7e5e5"/>
+      <stop offset="100%" style="stop-color:#f5d9d9"/>
+    </linearGradient>
+    <linearGradient id="storyAccent1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a5a5;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#c08787;stop-opacity:0.1"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="1000" fill="url(#storyGradient1)" rx="12"/>
-  <text x="400" y="480" font-family="serif" font-size="32" fill="#8b5a5a" text-anchor="middle" opacity="0.25">
-    Nuestra Historia
+  
+  <rect width="100%" height="100%" fill="url(#storyGradient1)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="80" r="150" fill="url(#storyAccent1)"/>
+  <circle cx="700" cy="520" r="180" fill="url(#storyAccent1)"/>
+  
+  <!-- Heart decoration -->
+  <g transform="translate(400, 280)" opacity="0.2">
+    <path d="M0 20 C0 10, 10 0, 20 0 C30 0, 40 10, 40 20 C40 40, 20 60, 0 80 C-20 60, -40 40, -40 20 C-40 10, -30 0, -20 0 C-10 0, 0 10, 0 20" fill="#8b5a5a" transform="scale(1.5)"/>
+  </g>
+  
+  <!-- Placeholder text -->
+  <text x="400" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#8b5a5a" opacity="0.5">
+    Foto de la historia
   </text>
-  <text x="400" y="530" font-family="sans-serif" font-size="18" fill="#c9a4a4" text-anchor="middle" opacity="0.25">
-    800 × 1000
+  <text x="400" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#8b5a5a" opacity="0.35">
+    Un momento especial juntos
   </text>
-  <circle cx="400" cy="600" r="60" fill="none" stroke="#b87f7f" stroke-width="2" opacity="0.15"/>
-  <circle cx="400" cy="600" r="40" fill="none" stroke="#d4a5a5" stroke-width="2" opacity="0.15"/>
 </svg>
-
