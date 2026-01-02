@@ -32,16 +32,12 @@ export default function RSVPForm() {
     setSubmitStatus("idle");
 
     try {
-      // Simular envío (aquí conectarías con tu backend o servicio)
       console.log("Datos del formulario:", data);
-      
-      // Simulación de delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setSubmitStatus("success");
       reset();
       
-      // Resetear el mensaje después de 5 segundos
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
@@ -153,7 +149,7 @@ export default function RSVPForm() {
         )}
       </div>
 
-      {/* Acompañantes - solo si confirmó asistencia */}
+      {/* Acompañantes */}
       <AnimatePresence>
         {confirmationValue === "si" && (
           <motion.div
@@ -184,7 +180,7 @@ export default function RSVPForm() {
         )}
       </AnimatePresence>
 
-      {/* Alergias - solo si confirmó asistencia */}
+      {/* Alergias */}
       <AnimatePresence>
         {confirmationValue === "si" && (
           <motion.div

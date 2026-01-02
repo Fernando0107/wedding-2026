@@ -14,14 +14,14 @@ export const siteConfig = {
     year: "2026",
     ceremony: {
       name: "Iglesia Santa María Reina de la Familia",
-      address: "Boulevard Vista Hermosa 25-57, Zona 15",
+      address: "JG67+HPC, Blvr. Rafael Landivar",
       city: "Ciudad de Guatemala",
       time: "16:00",
       coordinates: {
         lat: 14.5897,
         lng: -90.5197,
       },
-      googleMapsLink: "https://maps.google.com/?q=Iglesia+Santa+Maria+Reina+de+la+Familia+Guatemala",
+      googleMapsLink: "https://maps.google.com/?q=JG67%2BHPC+Blvr+Rafael+Landivar+Guatemala",
       wazeLink: "https://waze.com/ul?ll=14.5897,-90.5197&navigate=yes",
     },
     reception: {
@@ -36,17 +36,16 @@ export const siteConfig = {
       googleMapsLink: "https://maps.google.com/?q=InterContinental+Real+Guatemala",
       wazeLink: "https://waze.com/ul?ll=14.5958,-90.5069&navigate=yes",
     },
-    // Keep venue for backward compatibility (points to ceremony)
     venue: {
       name: "Iglesia Santa María Reina de la Familia",
-      address: "Boulevard Vista Hermosa 25-57, Zona 15",
+      address: "JG67+HPC, Blvr. Rafael Landivar",
       city: "Ciudad de Guatemala",
       coordinates: {
         lat: 14.5897,
         lng: -90.5197,
       },
       wazeLink: "https://waze.com/ul?ll=14.5897,-90.5197&navigate=yes",
-      googleMapsLink: "https://maps.google.com/?q=Iglesia+Santa+Maria+Reina+de+la+Familia+Guatemala",
+      googleMapsLink: "https://maps.google.com/?q=JG67%2BHPC+Blvr+Rafael+Landivar+Guatemala",
     },
   },
 
@@ -123,7 +122,7 @@ export const siteConfig = {
       title: "Cómo Llegar",
       description: "Nuestra celebración tendrá dos ubicaciones",
       ceremony: {
-        title: "Ceremonia",
+        title: "Misa",
         description: "La ceremonia religiosa se llevará a cabo en la hermosa Iglesia Santa María Reina de la Familia.",
       },
       reception: {
@@ -144,8 +143,8 @@ export const siteConfig = {
       details: "Caballeros: Traje oscuro o smoking. Damas: Vestido largo o de cocktail elegante. Los colores neutros, pasteles y tonos joya son bienvenidos. Por favor evitar el color blanco, reservado para la novia.",
     },
     codeOfConduct: {
-      title: "Celebración Solo para Adultos",
-      description: "Queremos que disfrutes al máximo esta noche especial. Por ello, nuestra boda será una celebración exclusivamente para adultos.",
+      title: "Código de Conducta",
+      description: "No fumar cigarros ni cigarros electrónicos.",
       additional: "Agradecemos tu comprensión. Por favor, confirma tu asistencia antes del 15 de octubre de 2026.",
     },
     rsvp: {

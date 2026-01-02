@@ -62,7 +62,7 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <p className="text-sm text-rosewood/50 font-sans pt-8">
+            <p className="text-sm text-mauve/70 font-sans pt-8">
               © {currentYear} {siteConfig.couple.shortName1} & {siteConfig.couple.shortName2}. 
               <span className="block md:inline md:ml-1">Hecho con amor.</span>
             </p>

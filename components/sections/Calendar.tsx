@@ -13,7 +13,7 @@ export default function Calendar() {
     description: `Celebra con nosotros nuestra boda. ${siteConfig.couple.name1} y ${siteConfig.couple.name2}. Ceremonia: ${siteConfig.wedding.ceremony.name}. Recepción: ${siteConfig.wedding.reception.name}`,
     location: `${siteConfig.wedding.ceremony.name}, ${siteConfig.wedding.ceremony.address}, ${siteConfig.wedding.ceremony.city}`,
     startDate: siteConfig.wedding.date,
-    endDate: new Date(siteConfig.wedding.date.getTime() + 11 * 60 * 60 * 1000), // +11 horas (hasta 3am)
+    endDate: new Date(siteConfig.wedding.date.getTime() + 11 * 60 * 60 * 1000),
   };
 
   const handleGoogleCalendar = () => {
