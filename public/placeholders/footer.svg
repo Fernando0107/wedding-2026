@@ -1,0 +1,19 @@
+<svg width="1200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="footerGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#f7e5e5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f9e9e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5d9d9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#footerGradient)"/>
+  <text x="600" y="140" font-family="serif" font-size="24" fill="#8b5a5a" text-anchor="middle" opacity="0.2">
+    Footer
+  </text>
+  <text x="600" y="175" font-family="sans-serif" font-size="14" fill="#c9a4a4" text-anchor="middle" opacity="0.2">
+    1200 × 300
+  </text>
+  <circle cx="550" cy="150" r="30" fill="none" stroke="#d4a5a5" stroke-width="2" opacity="0.1"/>
+  <circle cx="650" cy="150" r="30" fill="none" stroke="#d4a5a5" stroke-width="2" opacity="0.1"/>
+</svg>
+

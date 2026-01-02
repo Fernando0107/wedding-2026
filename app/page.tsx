@@ -1,0 +1,33 @@
+import Hero from "@/components/sections/Hero";
+import Story from "@/components/sections/Story";
+import Gallery from "@/components/sections/Gallery";
+import Countdown from "@/components/sections/Countdown";
+import Program from "@/components/sections/Program";
+import Directions from "@/components/sections/Directions";
+import Waze from "@/components/sections/Waze";
+import DressCode from "@/components/sections/DressCode";
+import CodeOfConduct from "@/components/sections/CodeOfConduct";
+import RSVP from "@/components/sections/RSVP";
+import Calendar from "@/components/sections/Calendar";
+import FAQ from "@/components/sections/FAQ";
+import Footer from "@/components/sections/Footer";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen">
+      <Hero />
+      <Story />
+      <Gallery />
+      <Countdown />
+      <Program />
+      <Directions />
+      <Waze />
+      <DressCode />
+      <CodeOfConduct />
+      <RSVP />
+      <Calendar />
+      <FAQ />
+      <Footer />
+    </main>
+  );
+}

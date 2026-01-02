@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fef8f8;
+  --foreground: #4a2e2e;
+  
+  /* Paleta de colores de la boda */
+  --dusty-rose: #d4a5a5;
+  --mauve: #c9a4a4;
+  --rosewood: #8b5a5a;
+  --soft-berry: #b87f7f;
+  --mulberry: #7a4a4a;
+  --old-rose: #c08787;
+  --blush: #f9e9e9;
+  --vintage-pink: #f5d9d9;
+  --dusty-blush: #f7e5e5;
+}
+
+@theme inline {
+  /* Colores personalizados */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-dusty-rose: var(--dusty-rose);
+  --color-mauve: var(--mauve);
+  --color-rosewood: var(--rosewood);
+  --color-soft-berry: var(--soft-berry);
+  --color-mulberry: var(--mulberry);
+  --color-old-rose: var(--old-rose);
+  --color-blush: var(--blush);
+  --color-vintage-pink: var(--vintage-pink);
+  --color-dusty-blush: var(--dusty-blush);
+  
+  /* Tipografías */
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  
+  /* Sombras suaves */
+  --shadow-soft: 0 2px 8px rgba(139, 90, 90, 0.08);
+  --shadow-soft-lg: 0 4px 16px rgba(139, 90, 90, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dusty-rose) var(--blush);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--blush);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dusty-rose);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--soft-berry);
+}

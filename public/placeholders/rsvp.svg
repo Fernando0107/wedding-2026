@@ -1,0 +1,17 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rsvpGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9e9e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f7e5e5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#rsvpGradient)" rx="12"/>
+  <text x="400" y="280" font-family="serif" font-size="28" fill="#8b5a5a" text-anchor="middle" opacity="0.25">
+    RSVP
+  </text>
+  <text x="400" y="320" font-family="sans-serif" font-size="16" fill="#c9a4a4" text-anchor="middle" opacity="0.25">
+    800 × 600
+  </text>
+  <path d="M 350 350 L 380 380 L 450 310" stroke="#d4a5a5" stroke-width="3" fill="none" opacity="0.2"/>
+</svg>
+

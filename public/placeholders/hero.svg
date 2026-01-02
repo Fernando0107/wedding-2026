@@ -1,0 +1,19 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9e9e9;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f5d9d9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f7e5e5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#heroGradient)"/>
+  <text x="960" y="500" font-family="serif" font-size="48" fill="#8b5a5a" text-anchor="middle" opacity="0.3">
+    Imagen Hero
+  </text>
+  <text x="960" y="560" font-family="sans-serif" font-size="24" fill="#c9a4a4" text-anchor="middle" opacity="0.3">
+    1920 × 1080
+  </text>
+  <circle cx="960" cy="650" r="80" fill="none" stroke="#d4a5a5" stroke-width="2" opacity="0.2"/>
+  <path d="M 920 650 L 940 670 L 980 630" stroke="#d4a5a5" stroke-width="3" fill="none" opacity="0.2"/>
+</svg>
+

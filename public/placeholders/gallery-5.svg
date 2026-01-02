@@ -1,0 +1,14 @@
+<svg width="600" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="galleryGradient5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7e5e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5d9d9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#galleryGradient5)" rx="12"/>
+  <text x="300" y="390" font-family="serif" font-size="24" fill="#7a4a4a" text-anchor="middle" opacity="0.2">
+    Galería 5
+  </text>
+  <path d="M 250 420 L 300 370 L 350 420 L 300 470 Z" fill="none" stroke="#d4a5a5" stroke-width="2" opacity="0.15"/>
+</svg>
+
