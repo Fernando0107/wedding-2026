@@ -25,7 +25,7 @@ export const siteConfig = {
       wazeLink: "https://waze.com/ul?ll=14.5897,-90.5197&navigate=yes",
     },
     reception: {
-      name: "InterContinental Real Guatemala by IHG",
+      name: "Real InterContinental Guatemala by IHG",
       address: "14 Calle 2-51, Zona 10",
       city: "Ciudad de Guatemala",
       time: "19:00",
@@ -63,7 +63,7 @@ export const siteConfig = {
       "/placeholders/gallery-5.svg",
       "/placeholders/gallery-6.svg",
     ],
-    rsvp: "/placeholders/rsvp.svg",
+    rsvp: "/will-you-marry-me.jpg",
     footer: "/placeholders/footer.svg",
   },
 
@@ -93,28 +93,28 @@ export const siteConfig = {
       events: [
         {
           time: "16:00",
-          title: "Ceremonia Religiosa",
+          title: "Misa",
           description: "Iglesia Santa María Reina de la Familia. Te pedimos llegar con anticipación.",
         },
         {
-          time: "18:00",
-          title: "Cocktail de Bienvenida",
+          time: "17:00",
+          title: "Sesión de Fotos",
           description: "InterContinental Real Guatemala. Disfruta de aperitivos y bebidas mientras llegan todos los invitados.",
         },
         {
           time: "19:30",
-          title: "Recepción y Cena",
+          title: "Recepción",
           description: "Cena de gala con servicio a la mesa y barra libre.",
         },
         {
-          time: "21:30",
+          time: "20:00",
           title: "Primer Baile",
           description: "Acompáñanos en nuestro primer baile como esposos.",
         },
         {
           time: "22:00",
           title: "¡A Bailar!",
-          description: "La fiesta continúa hasta las 3:00 AM. ¡No te lo pierdas!",
+          description: "La fiesta continúa hasta la 1:00 de la mañana. ¡No te lo pierdas!",
         },
       ],
     },
@@ -126,8 +126,8 @@ export const siteConfig = {
         description: "La ceremonia religiosa se llevará a cabo en la hermosa Iglesia Santa María Reina de la Familia.",
       },
       reception: {
-        title: "Recepción",
-        description: "La recepción y cena de gala será en el elegante InterContinental Real Guatemala.",
+        title: "Recepción y Cena",
+        description: "La recepción y cena de gala será en el elegante Real InterContinental Guatemala.",
       },
     },
     waze: {

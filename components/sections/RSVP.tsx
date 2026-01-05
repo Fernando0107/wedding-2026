@@ -57,6 +57,7 @@ export default function RSVP() {
                   alt="Confirma tu asistencia"
                   fill
                   className="object-cover"
+                  style={{ objectPosition: "0% 50%" }}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Overlay decorativo */}
