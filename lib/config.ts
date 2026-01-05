@@ -50,7 +50,7 @@ export const siteConfig = {
   },
 
   photos: {
-    hero: "/placeholders/hero.svg",
+    hero: "/puesta-anillo.jpg",
     story: [
       "/placeholders/story-1.svg",
       "/placeholders/story-2.svg",

@@ -10,13 +10,14 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Imagen de fondo */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
           src={siteConfig.photos.hero}
           alt="Carol y Juan Fernando"
           fill
           priority
-          className="object-cover"
+          // puesta anillo
+          className="object-cover scale-125 -translate-x-[12%] -translate-y-[2%]"
           sizes="100vw"
         />
         {/* Overlay suave */}
@@ -39,11 +40,11 @@ export default function Hero() {
 
         <FadeIn delay={0.6}>
           <div className="mb-10">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mb-3">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mb-3 drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">
               {siteConfig.couple.shortName1}
             </h2>
-            <p className="text-4xl md:text-5xl font-serif text-dusty-rose my-2">&</p>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mt-3">
+            <p className="text-4xl md:text-5xl font-serif text-rosewood my-2 drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">&</p>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-mulberry mt-3 drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">
               {siteConfig.couple.shortName2}
             </h2>
           </div>
