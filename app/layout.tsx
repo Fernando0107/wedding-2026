@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Boda Carol & Juan Fernando",
     images: [
       {
-        url: "/placeholders/hero.svg",
+        url: "/portada.jpg",
         width: 1200,
         height: 630,
         alt: "Carol & Juan Fernando - Save the Date",
@@ -48,11 +48,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Save the Date - Carol & Juan Fernando",
     description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. 14 de noviembre de 2026.",
-    images: ["/placeholders/hero.svg"],
+    images: ["/portada.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/logo/logo.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/logo/logo.png", type: "image/png" },
+    ],
+    shortcut: "/logo/logo.png",
   },
 };
 
