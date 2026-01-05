@@ -137,6 +137,24 @@ export const siteConfig = {
       ceremonyButton: "Ir a la Iglesia",
       receptionButton: "Ir al Hotel",
     },
+    accommodation: {
+      title: "Hospedaje",
+      description: "Para aquellos invitados que deseen quedarse en el hotel, pueden hospedarse en el Real InterContinental Guatemala.",
+      hotelName: "Real InterContinental Guatemala by IHG",
+      rates: {
+        withoutBreakfast: {
+          title: "Noche sin Desayuno",
+          price: "$.XXX",
+          description: "Habitación estándar para una noche",
+        },
+        withBreakfast: {
+          title: "Noche con Desayuno",
+          price: "$.XXX",
+          description: "Habitación estándar con desayuno incluido",
+        },
+      },
+      contactInfo: "Para reservar, por favor contacta directamente al hotel mencionando la boda de Carol y Juan Fernando.",
+    },
     dressCode: {
       title: "Código de Vestimenta",
       description: "Etiqueta Formal",

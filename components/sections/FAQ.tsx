@@ -15,7 +15,7 @@ export default function FAQ() {
   };
 
   return (
-    <Section id="faq" background="white">
+    <Section id="faq" background="blush">
       <Container size="md">
         <FadeIn>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">

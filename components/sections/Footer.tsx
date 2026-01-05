@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-b from-dusty-blush to-vintage-pink py-20 md:py-24 overflow-hidden">
+    <footer className="relative bg-white py-20 md:py-24 overflow-hidden">
       {/* Imagen de fondo decorativa */}
       <div className="absolute inset-0 opacity-20">
         <Image

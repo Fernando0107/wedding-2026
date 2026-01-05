@@ -5,6 +5,7 @@ import Countdown from "@/components/sections/Countdown";
 import Program from "@/components/sections/Program";
 import Directions from "@/components/sections/Directions";
 import Waze from "@/components/sections/Waze";
+import Hospedaje from "@/components/sections/Hospedaje";
 import DressCode from "@/components/sections/DressCode";
 import CodeOfConduct from "@/components/sections/CodeOfConduct";
 import RSVP from "@/components/sections/RSVP";
@@ -26,6 +27,7 @@ export default function Home() {
       <CodeOfConduct />
       <RSVP />
       <Calendar />
+      <Hospedaje />
       <FAQ />
       <Footer />
     </main>
