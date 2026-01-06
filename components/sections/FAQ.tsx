@@ -36,10 +36,10 @@ export default function FAQ() {
         <div className="space-y-4">
           {siteConfig.content.faq.questions.map((item, index) => (
             <FadeIn key={index} delay={0.1 * (index % 4)}>
-              <div className="bg-blush/50 border border-vintage-pink rounded-xl overflow-hidden shadow-soft">
+              <div className="bg-white border border-dusty-rose/20 rounded-xl overflow-hidden shadow-soft">
                 <button
                   onClick={() => toggleQuestion(index)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-blush transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dusty-rose/50"
+                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-blush/30 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dusty-rose/50"
                   aria-expanded={openIndex === index}
                   aria-controls={`faq-answer-${index}`}
                 >
@@ -71,7 +71,7 @@ export default function FAQ() {
                       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 py-5 bg-white/80 border-t border-vintage-pink">
+                      <div className="px-6 py-5 bg-blush/30 border-t border-dusty-rose/20">
                         <p className="text-mauve font-sans leading-relaxed">
                           {item.answer}
                         </p>

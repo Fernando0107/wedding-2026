@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     title: "Save the Date - Carol & Juan Fernando",
-    description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. 14 de noviembre de 2026.",
+    description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
     type: "website",
     locale: "es_GT",
     siteName: "Boda Carol & Juan Fernando",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Save the Date - Carol & Juan Fernando",
-    description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. 14 de noviembre de 2026.",
+    description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
     images: ["/portada.jpg"],
   },
   icons: {

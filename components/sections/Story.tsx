@@ -9,7 +9,7 @@ import ImageReveal from "@/components/animations/ImageReveal";
 
 export default function Story() {
   return (
-    <Section id="story" background="white">
+    <Section id="story" background="blush">
       <Container>
         <FadeIn>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">

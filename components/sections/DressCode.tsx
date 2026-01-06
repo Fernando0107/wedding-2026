@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
+import { Shirt } from "lucide-react";
 
 export default function DressCode() {
   return (
@@ -13,17 +14,7 @@ export default function DressCode() {
           <div className="text-center max-w-2xl mx-auto">
             {/* Icono */}
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-vintage-pink to-blush mb-8 shadow-soft">
-              <svg
-                className="w-10 h-10 text-rosewood"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
+              <Shirt className="w-10 h-10 text-rosewood" />
             </div>
 
             <h2 className="text-4xl md:text-5xl font-serif text-rosewood mb-6">

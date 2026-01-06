@@ -8,13 +8,13 @@ export const siteConfig = {
   
   wedding: {
     date: new Date("2026-11-14T16:00:00"),
-    dateString: "14 de noviembre de 2026",
+    dateString: "Sábado 14 de noviembre de 2026",
     day: "14",
     month: "Noviembre",
     year: "2026",
     ceremony: {
-      name: "Iglesia Santa María Reina de la Familia",
-      address: "JG67+HPC, Blvr. Rafael Landivar",
+      name: "Iglesia Santa María Reina de la Familia, Cayala",
+      address: "Ciudad Cayala, Zona 16",
       city: "Ciudad de Guatemala",
       time: "16:00",
       coordinates: {
@@ -22,19 +22,19 @@ export const siteConfig = {
         lng: -90.5197,
       },
       googleMapsLink: "https://maps.google.com/?q=JG67%2BHPC+Blvr+Rafael+Landivar+Guatemala",
-      wazeLink: "https://waze.com/ul?ll=14.5897,-90.5197&navigate=yes",
+      wazeLink: "https://waze.com/ul/h9fxehun92",
     },
     reception: {
       name: "Real InterContinental Guatemala by IHG",
       address: "14 Calle 2-51, Zona 10",
       city: "Ciudad de Guatemala",
-      time: "19:00",
+      time: "19:30",
       coordinates: {
         lat: 14.5958,
         lng: -90.5069,
       },
       googleMapsLink: "https://maps.google.com/?q=InterContinental+Real+Guatemala",
-      wazeLink: "https://waze.com/ul?ll=14.5958,-90.5069&navigate=yes",
+      wazeLink: "https://waze.com/ul/h9fxeh391m",
     },
     venue: {
       name: "Iglesia Santa María Reina de la Familia",
@@ -72,6 +72,9 @@ export const siteConfig = {
       title: "Save the Date",
       subtitle: "Estás cordialmente invitado/a a celebrar con nosotros",
     },
+    welcome: {
+      message: "Tu presencia es el regalo más valioso que podemos recibir en este día tan especial.",
+    },
     story: {
       title: "Nuestra Historia",
       text: "Dos almas que se encontraron en el momento perfecto. Lo que comenzó como una mirada, floreció en risas compartidas, sueños entrelazados y un amor que crece cada día. Después de años construyendo recuerdos inolvidables juntos, hoy nos preparamos para dar el paso más importante: unir nuestras vidas para siempre. Y queremos que tú seas parte de este nuevo capítulo.",
@@ -97,19 +100,19 @@ export const siteConfig = {
           description: "Iglesia Santa María Reina de la Familia. Te pedimos llegar con anticipación.",
         },
         {
-          time: "17:00",
-          title: "Sesión de Fotos",
-          description: "InterContinental Real Guatemala. Disfruta de aperitivos y bebidas mientras llegan todos los invitados.",
-        },
-        {
           time: "19:30",
           title: "Recepción",
           description: "Cena de gala con servicio a la mesa y barra libre.",
         },
         {
           time: "20:00",
-          title: "Primer Baile",
-          description: "Acompáñanos en nuestro primer baile como esposos.",
+          title: "Primer Baile y brindis",
+          description: "Acompáñanos en nuestro primer baile como esposos y brindemos por nuestra unión.",
+        },
+        {
+          time: "21:00",
+          title: "Cena",
+          description: "Disfruta de una cena a la mesa junto a nosotros.",
         },
         {
           time: "22:00",
@@ -139,18 +142,20 @@ export const siteConfig = {
     },
     accommodation: {
       title: "Hospedaje",
-      description: "Para aquellos invitados que deseen quedarse en el hotel, pueden hospedarse en el Real InterContinental Guatemala.",
+      description: "Para aquellos invitados que deseen quedarse en el hotel, pueden hospedarse en el Real InterContinental Guatemala. Nuestros invitados tienen acceso a una tarifa especial por nuestra boda.",
       hotelName: "Real InterContinental Guatemala by IHG",
       rates: {
         withoutBreakfast: {
           title: "Noche sin Desayuno",
-          price: "$.XXX",
-          description: "Habitación estándar para una noche",
+          price: "$129",
+          taxes: "+ 22% de impuestos",
+          description: "Habitación sencilla o doble por evento",
         },
         withBreakfast: {
           title: "Noche con Desayuno",
-          price: "$.XXX",
-          description: "Habitación estándar con desayuno incluido",
+          price: "$149",
+          taxes: "+ 22% de impuestos",
+          description: "Habitación sencilla o doble con desayuno incluido por evento",
         },
       },
       contactInfo: "Para reservar, por favor contacta directamente al hotel mencionando la boda de Carol y Juan Fernando.",

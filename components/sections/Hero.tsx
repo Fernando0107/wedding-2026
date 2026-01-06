@@ -66,7 +66,7 @@ export default function Hero() {
               variant="primary"
               size="lg"
               onClick={() => scrollToSection("rsvp")}
-              className="min-w-[220px] text-lg"
+              className="min-w-[220px] text-lg !bg-soft-berry hover:!bg-dusty-rose hover:!scale-105 transition-all duration-300"
             >
               Confirmar Asistencia
             </Button>

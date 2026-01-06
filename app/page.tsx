@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
+import Welcome from "@/components/sections/Welcome";
 import Story from "@/components/sections/Story";
-import Gallery from "@/components/sections/Gallery";
+// import Gallery from "@/components/sections/Gallery";
 import Countdown from "@/components/sections/Countdown";
 import Program from "@/components/sections/Program";
 import Directions from "@/components/sections/Directions";
@@ -17,8 +18,9 @@ export default function Home() {
   return (
     <main id="main-content" className="min-h-screen">
       <Hero />
+      <Welcome />
       <Story />
-      <Gallery />
+      {/* <Gallery /> */}
       <Countdown />
       <Program />
       <Directions />

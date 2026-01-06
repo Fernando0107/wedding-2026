@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
+import { Church, Building2, MapPin, Navigation } from "lucide-react";
 
 export default function Directions() {
   return (
@@ -24,20 +25,10 @@ export default function Directions() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Ceremonia */}
           <FadeIn delay={0.3}>
-            <div className="bg-blush rounded-2xl p-8 md:p-10 shadow-soft h-full">
+            <div className="bg-vintage-pink rounded-2xl p-8 md:p-10 shadow-soft h-full">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-rosewood"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
-                  </svg>
+                  <Church className="w-6 h-6 text-rosewood" />
                 </div>
                 <div>
                   <span className="text-sm text-old-rose font-sans uppercase tracking-wide">
@@ -68,9 +59,7 @@ export default function Directions() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+                  <MapPin className="w-4 h-4" />
                   Google Maps
                 </a>
                 <a
@@ -79,9 +68,7 @@ export default function Directions() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+                  <Navigation className="w-4 h-4" />
                   Waze
                 </a>
               </div>
@@ -90,20 +77,10 @@ export default function Directions() {
 
           {/* Recepción */}
           <FadeIn delay={0.4}>
-            <div className="bg-vintage-pink rounded-2xl p-8 md:p-10 shadow-soft h-full">
+            <div className="bg-blush rounded-2xl p-8 md:p-10 shadow-soft h-full">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-rosewood"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
+                  <Building2 className="w-6 h-6 text-rosewood" />
                 </div>
                 <div>
                   <span className="text-sm text-old-rose font-sans uppercase tracking-wide">
@@ -134,9 +111,7 @@ export default function Directions() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+                  <MapPin className="w-4 h-4" />
                   Google Maps
                 </a>
                 <a
@@ -145,9 +120,7 @@ export default function Directions() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+                  <Navigation className="w-4 h-4" />
                   Waze
                 </a>
               </div>

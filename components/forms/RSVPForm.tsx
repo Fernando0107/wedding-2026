@@ -224,7 +224,7 @@ export default function RSVPForm() {
           variant="primary"
           size="lg"
           disabled={isSubmitting}
-          className="w-full"
+          className="w-full !bg-soft-berry hover:!bg-dusty-rose hover:!scale-105 transition-all duration-300"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
