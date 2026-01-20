@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 
 interface EnvelopeIntroProps {
@@ -12,10 +13,6 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
   const [isOpening, setIsOpening] = useState(false);
   const [showCard, setShowCard] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-
-  // Get initials from config
-  const initial1 = siteConfig.couple.shortName1.charAt(0);
-  const initial2 = siteConfig.couple.shortName2.charAt(0);
 
   useEffect(() => {
     // Block scroll while envelope is visible
@@ -99,7 +96,8 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
               className="absolute inset-0 rounded-sm"
               style={{
                 background: "linear-gradient(180deg, #fefcfa 0%, #f9f6f3 100%)",
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 12px 24px -8px rgba(0, 0, 0, 0.1)",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 12px 24px -8px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(180, 160, 140, 0.3)",
+                border: "1px solid rgba(180, 160, 140, 0.25)",
               }}
             />
 
@@ -216,7 +214,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                 viewBox="0 0 400 135" 
                 className="w-full h-auto"
                 style={{ 
-                  filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.07))",
+                  filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.12))",
                   backfaceVisibility: "hidden",
                 }}
               >
@@ -230,10 +228,18 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                   d="M0 0 L200 135 L400 0 Z" 
                   fill="url(#flapGradient)"
                 />
+                {/* Border outline */}
                 <path 
                   d="M0 0 L200 135 L400 0" 
                   fill="none" 
-                  stroke="rgba(255,255,255,0.5)" 
+                  stroke="rgba(180, 160, 140, 0.35)" 
+                  strokeWidth="1.5"
+                />
+                {/* Inner highlight */}
+                <path 
+                  d="M8 2 L200 128 L392 2" 
+                  fill="none" 
+                  stroke="rgba(255,255,255,0.4)" 
                   strokeWidth="1"
                 />
               </svg>
@@ -245,6 +251,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                 style={{
                   transform: "rotateX(180deg)",
                   backfaceVisibility: "hidden",
+                  filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                 }}
               >
                 <defs>
@@ -258,12 +265,12 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                   d="M0 135 L200 0 L400 135 Z" 
                   fill="url(#flapBackGradient)"
                 />
-                {/* Subtle fold shadow */}
+                {/* Border outline */}
                 <path 
                   d="M0 135 L200 0 L400 135" 
                   fill="none" 
-                  stroke="rgba(0,0,0,0.05)" 
-                  strokeWidth="1"
+                  stroke="rgba(180, 160, 140, 0.3)" 
+                  strokeWidth="1.5"
                 />
               </svg>
             </motion.div>
@@ -271,7 +278,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
             {/* === WAX SEAL === */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 z-20"
-              style={{ top: "35%" }}
+              style={{ top: "30%" }}
               initial={{ scale: 1, rotate: 0 }}
               animate={isOpening ? { 
                 scale: 0.5, 
@@ -286,132 +293,15 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
               }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              {/* Elegant wax seal */}
-              <div className="relative w-[88px] h-[88px] sm:w-[110px] sm:h-[110px]">
-                <svg 
-                  viewBox="0 0 100 100" 
-                  className="absolute inset-0 w-full h-full"
-                  style={{
-                    filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.2)) drop-shadow(0 6px 12px rgba(0,0,0,0.1))",
-                  }}
-                >
-                  <defs>
-                    {/* Main wax body gradient - smooth champagne gold */}
-                    <radialGradient id="waxBody" cx="40%" cy="35%" r="65%">
-                      <stop offset="0%" stopColor="#e8d5a3" />
-                      <stop offset="40%" stopColor="#d4c48a" />
-                      <stop offset="70%" stopColor="#c4aa70" />
-                      <stop offset="100%" stopColor="#a8894d" />
-                    </radialGradient>
-                    
-                    {/* Outer rim gradient - darker for 3D effect */}
-                    <radialGradient id="waxRim" cx="40%" cy="35%" r="55%">
-                      <stop offset="0%" stopColor="#c9b575" />
-                      <stop offset="50%" stopColor="#b09a58" />
-                      <stop offset="100%" stopColor="#8a7540" />
-                    </radialGradient>
-                    
-                    {/* Inner flat area - lighter */}
-                    <radialGradient id="waxInner" cx="45%" cy="40%" r="50%">
-                      <stop offset="0%" stopColor="#ecdcac" />
-                      <stop offset="60%" stopColor="#dcc992" />
-                      <stop offset="100%" stopColor="#cbba80" />
-                    </radialGradient>
-                    
-                    {/* Top highlight */}
-                    <linearGradient id="waxShine" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(255,250,230,0.5)" />
-                      <stop offset="50%" stopColor="rgba(255,250,230,0)" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Outer irregular wax shape - subtle waves */}
-                  <path 
-                    d="M50 4
-                       C58 4 65 5 72 9
-                       C79 13 85 18 89 26
-                       C93 34 96 42 96 50
-                       C96 58 94 66 90 73
-                       C86 80 80 86 73 90
-                       C66 94 58 96 50 96
-                       C42 96 34 94 27 90
-                       C20 86 14 80 10 73
-                       C6 66 4 58 4 50
-                       C4 42 6 34 10 27
-                       C14 20 20 14 27 10
-                       C34 6 42 4 50 4Z"
-                    fill="url(#waxRim)"
-                  />
-                  
-                  {/* Raised rim - inner edge */}
-                  <circle 
-                    cx="50" 
-                    cy="50" 
-                    r="38"
-                    fill="url(#waxBody)"
-                  />
-                  
-                  {/* Inner pressed circle area */}
-                  <circle 
-                    cx="50" 
-                    cy="50" 
-                    r="32"
-                    fill="url(#waxInner)"
-                  />
-                  
-                  {/* Embossed ring around initials */}
-                  <circle 
-                    cx="50" 
-                    cy="50" 
-                    r="30"
-                    fill="none"
-                    stroke="#b5a060"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-                  <circle 
-                    cx="50" 
-                    cy="50" 
-                    r="29"
-                    fill="none"
-                    stroke="#d8c890"
-                    strokeWidth="0.5"
-                    opacity="0.4"
-                  />
-                  
-                  {/* Shine overlay */}
-                  <ellipse 
-                    cx="38" 
-                    cy="35" 
-                    rx="20" 
-                    ry="15"
-                    fill="url(#waxShine)"
-                  />
-                </svg>
-                
-                {/* Initials - elegant script style */}
-                <div 
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <span 
-                    className="font-serif text-2xl sm:text-3xl tracking-wide"
-                    style={{ 
-                      color: "#9a8245",
-                      fontStyle: "italic",
-                      fontWeight: 500,
-                      textShadow: "0 1px 0 rgba(255,248,220,0.4)",
-                    }}
-                  >
-                    {initial1}
-                    <span 
-                      className="text-lg sm:text-xl mx-1"
-                      style={{ fontStyle: "normal", fontWeight: 400 }}
-                    >
-                      &
-                    </span>
-                    {initial2}
-                  </span>
-                </div>
+              {/* Wax seal PNG image */}
+              <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px]">
+                <Image
+                  src="/sello.png"
+                  alt="Sello de cera"
+                  fill
+                  className="object-contain drop-shadow-lg"
+                  priority
+                />
               </div>
             </motion.div>
 
