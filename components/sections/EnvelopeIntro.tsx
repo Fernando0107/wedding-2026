@@ -326,10 +326,12 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
           </div>
         </div>
 
-        {/* "Tap to open" hint - No animation delay for faster LCP */}
-        <div 
+        {/* "Tap to open" hint */}
+        <motion.div 
           className="text-center mt-8"
-          style={{ opacity: isOpening ? 0 : 1, transition: 'opacity 0.3s ease-out' }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isOpening ? 0 : 1, y: isOpening ? -10 : 0 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
         >
           <p className="text-rosewood/50 text-sm tracking-[0.15em] font-light">
             Toca para abrir
@@ -344,7 +346,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.591M6 10.5H3.75m4.007-4.243l-1.59-1.591" />
             </svg>
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Corner decorations */}
