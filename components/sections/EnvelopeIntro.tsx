@@ -87,9 +87,9 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
         onClick={handleOpen}
         whileHover={!isOpening ? { scale: 1.02 } : {}}
         whileTap={!isOpening ? { scale: 0.98 } : {}}
-        initial={{ scale: 0.95, opacity: 0 }}
+        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+        transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
         style={{ perspective: "1200px" }}
       >
         {/* Envelope wrapper for 3D effect */}
@@ -311,7 +311,6 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                   height={120}
                   className="object-contain drop-shadow-lg w-full h-full"
                   priority
-                  fetchPriority="high"
                 />
               </div>
             </motion.div>
@@ -331,7 +330,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
           className="text-center mt-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: isOpening ? 0 : 1, y: isOpening ? -10 : 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
         >
           <p className="text-rosewood/50 text-sm tracking-[0.15em] font-light">
             Toca para abrir
