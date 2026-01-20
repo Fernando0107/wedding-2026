@@ -307,9 +307,8 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
                 <Image
                   src="/sello.png"
                   alt="Sello de cera"
-                  width={120}
-                  height={120}
-                  className="object-contain drop-shadow-lg w-full h-full"
+                  fill
+                  className="object-contain drop-shadow-lg"
                   priority
                 />
               </div>
@@ -354,11 +353,11 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
       <div className="absolute bottom-6 left-6 w-12 h-12 border-b border-l border-dusty-rose/15 rounded-bl-sm" />
       <div className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-dusty-rose/15 rounded-br-sm" />
 
-      {/* Envelope opening sound - preload metadata only for faster initial load */}
+      {/* Envelope opening sound */}
       <audio
         ref={audioRef}
         src="/sounds/envelope-open.mp3"
-        preload="metadata"
+        preload="auto"
       />
     </motion.div>
   );
