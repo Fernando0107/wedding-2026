@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
@@ -13,6 +13,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
   const [isOpening, setIsOpening] = useState(false);
   const [showCard, setShowCard] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     // Block scroll while envelope is visible
@@ -25,6 +26,14 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
   const handleOpen = () => {
     if (isOpening) return;
     setIsOpening(true);
+    
+    // Play envelope opening sound
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch((err) => {
+        console.warn("Error playing sound:", err);
+      });
+    }
     
     // Show card after flap opens
     setTimeout(() => {
@@ -343,6 +352,13 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
       <div className="absolute top-6 right-6 w-12 h-12 border-t border-r border-dusty-rose/15 rounded-tr-sm" />
       <div className="absolute bottom-6 left-6 w-12 h-12 border-b border-l border-dusty-rose/15 rounded-bl-sm" />
       <div className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-dusty-rose/15 rounded-br-sm" />
+
+      {/* Envelope opening sound */}
+      <audio
+        ref={audioRef}
+        src="/sounds/envelope-open.mp3"
+        preload="auto"
+      />
     </motion.div>
   );
 }
