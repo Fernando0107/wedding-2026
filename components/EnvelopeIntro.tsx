@@ -36,10 +36,10 @@ export default function EnvelopeIntro() {
       setIsFadingOut(true);
     }, 3500); // Empieza a desvanecer después de 3.5s
 
-    // Ocultar completamente y mostrar la landing
+    // Ocultar completamente y mostrar la landing - dar tiempo suficiente para la transición
     setTimeout(() => {
       setIsHidden(true);
-    }, 4000); // Tiempo total: apertura (1s) + reveal (0.8s) + salida (2s) + lectura (0.7s) + fade (0.6s) + margen (0.4s)
+    }, 5500); // Tiempo total: apertura (1s) + reveal (0.8s) + salida (2s) + lectura (0.7s) + fade suave (1.5s) + margen (0.5s)
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
