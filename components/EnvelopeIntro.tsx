@@ -118,7 +118,7 @@ export default function EnvelopeIntro() {
             {/* Sello */}
             <div className={styles.envelopeStamp}>
               <Image
-                src="/sello/sello.png"
+                src="/sello/sello-optimized.png"
                 alt="Sello de boda"
                 width={100}
                 height={100}
