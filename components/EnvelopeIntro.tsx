@@ -13,19 +13,24 @@ export default function EnvelopeIntro() {
 
   // Bloquear scroll mientras el overlay está activo
   useEffect(() => {
-    if (!isHidden) {
+    if (!isFadingOut) {
+      // Bloquear scroll vertical y horizontal
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
+      document.body.style.overflowX = "hidden";
     } else {
+      // Desbloquear scroll cuando empiece el fade out
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+      document.body.style.overflowX = "";
     }
 
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+      document.body.style.overflowX = "";
     };
-  }, [isHidden]);
+  }, [isFadingOut]);
 
   const handleOpen = () => {
     if (isOpening) return;
