@@ -148,6 +148,8 @@
   transition: overflow 0s 1s;
   /* Optimización */
   will-change: overflow;
+  /* D) Evitar glitches de composición 3D */
+  transform: translateZ(0);
 }
 
 @media (min-width: 640px) {
@@ -293,6 +295,7 @@
   
   /* Optimización */
   will-change: transform;
+  transform-style: preserve-3d;
 }
 
 /* ============================================
@@ -303,12 +306,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   width: clamp(70px, 18vw, 100px);
   height: clamp(70px, 18vw, 100px);
   z-index: 3;
   border-radius: 4px;
   will-change: opacity, transform;
+  /* D) Evitar parpadeos del compositor */
+  backface-visibility: hidden;
 }
 
 .stampImage {
@@ -368,21 +373,34 @@
   opacity: 0;
 }
 
-.opening .envelopeStamp {
-  /* Usar animación en lugar de transición para evitar re-renders */
+/* C) Clase dedicada para el fade del sello - desacoplada de .opening */
+.sealFading {
+  /* Estado final fijo para evitar flash en re-renders */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateZ(0) translate(-50%, -50%) scale(0.88) !important;
   animation: sealFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   pointer-events: none;
+  /* Asegurar que no afecte al flap */
+  z-index: 1 !important;
 }
 
-/* Animación para desvanecer el sello */
+/* B + C) Animación mejorada con visibility para evitar flash */
 @keyframes sealFadeOut {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    transform: translateZ(0) translate(-50%, -50%) scale(1);
+  }
+  99% {
+    opacity: 0;
+    visibility: visible;
+    transform: translateZ(0) translate(-50%, -50%) scale(0.88);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.88);
+    visibility: hidden;
+    transform: translateZ(0) translate(-50%, -50%) scale(0.88);
   }
 }
 
@@ -414,8 +432,7 @@
 
   .opening .envelopeFlap {
     transform: rotateX(90deg);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform 0.4s ease;
   }
 
   .envelopePaper {

@@ -9,7 +9,7 @@ export default function EnvelopeIntro() {
   const [isOpening, setIsOpening] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [hideSeal, setHideSeal] = useState(false);
+  const [sealFading, setSealFading] = useState(false); // Estado dedicado para el sello
 
   // Bloquear scroll mientras el overlay está activo
   useEffect(() => {
@@ -31,11 +31,7 @@ export default function EnvelopeIntro() {
     if (isOpening) return;
     
     setIsOpening(true);
-
-    // Ocultar el sello después de su animación (0.6s)
-    setTimeout(() => {
-      setHideSeal(true);
-    }, 650);
+    setSealFading(true); // Activar fade del sello INMEDIATAMENTE
 
     // Empezar fade out del overlay DESPUÉS de que termine la animación de lectura
     setTimeout(() => {
@@ -92,20 +88,18 @@ export default function EnvelopeIntro() {
             {/* Solapa superior (la que se abre) */}
             <div className={styles.envelopeFlap} />
 
-            {/* Sello */}
-            {!hideSeal && (
-              <div className={styles.envelopeStamp}>
-                <Image
-                  src="/sello/sello-optimized.png"
-                  alt="Sello de boda"
-                  width={100}
-                  height={100}
-                  priority
-                  sizes="(max-width: 640px) 70px, 100px"
-                  className={styles.stampImage}
-                />
-              </div>
-            )}
+            {/* Sello con estado dedicado */}
+            <div className={`${styles.envelopeStamp} ${sealFading ? styles.sealFading : ""}`}>
+              <Image
+                src="/sello/sello-optimized.png"
+                alt="Sello de boda"
+                width={100}
+                height={100}
+                priority
+                sizes="(max-width: 640px) 70px, 100px"
+                className={styles.stampImage}
+              />
+            </div>
           </div>
 
           {/* Tarjeta de invitación que sale del sobre - FUERA del envelope */}
