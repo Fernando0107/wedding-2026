@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Opaco desde el inicio para cubrir el landing page */
   opacity: 1;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -31,7 +32,22 @@
   gap: 2rem;
   perspective: 1200px;
   padding: 1rem;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: envelopeAppear 0.8s ease 0.3s forwards;
   transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Aparición suave del sobre al cargar */
+@keyframes envelopeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .envelopeHiding {
@@ -100,6 +116,8 @@
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d;
   z-index: 1000;
+  /* Optimización para animaciones */
+  will-change: transform;
 }
 
 .envelopeWrapper:hover:not(:disabled) {
@@ -126,6 +144,8 @@
   /* Oculta la tarjeta mientras el sobre está cerrado - MUY IMPORTANTE */
   overflow: hidden;
   transition: overflow 0s 1s;
+  /* Optimización */
+  will-change: overflow;
 }
 
 @media (min-width: 640px) {
@@ -268,6 +288,9 @@
   
   /* Triángulo de cierre - punta hacia abajo en estado cerrado */
   clip-path: polygon(0 0, 100% 0, 50% 100%);
+  
+  /* Optimización */
+  will-change: transform;
 }
 
 /* ============================================
@@ -438,6 +461,8 @@
   opacity: 0;
   /* Suaviza las transiciones */
   transition: box-shadow 0.3s ease;
+  /* Optimización */
+  will-change: transform, opacity;
 }
 
 /* Animación cuando se abre el sobre */
