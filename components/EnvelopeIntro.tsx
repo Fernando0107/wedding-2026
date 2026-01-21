@@ -34,12 +34,12 @@ export default function EnvelopeIntro() {
     // Empezar fade out del overlay DESPUÉS de que termine la animación de lectura
     setTimeout(() => {
       setIsFadingOut(true);
-    }, 5500); // Empieza a desvanecer después de 5.5s
+    }, 3500); // Empieza a desvanecer después de 3.5s
 
     // Ocultar completamente y mostrar la landing
     setTimeout(() => {
       setIsHidden(true);
-    }, 7000); // Tiempo total: apertura (1s) + reveal (0.5s) + salida (2.5s) + lectura (1.5s) + fade (0.8s) + margen (0.7s)
+    }, 4000); // Tiempo total: apertura (1s) + reveal (0.8s) + salida (2s) + lectura (0.7s) + fade (0.6s) + margen (0.4s)
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
