@@ -369,10 +369,11 @@
 }
 
 .opening .envelopeStamp {
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  z-index: 3;
+  /* Desaparecer suavemente cuando se abre el sobre */
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
 }
 
 /* ============================================
