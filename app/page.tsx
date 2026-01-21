@@ -1,3 +1,4 @@
+import EnvelopeIntro from "@/components/EnvelopeIntro";
 import Hero from "@/components/sections/Hero";
 import Welcome from "@/components/sections/Welcome";
 import Story from "@/components/sections/Story";
@@ -16,22 +17,28 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-screen">
-      <Hero />
-      <Welcome />
-      <Story />
-      {/* <Gallery /> */}
-      <Countdown />
-      <Program />
-      <Directions />
-      <Waze />
-      <DressCode />
-      <CodeOfConduct />
-      <RSVP />
-      <Calendar />
-      <Hospedaje />
-      <FAQ />
-      <Footer />
-    </main>
+    <>
+      {/* Intro con sobre animado - se muestra SIEMPRE al cargar */}
+      <EnvelopeIntro />
+      
+      {/* Contenido principal - renderizado detrás del overlay */}
+      <main id="main-content" className="min-h-screen">
+        <Hero />
+        <Welcome />
+        <Story />
+        {/* <Gallery /> */}
+        <Countdown />
+        <Program />
+        <Directions />
+        <Waze />
+        <DressCode />
+        <CodeOfConduct />
+        <RSVP />
+        <Calendar />
+        <Hospedaje />
+        <FAQ />
+        <Footer />
+      </main>
+    </>
   );
 }
