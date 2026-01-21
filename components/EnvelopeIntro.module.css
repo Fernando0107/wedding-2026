@@ -446,15 +446,16 @@
 
 .invitationCard {
   position: absolute;
-  top: 0;
+  /* Posicionado relativo al envelopeWrapper, NO al envelope */
+  top: 50%;
   left: 50%;
   /* Más pequeña para que quepa dentro del sobre */
-  width: 75%;
-  height: 110%;
-  /* Empieza COMPLETAMENTE DENTRO del sobre - asoma solo la punta de arriba */
-  transform: translateX(-50%) translateY(-15%);
+  width: min(69vw, 270px); /* 75% del sobre */
+  height: min(67.5vw, 264px); /* 110% del sobre */
+  /* Empieza en el centro del sobre, oculta */
+  transform: translateX(-50%) translateY(-42%);
   border-radius: 4px;
-  z-index: 1;
+  z-index: 100;
   overflow: hidden;
   box-shadow: 
     0 4px 12px rgba(139, 90, 90, 0.2),
@@ -482,18 +483,18 @@
 @keyframes cardRevealAndPull {
   0% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-15%) scale(0.96);
+    transform: translateX(-50%) translateY(-42%) scale(0.96);
   }
   15% {
     opacity: 1;
-    transform: translateX(-50%) translateY(-15%) scale(0.98);
+    transform: translateX(-50%) translateY(-42%) scale(0.98);
   }
   25% {
-    transform: translateX(-50%) translateY(-20%) scale(1);
+    transform: translateX(-50%) translateY(-62%) scale(1);
   }
   100% {
     opacity: 1;
-    transform: translateX(-50%) translateY(-85%) scale(1);
+    transform: translateX(-50%) translateY(-110%) scale(1);
   }
 }
 
@@ -501,11 +502,11 @@
 @keyframes cardFadeOut {
   0% {
     opacity: 1;
-    transform: translateX(-50%) translateY(-85%) scale(1);
+    transform: translateX(-50%) translateY(-110%) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-88%) scale(0.96);
+    transform: translateX(-50%) translateY(-115%) scale(0.96);
   }
 }
 

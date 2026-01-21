@@ -83,35 +83,6 @@ export default function EnvelopeIntro() {
             {/* Interior del sobre (sombra cuando se abre) */}
             <div className={styles.envelopeInner} />
 
-            {/* Tarjeta de invitación que sale del sobre */}
-            <div className={`${styles.invitationCard} ${isOpening ? styles.cardPullingOut : ""}`}>
-              {/* Fondo con gradiente del tema */}
-              <div className={styles.invitationBackground} />
-              
-              {/* Contenido de la tarjeta */}
-              <div className={styles.invitationContent}>
-                <p className={styles.invitationLabel}>Save the Date</p>
-                
-                <div className={styles.invitationNames}>
-                  <p className={styles.invitationName}>{siteConfig.couple.shortName1}</p>
-                  <p className={styles.invitationAmpersand}>&</p>
-                  <p className={styles.invitationName}>{siteConfig.couple.shortName2}</p>
-                </div>
-                
-                <div className={styles.invitationDateContainer}>
-                  <div className={styles.invitationDateLine} />
-                  <div className={styles.invitationDate}>
-                    <span className={styles.invitationDay}>{siteConfig.wedding.day}</span>
-                    <span className={styles.invitationSeparator}>·</span>
-                    <span className={styles.invitationMonth}>{siteConfig.wedding.month}</span>
-                    <span className={styles.invitationSeparator}>·</span>
-                    <span className={styles.invitationYear}>{siteConfig.wedding.year}</span>
-                  </div>
-                  <div className={styles.invitationDateLine} />
-                </div>
-              </div>
-            </div>
-
             {/* Solapa superior (la que se abre) */}
             <div className={styles.envelopeFlap} />
 
@@ -126,6 +97,35 @@ export default function EnvelopeIntro() {
                 sizes="(max-width: 640px) 70px, 100px"
                 className={styles.stampImage}
               />
+            </div>
+          </div>
+
+          {/* Tarjeta de invitación que sale del sobre - FUERA del envelope */}
+          <div className={`${styles.invitationCard} ${isOpening ? styles.cardPullingOut : ""}`}>
+            {/* Fondo con gradiente del tema */}
+            <div className={styles.invitationBackground} />
+            
+            {/* Contenido de la tarjeta */}
+            <div className={styles.invitationContent}>
+              <p className={styles.invitationLabel}>Save the Date</p>
+              
+              <div className={styles.invitationNames}>
+                <p className={styles.invitationName}>{siteConfig.couple.shortName1}</p>
+                <p className={styles.invitationAmpersand}>&</p>
+                <p className={styles.invitationName}>{siteConfig.couple.shortName2}</p>
+              </div>
+              
+              <div className={styles.invitationDateContainer}>
+                <div className={styles.invitationDateLine} />
+                <div className={styles.invitationDate}>
+                  <span className={styles.invitationDay}>{siteConfig.wedding.day}</span>
+                  <span className={styles.invitationSeparator}>·</span>
+                  <span className={styles.invitationMonth}>{siteConfig.wedding.month}</span>
+                  <span className={styles.invitationSeparator}>·</span>
+                  <span className={styles.invitationYear}>{siteConfig.wedding.year}</span>
+                </div>
+                <div className={styles.invitationDateLine} />
+              </div>
             </div>
           </div>
 
