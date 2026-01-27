@@ -1,16 +1,63 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { rsvpFormSchema, RSVPFormData } from "@/lib/validations";
 import { siteConfig } from "@/lib/config";
+import { getFamilyGuests, familyExists } from "@/lib/families";
 import Button from "@/components/ui/Button";
 
-export default function RSVPForm() {
+interface RSVPFormProps {
+  familyKey: string | null;
+}
+
+export default function RSVPForm({ familyKey }: RSVPFormProps) {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [guests, setGuests] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [alreadyConfirmed, setAlreadyConfirmed] = useState(false);
+
+  // Validar familia, cargar invitados y verificar si ya confirmó
+  useEffect(() => {
+    const checkFamilyAndRSVP = async () => {
+      if (!familyKey) {
+        setIsLoading(false);
+        return;
+      }
+
+      if (!familyExists(familyKey)) {
+        router.push(`/not-found?fam=${familyKey}`);
+        return;
+      }
+
+      const familyGuests = getFamilyGuests(familyKey);
+      setGuests(familyGuests);
+
+      // Verificar si ya existe un RSVP en Redis
+      try {
+        const response = await fetch(`/api/rsvp?familyKey=${familyKey}`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success && result.data) {
+            // Ya existe un RSVP, mostrar mensaje de agradecimiento
+            setAlreadyConfirmed(true);
+            setSubmitStatus("success");
+          }
+        }
+      } catch (error) {
+        console.error("Error al verificar RSVP:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkFamilyAndRSVP();
+  }, [familyKey, router]);
 
   const {
     register,
@@ -18,31 +65,59 @@ export default function RSVPForm() {
     formState: { errors },
     reset,
     watch,
+    setValue,
   } = useForm<RSVPFormData>({
     resolver: zodResolver(rsvpFormSchema),
     defaultValues: {
-      guests: 0,
+      familyKey: familyKey || "",
+      guestConfirmations: {},
     },
   });
 
-  const confirmationValue = watch("confirmation");
+  // Actualizar familyKey cuando cambia (asegurarse de que siempre tenga un valor)
+  useEffect(() => {
+    if (familyKey) {
+      setValue("familyKey", familyKey, { shouldValidate: true });
+    } else {
+      setValue("familyKey", "", { shouldValidate: false });
+    }
+  }, [familyKey, setValue]);
+
+  // Inicializar confirmaciones por defecto (todos confirman)
+  useEffect(() => {
+    if (guests.length > 0) {
+      const defaultConfirmations: Record<string, "si" | "no"> = {};
+      guests.forEach((guest) => {
+        defaultConfirmations[guest] = "si"; // Por defecto todos confirman
+      });
+      setValue("guestConfirmations", defaultConfirmations);
+    }
+  }, [guests, setValue]);
+
+  const guestConfirmations = watch("guestConfirmations");
 
   const onSubmit = async (data: RSVPFormData) => {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
     try {
-      console.log("Datos del formulario:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Error al enviar el RSVP');
+      }
 
       setSubmitStatus("success");
-      reset();
-      
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
+      // No resetear el formulario, solo mostrar el mensaje de éxito
     } catch (error) {
-      console.error("Error al enviar:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -52,156 +127,174 @@ export default function RSVPForm() {
   const inputClasses = "w-full px-4 py-3 rounded-xl border-2 border-vintage-pink/50 focus:border-dusty-rose focus:outline-none focus:ring-2 focus:ring-dusty-rose/20 transition-all bg-white text-foreground placeholder:text-mauve/50";
   const labelClasses = "block text-sm font-sans text-rosewood mb-2 font-medium";
   const errorClasses = "mt-1.5 text-sm text-soft-berry flex items-center gap-1";
+  const selectClasses = "w-full px-4 py-3 rounded-xl border-2 border-vintage-pink/50 focus:border-dusty-rose focus:outline-none focus:ring-2 focus:ring-dusty-rose/20 transition-all bg-white text-foreground";
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin h-8 w-8 border-4 border-dusty-rose border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (!familyKey) {
+    return (
+      <div className="p-4 rounded-xl bg-yellow-50 border-2 border-yellow-300 text-yellow-800 text-center font-sans">
+        <p>Por favor, usa el enlace de invitación que recibiste.</p>
+        <p className="text-sm mt-2 text-yellow-700">
+          El enlace debe incluir <code className="bg-yellow-100 px-2 py-1 rounded">?fam=tu-familia</code>
+        </p>
+      </div>
+    );
+  }
+
+  // Calcular estadísticas de confirmación
+  const confirmedCount = Object.values(guestConfirmations || {}).filter(c => c === "si").length;
+  const declinedCount = Object.values(guestConfirmations || {}).filter(c => c === "no").length;
+
+  // Si ya se confirmó exitosamente o ya existe en Redis, mostrar mensaje de agradecimiento
+  if (submitStatus === "success" || alreadyConfirmed) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="p-8 rounded-2xl bg-gradient-to-br from-vintage-pink/30 to-dusty-rose/20 border-2 border-dusty-rose/50 text-center"
+      >
+        <div className="mb-6">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="w-20 h-20 mx-auto mb-4 bg-dusty-rose rounded-full flex items-center justify-center"
+          >
+            <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+          </motion.div>
+          <h3 className="text-2xl md:text-3xl font-serif text-rosewood mb-3">
+            ¡Gracias por confirmar!
+          </h3>
+          <p className="text-mauve font-sans text-lg mb-2">
+            Tu confirmación ha sido registrada exitosamente
+          </p>
+          <p className="text-mauve/80 font-sans text-sm">
+            Estamos muy emocionados de celebrar este día especial contigo
+          </p>
+        </div>
+        <div className="pt-4 border-t border-dusty-rose/30">
+          <p className="text-xs text-mauve/70 font-sans italic">
+            "Tu presencia es el mejor regalo"
+          </p>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      {/* Nombre */}
-      <div>
-        <label htmlFor="name" className={labelClasses}>
-          {siteConfig.content.rsvp.fields.name.label} *
-        </label>
-        <input
-          id="name"
-          type="text"
-          {...register("name")}
-          placeholder={siteConfig.content.rsvp.fields.name.placeholder}
-          className={inputClasses}
-          aria-invalid={errors.name ? "true" : "false"}
-        />
-        {errors.name && (
-          <p className={errorClasses} role="alert">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-            </svg>
-            {errors.name.message}
-          </p>
-        )}
-      </div>
+    <form 
+      onSubmit={handleSubmit(
+        onSubmit,
+        () => {
+          setSubmitStatus("error");
+        }
+      )} 
+      className="space-y-5"
+    >
+      <input 
+        type="hidden" 
+        {...register("familyKey")}
+        value={familyKey || ""}
+      />
 
-      {/* Email */}
-      <div>
-        <label htmlFor="email" className={labelClasses}>
-          {siteConfig.content.rsvp.fields.email.label} *
-        </label>
-        <input
-          id="email"
-          type="email"
-          {...register("email")}
-          placeholder={siteConfig.content.rsvp.fields.email.placeholder}
-          className={inputClasses}
-          aria-invalid={errors.email ? "true" : "false"}
-        />
-        {errors.email && (
-          <p className={errorClasses} role="alert">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-            </svg>
-            {errors.email.message}
-          </p>
-        )}
-      </div>
-
-      {/* Confirmación */}
+      {/* Confirmaciones por invitado */}
       <div>
         <label className={labelClasses}>
-          {siteConfig.content.rsvp.fields.confirmation.label} *
+          Confirmación de asistencia *
         </label>
-        <div className="space-y-3 mt-3">
-          {Object.entries(siteConfig.content.rsvp.fields.confirmation.options).map(
-            ([value, label]) => (
-              <label 
-                key={value} 
-                className={`flex items-center p-3 rounded-xl border-2 cursor-pointer transition-all ${
-                  confirmationValue === value 
-                    ? "border-dusty-rose bg-dusty-rose/10" 
-                    : "border-vintage-pink/50 hover:border-dusty-rose/50 bg-white"
-                }`}
-              >
-                <input
-                  type="radio"
-                  value={value}
-                  {...register("confirmation")}
-                  className="sr-only"
-                />
-                <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 transition-all ${
-                  confirmationValue === value 
-                    ? "border-dusty-rose bg-dusty-rose" 
-                    : "border-mauve"
-                }`}>
-                  {confirmationValue === value && (
-                    <span className="w-2 h-2 bg-white rounded-full" />
-                  )}
-                </span>
-                <span className={`font-sans ${confirmationValue === value ? "text-rosewood" : "text-mauve"}`}>
-                  {label}
-                </span>
-              </label>
-            )
-          )}
+        <p className="text-xs text-mauve mb-4 font-sans">
+          Por favor, confirma la asistencia de cada invitado
+        </p>
+        <div className="space-y-3">
+          {guests.map((guest, index) => (
+            <motion.div
+              key={guest}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              className="p-4 rounded-xl border-2 border-vintage-pink/50 bg-white"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="flex-1">
+                  <label htmlFor={`guest-${guest}`} className="text-sm font-sans text-rosewood font-medium">
+                    {guest}
+                  </label>
+                </div>
+                <div className="flex-1 sm:max-w-xs">
+                  <select
+                    id={`guest-${guest}`}
+                    {...register(`guestConfirmations.${guest}` as const)}
+                    defaultValue="si"
+                    className={selectClasses}
+                    onChange={(e) => {
+                      const current = watch("guestConfirmations") || {};
+                      setValue("guestConfirmations", {
+                        ...current,
+                        [guest]: e.target.value as "si" | "no"
+                      });
+                    }}
+                  >
+                    <option value="si">Sí asistiré</option>
+                    <option value="no">No asistiré</option>
+                  </select>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-        {errors.confirmation && (
+        {errors.guestConfirmations && (
           <p className={errorClasses} role="alert">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
-            {errors.confirmation.message}
+            {typeof errors.guestConfirmations === 'object' && 'message' in errors.guestConfirmations 
+              ? String(errors.guestConfirmations.message)
+              : 'Debes confirmar al menos un invitado'}
           </p>
+        )}
+
+        {/* Resumen de confirmaciones */}
+        {(confirmedCount > 0 || declinedCount > 0) && (
+          <div className="mt-4 p-3 rounded-xl bg-blush/50 border border-vintage-pink/30">
+            <p className="text-xs font-sans text-mauve mb-2">Resumen:</p>
+            <div className="flex flex-wrap gap-3 text-xs font-sans">
+              {confirmedCount > 0 && (
+                <span className="px-2 py-1 rounded bg-green-100 text-green-800">
+                  {confirmedCount} confirmado{confirmedCount !== 1 ? "s" : ""}
+                </span>
+              )}
+              {declinedCount > 0 && (
+                <span className="px-2 py-1 rounded bg-red-100 text-red-800">
+                  {declinedCount} no asistirán
+                </span>
+              )}
+            </div>
+          </div>
         )}
       </div>
 
-      {/* Acompañantes */}
-      <AnimatePresence>
-        {confirmationValue === "si" && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <label htmlFor="guests" className={labelClasses}>
-              {siteConfig.content.rsvp.fields.guests.label}
-            </label>
-            <input
-              id="guests"
-              type="number"
-              min="0"
-              max="10"
-              defaultValue={0}
-              {...register("guests", { valueAsNumber: true })}
-              placeholder={siteConfig.content.rsvp.fields.guests.placeholder}
-              className={inputClasses}
-            />
-            {errors.guests && (
-              <p className={errorClasses} role="alert">
-                {errors.guests.message}
-              </p>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Alergias */}
-      <AnimatePresence>
-        {confirmationValue === "si" && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            <label htmlFor="allergies" className={labelClasses}>
-              {siteConfig.content.rsvp.fields.allergies.label}
-            </label>
-            <input
-              id="allergies"
-              type="text"
-              {...register("allergies")}
-              placeholder={siteConfig.content.rsvp.fields.allergies.placeholder}
-              className={inputClasses}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div>
+        <label htmlFor="allergies" className={labelClasses}>
+          {siteConfig.content.rsvp.fields.allergies.label}
+        </label>
+        <input
+          id="allergies"
+          type="text"
+          {...register("allergies")}
+          placeholder={siteConfig.content.rsvp.fields.allergies.placeholder}
+          className={inputClasses}
+        />
+      </div>
 
       {/* Mensaje */}
       <div>
@@ -240,40 +333,22 @@ export default function RSVPForm() {
         </Button>
       </div>
 
-      {/* Mensajes de estado */}
-      <AnimatePresence mode="wait">
-        {submitStatus === "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="p-4 rounded-xl bg-vintage-pink/50 border border-dusty-rose/30 text-rosewood text-center font-sans"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5 text-dusty-rose" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              {siteConfig.content.rsvp.successMessage}
-            </div>
-          </motion.div>
-        )}
-
-        {submitStatus === "error" && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="p-4 rounded-xl bg-soft-berry/20 border border-soft-berry/30 text-mulberry text-center font-sans"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              {siteConfig.content.rsvp.errorMessage}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mensajes de error */}
+      {submitStatus === "error" && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="p-4 rounded-xl bg-soft-berry/20 border border-soft-berry/30 text-mulberry text-center font-sans"
+        >
+          <div className="flex items-center justify-center gap-2">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {siteConfig.content.rsvp.errorMessage}
+          </div>
+        </motion.div>
+      )}
     </form>
   );
 }
