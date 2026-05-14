@@ -100,12 +100,17 @@ export const siteConfig = {
           description: "Iglesia Santa María Reina de la Familia. Te pedimos llegar con anticipación.",
         },
         {
-          time: "19:30",
+          time: "19:00",
+          title: "Cóctel de Bienvenida",
+          description: "Disfruta de un cóctel de bienvenida en el elegante lobby del InterContinental Real Guatemala mientras esperamos a que todos los invitados lleguen para la recepción.",
+        },
+        {
+          time: "20:00",
           title: "Recepción",
           description: "Cena de gala con servicio a la mesa y barra libre.",
         },
         {
-          time: "20:00",
+          time: "20:15",
           title: "Primer Baile y brindis",
           description: "Acompáñanos en nuestro primer baile como esposos y brindemos por nuestra unión.",
         },
@@ -158,7 +163,21 @@ export const siteConfig = {
           description: "Habitación sencilla o doble con desayuno incluido por evento",
         },
       },
-      contactInfo: "Para reservar, por favor contacta directamente al hotel mencionando la boda de Carol y Juan Fernando.",
+      contactInfo: {
+        intro: "Para reservar, contáctalos directamente mencionando la boda de Carol y Juan Fernando.",
+        phone: "2413-4444",
+        hours: [
+          { days: "Lunes a Viernes", time: "08:00 am – 18:00 hrs" },
+          { days: "Sábado y Domingo", time: "08:00 am – 12:00 pm" },
+        ],
+        emails: [
+          { name: "Evelyn Sarmiento", address: "Evelyn.Sarmiento@R-HR.COM" },
+          { name: "Reservas Inter Guatemala", address: "reservas.gua@R-HR.COM" },
+          { name: "Reservaciones GUAHA", address: "reservaciones.gua02@R-HR.COM" },
+          { name: "Reservaciones", address: "reservaciones.guaha@r-hr.com" },
+        ],
+        cc: "ventas3.guaha@r-hr.com",
+      },
     },
     dressCode: {
       title: "Código de Vestimenta",

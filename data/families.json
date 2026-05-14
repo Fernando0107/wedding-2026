@@ -1,8 +1,143 @@
 {
-  "gonzalez": {
-    "guests": ["Juan Fer", "Alice", "Carol"]
+  "gonzalez-diaz": {
+    "guests": ["Fernando González", "Alicia de González", "Carolina González"]
   },
-  "castillo": {
-    "guests": ["María Castillo", "Pedro Castillo"]
+  "castillo-cordova": {
+    "guests": ["Carolina de Castillo", "Roberto Castillo"]
+  },
+    "gonzalez-izaguirre": {
+      "guests":  ["Ada Raquel de González", "Juan José González"]
+  },
+    "diaz": {
+      "guests":  ["Cony de Díaz", "Roberto Díaz"]
+  },
+    "gonzalez-guerra": {
+      "guests":  ["Juan José González", "Wendy Guerra"]
+  },
+    "diaz-leal": {
+      "guests":  ["Claudia Díaz", "María Paula Leal", "Gaby Leal", "Melissa Leal"]
+  },
+    "diaz-rocha": {
+      "guests":  ["Carlos Díaz", "Baty Rocha", "Ignacio Díaz", "Javier Rocha", "Pilar Díaz", "Daniel Tercero"]
+  },
+    "virginia": {
+      "guests":  ["Virginia"]
+  },
+    "ush": {
+      "guests":  ["Ush"]
+  },
+    "mayari": {
+      "guests":  ["Mayari", "Ronald"]
+  },
+    "carmen-ma": {
+      "guests":  ["Carmen María"]
+  },
+    "mirtala-rimeldo": {
+      "guests":  ["Mirtala", "Rimeldo"]
+  },
+    "hernandez": {
+      "guests":  ["Evie de Hernández", "Vince Hernández"]
+  },
+    "gloria": {
+      "guests":  ["Doña Gloria"]
+  },
+    "tio-luis": {
+      "guests":  ["Luis Fernando Urbina", "Carol"]
+  },
+    "kevin": {
+      "guests":  ["Kevin"]
+  },
+  "--------------------------------------- Fin FAMILIA Fer ---------------------------------------": {
+    "guests": []
+  },
+  "hector": {
+    "guests":  ["Hector Klee Jr.", "Esposa"]
+  },
+  "klee-gonzalez": {
+    "guests":  ["Hector Klee", "Evelyn de Klee"]
+  },
+  "busto-rojas": {
+    "guests":  ["Fernando del Busto", "Leticia de del Busto"]
+  },
+  "saenz": {
+    "guests":  ["Diego Saenz", "Mariana"]
+  },
+  "morales-campos": {
+    "guests":  ["Jose Pedro Morales", "Sussan Campos"]
+  },
+  "morales": {
+    "guests":  ["Ramiro Morales", "Rita Morales"]
+  },
+  "mynor": {
+    "guests":  ["Mynor Castillo"]
+  },
+  "gutierrez-mendez": {
+    "guests":  ["Daniel Gutierrez", "Paula Méndez"]
+  },
+  "manuel": {
+    "guests":  ["Manuel Calderón"]
+  },
+  "shin": {
+    "guests":  ["Julio Shin"]
+  },
+  "oscar": {
+    "guests":  ["Oscar Monterroso"]
+  },
+  "poggio": {
+    "guests":  ["Jose Poggio", "Esposa"]
+  },
+  "rodas": {
+    "guests":  ["Mafer Rodas", "Esposo"]
+  },
+  "max": {
+    "guests":  ["Max Florian"]
+  },
+  "pamela": {
+    "guests":  ["Pamela Milián"]
+  },
+  "carrera": {
+    "guests":  ["Mariano Carrera", "Novia Trikis"]
+  },
+  "avila": {
+    "guests":  ["George Avila", "Maria José Ochoa"]
+  },
+  "guzman": {
+    "guests":  ["José Guzmán", "Lily de Guzmán"]
+  },
+  "vicfar": {
+    "guests":  ["Victor Farfán"]
+  },
+  "ricardo": {
+    "guests":  ["Ricardo Farfán"]
+  },
+  "ruiz": {
+    "guests":  ["Keneth Ruiz"]
+  },
+  "quan": {
+    "guests":  ["Diego Quan"]
+  },
+  "madrazo": {
+    "guests":  ["Alejandro Madrazo", "Fabi"]
+  },
+  "lickes": {
+    "guests":  ["Kenneth Lickes"]
+  },
+  "cristian": {
+    "guests":  ["Cristian Morales", "Lily de Morales"]
+  },
+  "rivero": {
+    "guests":  ["Victor Rivero", "Vic + 1"]
+  },
+  "muller": {
+    "guests":  ["Kevin"]
+  },
+  "luis-epaj": {
+    "guests":  ["Luis Epaj", "Novia"]
+  },
+  "brandon": {
+    "guests":  ["Brandon Bamaca"]
+  },
+  "sofi": {
+    "guests":  ["Sofi"]
   }
 }
