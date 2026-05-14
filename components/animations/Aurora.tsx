@@ -17,17 +17,17 @@ export default function Aurora({ className = "", children }: AuroraProps) {
           style={
             {
               background: `
-                radial-gradient(ellipse 80% 50% at 50% -20%, 
-                  rgba(249, 233, 233, 0.8), 
+                radial-gradient(ellipse 80% 50% at 50% -20%,
+                  rgba(249, 233, 233, 0.8),
                   transparent),
-                radial-gradient(ellipse 60% 50% at 80% 60%, 
-                  rgba(245, 217, 217, 0.6), 
+                radial-gradient(ellipse 60% 50% at 80% 60%,
+                  rgba(245, 217, 217, 0.6),
                   transparent),
-                radial-gradient(ellipse 60% 50% at 20% 80%, 
-                  rgba(212, 165, 165, 0.5), 
+                radial-gradient(ellipse 60% 50% at 20% 80%,
+                  rgba(212, 165, 165, 0.5),
                   transparent),
-                radial-gradient(ellipse 80% 50% at 50% 100%, 
-                  rgba(247, 229, 229, 0.7), 
+                radial-gradient(ellipse 80% 50% at 50% 100%,
+                  rgba(247, 229, 229, 0.7),
                   transparent)
               `,
             } as CSSProperties

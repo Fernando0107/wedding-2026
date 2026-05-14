@@ -2,15 +2,15 @@
 
 :root {
   --background: #fef8f8;
-  --foreground: #4a2e2e;
-  
+  --foreground: #2a1515;
+
   /* Paleta de colores de la boda */
-  --dusty-rose: #d4a5a5;
-  --mauve: #c9a4a4;
-  --rosewood: #8b5a5a;
-  --soft-berry: #b87f7f;
-  --mulberry: #7a4a4a;
-  --old-rose: #c08787;
+  --dusty-rose: #a05252;
+  --mauve: #7a5050;
+  --rosewood: #7a3a3a;
+  --soft-berry: #8e4848;
+  --mulberry: #5a2828;
+  --old-rose: #8a5555;
   --blush: #f9e9e9;
   --vintage-pink: #f5d9d9;
   --dusty-blush: #f7e5e5;
