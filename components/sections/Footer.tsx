@@ -23,8 +23,8 @@ export default function Footer() {
 
       {/* Patrón decorativo */}
       <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `radial-gradient(circle at 20% 80%, rgba(212, 165, 165, 0.3) 0%, transparent 50%),
-                          radial-gradient(circle at 80% 20%, rgba(200, 135, 135, 0.2) 0%, transparent 50%)`
+        backgroundImage: `radial-gradient(circle at 20% 80%, rgba(180, 138, 124, 0.25) 0%, transparent 50%),
+                          radial-gradient(circle at 80% 20%, rgba(155, 110, 96, 0.18) 0%, transparent 50%)`
       }} />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

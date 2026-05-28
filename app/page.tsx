@@ -12,6 +12,7 @@ import DressCode from "@/components/sections/DressCode";
 import CodeOfConduct from "@/components/sections/CodeOfConduct";
 import RSVP from "@/components/sections/RSVP";
 import Calendar from "@/components/sections/Calendar";
+import Gifts from "@/components/sections/Gifts";
 import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 
@@ -35,6 +36,7 @@ export default function Home() {
         <CodeOfConduct />
         <RSVP />
         <Calendar />
+        <Gifts />
         <Hospedaje />
         <FAQ />
         <Footer />

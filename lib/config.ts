@@ -251,7 +251,7 @@ export const siteConfig = {
         },
         {
           question: "¿Cuál es el horario completo de la celebración?",
-          answer: "La ceremonia religiosa inicia puntualmente a las 16:00 hrs en la Iglesia Santa María Reina de la Familia. La recepción comenzará a las 18:00 hrs en el InterContinental Real Guatemala y la fiesta continuará hasta las 3:00 AM.",
+          answer: "La ceremonia religiosa inicia puntualmente a las 16:00 hrs en la Iglesia Santa María Reina de la Familia. El cóctel de bienvenida en el InterContinental será a las 19:00 hrs, la recepción formal comienza a las 20:00 hrs y la fiesta continúa hasta la 1:00 de la madrugada.",
         },
         {
           question: "¿Hay estacionamiento disponible?",
@@ -266,6 +266,25 @@ export const siteConfig = {
           answer: "Te pedimos que durante la ceremonia religiosa dejes la fotografía en manos de nuestros fotógrafos profesionales. En la recepción, ¡toma todas las fotos que quieras y compártelas con nosotros!",
         },
       ],
+    },
+    gifts: {
+      title: "Lista de Regalos",
+      description: "Tu presencia es el mayor regalo que podemos recibir. Sin embargo, si deseas obsequiarnos algo, te compartimos algunas opciones con mucho cariño.",
+      bankTransfer: {
+        title: "Transferencia Bancaria",
+        details: [
+          { label: "Banco", value: "Banco Industrial" },
+          { label: "Cuenta", value: "000-000000-0" },
+          { label: "A nombre de", value: "Carol & Juan Fernando" },
+          { label: "Moneda", value: "Quetzales (GTQ)" },
+        ],
+      },
+      honeymoon: {
+        title: "Fondo de Luna de Miel",
+        description: "Si prefieres contribuir a nuestro viaje de bodas soñado, puedes hacerlo a través del siguiente enlace.",
+        link: "#",
+        linkText: "Contribuir al viaje",
+      },
     },
     footer: {
       message: "Con todo nuestro amor,",

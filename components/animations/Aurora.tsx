@@ -18,16 +18,16 @@ export default function Aurora({ className = "", children }: AuroraProps) {
             {
               background: `
                 radial-gradient(ellipse 80% 50% at 50% -20%,
-                  rgba(249, 233, 233, 0.8),
+                  rgba(247, 235, 228, 0.8),
                   transparent),
                 radial-gradient(ellipse 60% 50% at 80% 60%,
-                  rgba(245, 217, 217, 0.6),
+                  rgba(237, 212, 200, 0.6),
                   transparent),
                 radial-gradient(ellipse 60% 50% at 20% 80%,
-                  rgba(212, 165, 165, 0.5),
+                  rgba(180, 138, 124, 0.35),
                   transparent),
                 radial-gradient(ellipse 80% 50% at 50% 100%,
-                  rgba(247, 229, 229, 0.7),
+                  rgba(247, 236, 228, 0.7),
                   transparent)
               `,
             } as CSSProperties

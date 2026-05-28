@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fef8f8;
-  --foreground: #2a1515;
+  --background: #fdf8f5;
+  --foreground: #2a1f1c;
 
   /* Paleta de colores de la boda */
-  --dusty-rose: #a05252;
-  --mauve: #7a5050;
-  --rosewood: #7a3a3a;
-  --soft-berry: #8e4848;
-  --mulberry: #5a2828;
-  --old-rose: #8a5555;
-  --blush: #f9e9e9;
-  --vintage-pink: #f5d9d9;
-  --dusty-blush: #f7e5e5;
+  --dusty-rose: #9a5848;
+  --mauve: #6e5650;
+  --rosewood: #6b4840;
+  --soft-berry: #7a5048;
+  --mulberry: #4a3230;
+  --old-rose: #7a5a52;
+  --blush: #f5eeea;
+  --vintage-pink: #ede4df;
+  --dusty-blush: #f7f0ec;
 }
 
 @theme inline {

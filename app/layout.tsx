@@ -19,7 +19,7 @@ const lora = Lora({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f9e9e9",
+  themeColor: "#f5eeea",
 };
 
 export const metadata: Metadata = {
