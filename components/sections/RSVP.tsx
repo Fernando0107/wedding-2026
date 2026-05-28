@@ -35,7 +35,7 @@ export default function RSVP() {
     <Section id="rsvp" background="white">
       <Container>
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {siteConfig.content.rsvp.title}
           </h2>
         </FadeIn>

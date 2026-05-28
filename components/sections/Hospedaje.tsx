@@ -11,7 +11,7 @@ export default function Hospedaje() {
     <Section id="hospedaje" background="white">
       <Container size="lg">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {siteConfig.content.accommodation.title}
           </h2>
         </FadeIn>

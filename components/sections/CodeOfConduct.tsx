@@ -24,7 +24,7 @@ export default function CodeOfConduct() {
               </svg>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-serif text-rosewood mb-6">
+            <h2 className="text-4xl md:text-5xl font-heading text-rosewood mb-6">
               {siteConfig.content.codeOfConduct.title}
             </h2>
 

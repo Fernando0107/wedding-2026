@@ -53,7 +53,7 @@ export default function Gallery() {
       <Section id="gallery" background="blush">
         <Container>
           <FadeIn>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
               {siteConfig.content.gallery.title}
             </h2>
           </FadeIn>

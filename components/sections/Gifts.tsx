@@ -13,7 +13,7 @@ export default function Gifts() {
     <Section id="regalos" background="light">
       <Container size="lg">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {gifts.title}
           </h2>
         </FadeIn>

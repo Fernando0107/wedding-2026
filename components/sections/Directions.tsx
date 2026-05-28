@@ -11,7 +11,7 @@ export default function Directions() {
     <Section id="directions" background="white">
       <Container size="lg">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl font-serif text-rosewood text-center mb-8">
+          <h2 className="text-4xl md:text-5xl font-heading text-rosewood text-center mb-8">
             {siteConfig.content.directions.title}
           </h2>
         </FadeIn>
