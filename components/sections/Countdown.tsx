@@ -59,7 +59,7 @@ export default function Countdown() {
     <Section id="countdown" background="white">
       <Container size="md">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {siteConfig.content.countdown.title}
           </h2>
         </FadeIn>
@@ -77,11 +77,14 @@ export default function Countdown() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {timeUnits.map((unit, index) => (
             <FadeIn key={unit.label} delay={0.15 * index}>
-              <div className="bg-gradient-to-br from-blush to-vintage-pink rounded-2xl p-6 md:p-8 lg:p-10 shadow-soft text-center">
-                <div className="text-5xl md:text-6xl lg:text-7xl font-serif text-rosewood mb-3 tabular-nums leading-none">
+              <div className="bg-white border border-gold/40 rounded-2xl p-6 md:p-8 lg:p-10 text-center
+                              shadow-[0_4px_20px_rgba(201,168,76,0.12)]
+                              hover:border-gold/70 hover:shadow-[0_6px_28px_rgba(201,168,76,0.2)]
+                              transition-all duration-300">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-serif text-dusty-rose mb-3 tabular-nums leading-none">
                   {mounted ? String(unit.value).padStart(2, "0") : "--"}
                 </div>
-                <div className="text-sm md:text-base text-mauve font-sans uppercase tracking-widest">
+                <div className="text-xs md:text-sm text-gold-dark font-sans uppercase tracking-[0.2em]">
                   {unit.label}
                 </div>
               </div>

@@ -1,12 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Lora } from "next/font/google";
+import { Lora, Great_Vibes, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
+const bruney = localFont({
+  src: "../public/fonts/ss-bruney.otf",
+  variable: "--font-bruney",
+  display: "swap",
+});
+
+const laLuxes = localFont({
+  src: "../public/fonts/LaLuxes.otf",
+  variable: "--font-laluxes",
+  display: "swap",
+});
+
+const safiraMarch = localFont({
+  src: "../public/fonts/Safira March Personal Use Only.ttf",
+  variable: "--font-safira",
   display: "swap",
 });
 
@@ -16,10 +29,23 @@ const lora = Lora({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f9e9e9",
+  themeColor: "#f5eeea",
 };
 
 export const metadata: Metadata = {
@@ -73,7 +99,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${playfair.variable} ${lora.variable} antialiased bg-background text-foreground`}
+        className={`${bruney.variable} ${laLuxes.variable} ${safiraMarch.variable} ${lora.variable} ${playfair.variable} ${greatVibes.variable} antialiased bg-background text-foreground`}
       >
         <a 
           href="#main-content" 

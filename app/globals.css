@@ -3,17 +3,22 @@
 :root {
   --background: #fef8f8;
   --foreground: #4a2e2e;
-  
+
   /* Paleta de colores de la boda */
-  --dusty-rose: #d4a5a5;
-  --mauve: #c9a4a4;
-  --rosewood: #8b5a5a;
-  --soft-berry: #b87f7f;
-  --mulberry: #7a4a4a;
-  --old-rose: #c08787;
-  --blush: #f9e9e9;
+  --dusty-rose:   #7a2840;
+  --soft-berry:   #5a1428;
+  --old-rose:     #6a2020;
+  --mauve:        #4a1818;
+  --rosewood:     #3d1010;
+  --mulberry:     #280808;
+  --blush:        #f9e9e9;
   --vintage-pink: #f5d9d9;
-  --dusty-blush: #f7e5e5;
+  --dusty-blush:  #f7e5e5;
+
+  /* Gold accent */
+  --gold:         #c9a84c;
+  --gold-light:   #f7f0d8;
+  --gold-dark:    #8a6d1a;
 }
 
 @theme inline {
@@ -33,8 +38,16 @@
   
   /* Tipografías */
   --font-serif: var(--font-playfair);
+  --font-heading: var(--font-laluxes);
   --font-sans: var(--font-inter);
-  
+  --font-script: var(--font-great-vibes);
+  --font-names: var(--font-quicksand);
+
+  /* Gold tokens */
+  --color-gold:       var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark:  var(--gold-dark);
+
   /* Sombras suaves */
   --shadow-soft: 0 2px 8px rgba(139, 90, 90, 0.08);
   --shadow-soft-lg: 0 4px 16px rgba(139, 90, 90, 0.12);
@@ -90,6 +103,16 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.font-heading {
+  font-family: var(--font-laluxes), serif;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "dlig" 0, "clig" 0, "calt" 0;
+}
+
+.font-names {
+  font-family: var(--font-quicksand), cursive;
 }
 
 body {

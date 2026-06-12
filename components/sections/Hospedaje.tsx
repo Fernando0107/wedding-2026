@@ -4,14 +4,14 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
-import { Home, Bed, Coffee } from "lucide-react";
+import { Home, Bed, Coffee, Phone, Mail, Clock } from "lucide-react";
 
 export default function Hospedaje() {
   return (
     <Section id="hospedaje" background="white">
       <Container size="lg">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {siteConfig.content.accommodation.title}
           </h2>
         </FadeIn>
@@ -99,10 +99,70 @@ export default function Hospedaje() {
         </div>
 
         <FadeIn delay={0.6}>
-          <div className="mt-12 text-center max-w-2xl mx-auto">
-            <p className="text-mauve font-sans text-sm md:text-base leading-relaxed">
-              {siteConfig.content.accommodation.contactInfo}
+          <div className="mt-12 max-w-2xl mx-auto bg-vintage-pink rounded-2xl p-8 shadow-soft">
+            <h3 className="text-xl font-serif text-rosewood text-center mb-2">
+              ¿Cómo hacer tu reserva?
+            </h3>
+            <p className="text-center text-mauve font-sans text-sm mb-6">
+              {siteConfig.content.accommodation.contactInfo.intro}
             </p>
+
+            {/* Phone */}
+            <div className="flex items-start gap-3 mb-4">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-dusty-rose/20 flex items-center justify-center mt-0.5">
+                <Phone className="w-4 h-4 text-rosewood" />
+              </div>
+              <div>
+                <p className="font-serif text-rosewood text-lg">
+                  {siteConfig.content.accommodation.contactInfo.phone}
+                </p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <Clock className="w-3.5 h-3.5 text-old-rose flex-shrink-0" />
+                  <div className="text-xs text-mauve font-sans space-y-0.5">
+                    {siteConfig.content.accommodation.contactInfo.hours.map((h) => (
+                      <p key={h.days}>
+                        <span className="font-medium">{h.days}:</span> {h.time}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Emails */}
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-dusty-rose/20 flex items-center justify-center mt-0.5">
+                <Mail className="w-4 h-4 text-rosewood" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-old-rose font-sans uppercase tracking-wide mb-2">
+                  Correos de reservaciones
+                </p>
+                <ul className="space-y-1">
+                  {siteConfig.content.accommodation.contactInfo.emails.map((e) => (
+                    <li key={e.address} className="text-xs text-mauve font-sans">
+                      <span className="font-medium">{e.name}:</span>{" "}
+                      <a
+                        href={`mailto:${e.address}`}
+                        className="text-rosewood hover:underline break-all"
+                      >
+                        {e.address}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-old-rose font-sans mt-3 border-t border-dusty-rose/20 pt-3">
+                  <span className="font-semibold uppercase tracking-wide">Importante:</span>{" "}
+                  enviar con copia a{" "}
+                  <a
+                    href={`mailto:${siteConfig.content.accommodation.contactInfo.cc}`}
+                    className="text-rosewood hover:underline break-all"
+                  >
+                    {siteConfig.content.accommodation.contactInfo.cc}
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </FadeIn>
       </Container>

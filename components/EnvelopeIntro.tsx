@@ -9,7 +9,8 @@ export default function EnvelopeIntro() {
   const [isOpening, setIsOpening] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [sealFading, setSealFading] = useState(false); // Estado dedicado para el sello
+  const [sealFading, setSealFading] = useState(false);
+  const [isSkipping, setIsSkipping] = useState(false);
 
   // Bloquear scroll mientras el overlay está activo
   useEffect(() => {
@@ -49,6 +50,12 @@ export default function EnvelopeIntro() {
     }, 5500); // Tiempo total: apertura (1s) + reveal (0.8s) + salida (2s) + lectura (0.7s) + fade suave (1.5s) + margen (0.5s)
   };
 
+  const handleSkip = () => {
+    setIsFadingOut(true);
+    setIsSkipping(true);
+    setTimeout(() => setIsHidden(true), 500);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -62,9 +69,19 @@ export default function EnvelopeIntro() {
 
   return (
     <div
-      className={`${styles.overlay} ${isFadingOut ? styles.overlayFading : ""}`}
+      className={`${styles.overlay} ${isFadingOut ? styles.overlayFading : ""} ${isSkipping ? styles.overlaySkipping : ""}`}
       aria-hidden={isFadingOut}
     >
+      {!isOpening && !isSkipping && (
+        <button
+          onClick={handleSkip}
+          className={styles.skipButton}
+          aria-label="Saltar introducción"
+        >
+          Saltar →
+        </button>
+      )}
+
       {/* Contenedor del sobre */}
       <div className={`${styles.envelopeContainer} ${isFadingOut ? styles.envelopeHiding : ""}`}>
         <button

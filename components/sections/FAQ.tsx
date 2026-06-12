@@ -18,7 +18,7 @@ export default function FAQ() {
     <Section id="faq" background="blush">
       <Container size="md">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-rosewood text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
             {siteConfig.content.faq.title}
           </h2>
         </FadeIn>
