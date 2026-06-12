@@ -1,24 +1,20 @@
 import { z } from "zod";
 
 export const rsvpFormSchema = z.object({
-  name: z
+  familyKey: z
     .string()
-    .min(2, { message: "El nombre debe tener al menos 2 caracteres" })
-    .max(100, { message: "El nombre es demasiado largo" }),
+    .min(1, { message: "La clave de familia es requerida" }),
   
-  email: z
-    .string()
-    .email({ message: "Por favor ingresa un correo electrónico válido" }),
-  
-  confirmation: z.enum(["si", "no", "tal-vez"], {
-    message: "Por favor selecciona una opción",
-  }),
-  
-  guests: z
-    .number()
-    .int()
-    .min(0, { message: "El número de acompañantes no puede ser negativo" })
-    .max(10, { message: "El número de acompañantes no puede exceder 10" }),
+  // Confirmaciones por invitado: { "Juan Fer": "si", "Alice": "no", ... }
+  guestConfirmations: z
+    .record(z.enum(["si", "no"]))
+    .refine(
+      (confirmations) => {
+        // Debe haber al menos una confirmación
+        return Object.keys(confirmations).length > 0;
+      },
+      { message: "Debes confirmar al menos un invitado" }
+    ),
   
   allergies: z.string().max(500).optional(),
   
