@@ -36,8 +36,8 @@ export default function Home() {
         <CodeOfConduct />
         <RSVP />
         <Calendar />
-        <Gifts />
         <Hospedaje />
+        <Gifts />
         <FAQ />
         <Footer />
       </main>

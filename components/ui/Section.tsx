@@ -5,7 +5,7 @@ interface SectionProps {
   children: ReactNode;
   className?: string;
   id?: string;
-  background?: "light" | "white" | "blush";
+  background?: "light" | "white" | "blush" | "pink";
 }
 
 export default function Section({
@@ -18,6 +18,7 @@ export default function Section({
     light: "bg-dusty-blush",
     white: "bg-white",
     blush: "bg-blush",
+    pink: "bg-vintage-pink",
   };
 
   return (

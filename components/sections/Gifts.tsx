@@ -10,7 +10,7 @@ export default function Gifts() {
   const { gifts } = siteConfig.content;
 
   return (
-    <Section id="regalos" background="light">
+    <Section id="regalos" background="pink">
       <Container size="lg">
         <FadeIn>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-rosewood text-center mb-4">
@@ -35,7 +35,7 @@ export default function Gifts() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {/* Transferencia bancaria */}
           <FadeIn delay={0.3}>
-            <div className="bg-vintage-pink rounded-2xl p-8 shadow-soft h-full">
+            <div className="bg-white rounded-2xl p-8 shadow-soft h-full">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-rosewood" />
@@ -61,7 +61,7 @@ export default function Gifts() {
 
           {/* Fondo de luna de miel */}
           <FadeIn delay={0.4}>
-            <div className="bg-blush rounded-2xl p-8 shadow-soft h-full flex flex-col">
+            <div className="bg-white rounded-2xl p-8 shadow-soft h-full flex flex-col">
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                   <Heart className="w-6 h-6 text-rosewood" />
