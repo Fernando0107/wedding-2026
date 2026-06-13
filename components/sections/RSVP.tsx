@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
@@ -11,26 +10,23 @@ import ImageReveal from "@/components/animations/ImageReveal";
 import RSVPForm from "@/components/forms/RSVPForm";
 
 export default function RSVP() {
-  const searchParams = useSearchParams();
   const [familyKey, setFamilyKey] = useState<string | null>(null);
 
   // Leer familyKey de query params o del hash
   useEffect(() => {
     // Primero intentar desde query parameters (formato: /?fam=gonzalez#rsvp)
-    let fam = searchParams.get("fam");
-    
+    let fam = new URLSearchParams(window.location.search).get("fam");
+
     // Si no está en query params, intentar leer del hash (formato: /#rsvp?fam=gonzalez)
-    if (!fam && typeof window !== "undefined") {
-      const hash = window.location.hash;
-      // Buscar ?fam= en el hash
-      const hashMatch = hash.match(/[?&]fam=([^&]+)/);
+    if (!fam) {
+      const hashMatch = window.location.hash.match(/[?&]fam=([^&]+)/);
       if (hashMatch) {
         fam = hashMatch[1];
       }
     }
-    
+
     setFamilyKey(fam);
-  }, [searchParams]);
+  }, []);
   return (
     <Section id="rsvp" background="white">
       <Container>
