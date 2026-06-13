@@ -1,15 +1,27 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import { motion } from "framer-motion";
 
-export default function NotFoundPage() {
+function MissingFamily() {
   const searchParams = useSearchParams();
   const fam = searchParams.get("fam");
 
+  if (!fam) return null;
+
+  return (
+    <p className="text-lg text-mauve font-sans mb-2">
+      No se encontró una invitación para la familia:{" "}
+      <span className="font-semibold text-rosewood">{fam}</span>
+    </p>
+  );
+}
+
+export default function NotFoundPage() {
   return (
     <Section id="not-found" background="white">
       <Container>
@@ -26,12 +38,9 @@ export default function NotFoundPage() {
               <h2 className="text-3xl md:text-4xl font-serif text-rosewood mb-4">
                 Invitación no encontrada
               </h2>
-              {fam && (
-                <p className="text-lg text-mauve font-sans mb-2">
-                  No se encontró una invitación para la familia:{" "}
-                  <span className="font-semibold text-rosewood">{fam}</span>
-                </p>
-              )}
+              <Suspense fallback={null}>
+                <MissingFamily />
+              </Suspense>
               <p className="text-mauve font-sans">
                 Por favor, verifica el enlace de invitación que recibiste.
               </p>
