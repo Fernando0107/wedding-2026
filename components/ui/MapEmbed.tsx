@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -12,6 +12,12 @@ interface MapEmbedProps {
 }
 
 export default function MapEmbed({ lat, lng, name }: MapEmbedProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const venueMarker = useMemo(
     () =>
       L.divIcon({
@@ -22,6 +28,8 @@ export default function MapEmbed({ lat, lng, name }: MapEmbedProps) {
       }),
     []
   );
+
+  if (!mounted) return null;
 
   return (
     <MapContainer
