@@ -1,10 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
 import { Church, Building2, MapPin, Navigation } from "lucide-react";
+
+const MapEmbed = dynamic(() => import("@/components/ui/MapEmbed"), {
+  ssr: false,
+  loading: () => <div className="h-44 md:h-48 rounded-xl bg-vintage-pink/40" />,
+});
 
 export default function Directions() {
   return (
@@ -25,7 +31,7 @@ export default function Directions() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Ceremonia */}
           <FadeIn delay={0.3}>
-            <div className="bg-vintage-pink rounded-2xl p-8 md:p-10 shadow-soft h-full">
+            <div className="bg-vintage-pink rounded-2xl p-8 md:p-10 shadow-soft h-full flex flex-col">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                   <Church className="w-6 h-6 text-rosewood" />
@@ -48,36 +54,46 @@ export default function Directions() {
                 {siteConfig.wedding.ceremony.city}
               </p>
 
-              <p className="text-sm text-mauve mb-6">
+              <p className="text-sm text-mauve mb-4">
                 {siteConfig.content.directions.ceremony.description}
               </p>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={siteConfig.wedding.ceremony.googleMapsLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                >
-                  <MapPin className="w-4 h-4" />
-                  Google Maps
-                </a>
-                <a
-                  href={siteConfig.wedding.ceremony.wazeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                >
-                  <Navigation className="w-4 h-4" />
-                  Waze
-                </a>
+              <div className="mt-auto">
+                <div className="h-44 md:h-48 mb-4 rounded-xl overflow-hidden">
+                  <MapEmbed
+                    lat={siteConfig.wedding.ceremony.coordinates.lat}
+                    lng={siteConfig.wedding.ceremony.coordinates.lng}
+                    name={siteConfig.wedding.ceremony.name}
+                  />
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={siteConfig.wedding.ceremony.googleMapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Google Maps
+                  </a>
+                  <a
+                    href={siteConfig.wedding.ceremony.wazeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    Waze
+                  </a>
+                </div>
               </div>
             </div>
           </FadeIn>
 
           {/* Recepción */}
           <FadeIn delay={0.4}>
-            <div className="bg-blush rounded-2xl p-8 md:p-10 shadow-soft h-full">
+            <div className="bg-blush rounded-2xl p-8 md:p-10 shadow-soft h-full flex flex-col">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-rosewood" />
@@ -100,29 +116,39 @@ export default function Directions() {
                 {siteConfig.wedding.reception.city}
               </p>
 
-              <p className="text-sm text-mauve mb-6">
+              <p className="text-sm text-mauve mb-4">
                 {siteConfig.content.directions.reception.description}
               </p>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={siteConfig.wedding.reception.googleMapsLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                >
-                  <MapPin className="w-4 h-4" />
-                  Google Maps
-                </a>
-                <a
-                  href={siteConfig.wedding.reception.wazeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                >
-                  <Navigation className="w-4 h-4" />
-                  Waze
-                </a>
+              <div className="mt-auto">
+                <div className="h-44 md:h-48 mb-4 rounded-xl overflow-hidden">
+                  <MapEmbed
+                    lat={siteConfig.wedding.reception.coordinates.lat}
+                    lng={siteConfig.wedding.reception.coordinates.lng}
+                    name={siteConfig.wedding.reception.name}
+                  />
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={siteConfig.wedding.reception.googleMapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Google Maps
+                  </a>
+                  <a
+                    href={siteConfig.wedding.reception.wazeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    Waze
+                  </a>
+                </div>
               </div>
             </div>
           </FadeIn>
