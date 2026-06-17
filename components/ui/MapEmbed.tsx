@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -10,14 +11,18 @@ interface MapEmbedProps {
   name: string;
 }
 
-const venueMarker = L.divIcon({
-  className: "",
-  html: '<div style="width:14px;height:14px;background:#8b5a5a;border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.35)"></div>',
-  iconSize: [14, 14],
-  iconAnchor: [7, 7],
-});
-
 export default function MapEmbed({ lat, lng, name }: MapEmbedProps) {
+  const venueMarker = useMemo(
+    () =>
+      L.divIcon({
+        className: "",
+        html: '<div style="width:14px;height:14px;background:#8b5a5a;border:2.5px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.35)"></div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      }),
+    []
+  );
+
   return (
     <MapContainer
       center={[lat, lng]}
@@ -25,7 +30,7 @@ export default function MapEmbed({ lat, lng, name }: MapEmbedProps) {
       scrollWheelZoom={false}
       dragging={false}
       doubleClickZoom={false}
-      zoomControl={true}
+      zoomControl={false}
       style={{ height: "100%", width: "100%" }}
     >
       <TileLayer

@@ -9,6 +9,7 @@ import { Church, Building2, MapPin, Navigation } from "lucide-react";
 
 const MapEmbed = dynamic(() => import("@/components/ui/MapEmbed"), {
   ssr: false,
+  loading: () => <div className="h-44 md:h-48 rounded-xl bg-vintage-pink/40" />,
 });
 
 export default function Directions() {
