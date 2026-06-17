@@ -1,10 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
 import { Church, Building2, MapPin, Navigation } from "lucide-react";
+
+const MapEmbed = dynamic(() => import("@/components/ui/MapEmbed"), {
+  ssr: false,
+});
 
 export default function Directions() {
   return (
@@ -48,9 +53,17 @@ export default function Directions() {
                 {siteConfig.wedding.ceremony.city}
               </p>
 
-              <p className="text-sm text-mauve mb-6">
+              <p className="text-sm text-mauve mb-4">
                 {siteConfig.content.directions.ceremony.description}
               </p>
+
+              <div className="h-44 md:h-48 mb-6 rounded-xl overflow-hidden">
+                <MapEmbed
+                  lat={siteConfig.wedding.ceremony.coordinates.lat}
+                  lng={siteConfig.wedding.ceremony.coordinates.lng}
+                  name={siteConfig.wedding.ceremony.name}
+                />
+              </div>
 
               <div className="flex flex-wrap gap-3">
                 <a
@@ -100,9 +113,17 @@ export default function Directions() {
                 {siteConfig.wedding.reception.city}
               </p>
 
-              <p className="text-sm text-mauve mb-6">
+              <p className="text-sm text-mauve mb-4">
                 {siteConfig.content.directions.reception.description}
               </p>
+
+              <div className="h-44 md:h-48 mb-6 rounded-xl overflow-hidden">
+                <MapEmbed
+                  lat={siteConfig.wedding.reception.coordinates.lat}
+                  lng={siteConfig.wedding.reception.coordinates.lng}
+                  name={siteConfig.wedding.reception.name}
+                />
+              </div>
 
               <div className="flex flex-wrap gap-3">
                 <a
