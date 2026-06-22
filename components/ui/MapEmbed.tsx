@@ -16,6 +16,7 @@ export default function MapEmbed({ lat, lng, name }: MapEmbedProps) {
 
   useEffect(() => {
     setMounted(true);
+    return () => setMounted(false);
   }, []);
 
   const venueMarker = useMemo(

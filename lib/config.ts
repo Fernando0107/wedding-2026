@@ -274,16 +274,16 @@ export const siteConfig = {
         title: "Transferencia Bancaria",
         details: [
           { label: "Banco", value: "Banco Industrial" },
-          { label: "Cuenta", value: "000-000000-0" },
-          { label: "A nombre de", value: "Carol & Juan Fernando" },
-          { label: "Moneda", value: "Quetzales (GTQ)" },
+          { label: "Tipo Cuenta", value: "Monetaria" },
+          { label: "No. de Cuenta", value: "000-000000-0" },
+          { label: "A nombre de", value: "Carol & Juan Fernando" }
         ],
       },
       honeymoon: {
-        title: "Fondo de Luna de Miel",
-        description: "Si prefieres contribuir a nuestro viaje de bodas soñado, puedes hacerlo a través del siguiente enlace.",
-        link: "#",
-        linkText: "Contribuir al viaje",
+        title: "Lista de Regalos Cemaco",
+        description: "Hemos preparado una lista de regalos en Cemaco con artículos especiales para nuestro nuevo hogar. Cualquier detalle que elijas será muy especial para nosotros.",
+        link: "https://www.cemaco.com/list/BODAGONZALEZCASTILLO14112026",
+        linkText: "Ver Lista de Regalos",
       },
     },
     footer: {
