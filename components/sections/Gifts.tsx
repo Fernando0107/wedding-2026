@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
-import { Gift, Building2, Heart } from "lucide-react";
+import { Gift, Building2, ShoppingBag } from "lucide-react";
 
 export default function Gifts() {
   const { gifts } = siteConfig.content;
@@ -64,7 +64,7 @@ export default function Gifts() {
             <div className="bg-white rounded-2xl p-8 shadow-soft h-full flex flex-col">
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-rosewood" />
+                  <ShoppingBag className="w-6 h-6 text-rosewood" />
                 </div>
                 <h3 className="text-xl font-serif text-rosewood">
                   {gifts.honeymoon.title}
