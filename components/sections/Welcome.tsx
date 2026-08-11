@@ -12,7 +12,7 @@ export default function Welcome() {
         <FadeIn>
           <div className="text-center max-w-3xl mx-auto">
             <p className="text-xl md:text-2xl lg:text-3xl font-serif text-rosewood leading-relaxed italic">
-              {siteConfig.content.welcome.message}
+              "{siteConfig.content.welcome.message}" - Cantares 3:4
             </p>
           </div>
         </FadeIn>

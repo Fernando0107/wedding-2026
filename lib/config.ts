@@ -54,6 +54,9 @@ export const siteConfig = {
     story: [
       "/placeholders/story-1.svg",
       "/placeholders/story-2.svg",
+      "/placeholders/story-3.svg",
+      "/placeholders/story-4.svg",
+      "/placeholders/story-5.svg",
     ],
     gallery: [
       "/placeholders/gallery-1.svg",
@@ -73,11 +76,7 @@ export const siteConfig = {
       subtitle: "Estás cordialmente invitado/a a celebrar con nosotros",
     },
     welcome: {
-      message: "Tu presencia es el regalo más valioso que podemos recibir en este día tan especial.",
-    },
-    story: {
-      title: "Nuestra Historia",
-      text: "Dos almas que se encontraron en el momento perfecto. Lo que comenzó como una mirada, floreció en risas compartidas, sueños entrelazados y un amor que crece cada día. Después de años construyendo recuerdos inolvidables juntos, hoy nos preparamos para dar el paso más importante: unir nuestras vidas para siempre. Y queremos que tú seas parte de este nuevo capítulo.",
+      message: "Hallé al que ama mi alma",
     },
     gallery: {
       title: "Momentos que Atesoramos",
@@ -102,7 +101,7 @@ export const siteConfig = {
         {
           time: "19:00",
           title: "Cóctel de Bienvenida",
-          description: "Disfruta de un cóctel de bienvenida en el elegante lobby del InterContinental Real Guatemala mientras esperamos a que todos los invitados lleguen para la recepción.",
+          description: "Disfruta de un cóctel de bienvenida en el InterContinental Real Guatemala mientras esperamos a que todos los invitados lleguen.",
         },
         {
           time: "20:00",
@@ -131,11 +130,9 @@ export const siteConfig = {
       description: "Nuestra celebración tendrá dos ubicaciones",
       ceremony: {
         title: "Misa",
-        description: "La ceremonia religiosa se llevará a cabo en la hermosa Iglesia Santa María Reina de la Familia.",
       },
       reception: {
         title: "Recepción y Cena",
-        description: "La recepción y cena de gala será en el elegante Real InterContinental Guatemala.",
       },
     },
     waze: {
@@ -182,7 +179,7 @@ export const siteConfig = {
     dressCode: {
       title: "Código de Vestimenta",
       description: "Etiqueta Formal",
-      details: "Caballeros: Traje oscuro o smoking. Damas: Vestido largo o de cocktail elegante. Los colores neutros, pasteles y tonos joya son bienvenidos. Por favor evitar el color blanco, reservado para la novia.",
+      details: "",
     },
     codeOfConduct: {
       title: "Código de Conducta",
