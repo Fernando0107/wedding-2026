@@ -1,46 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { siteConfig } from "@/lib/config";
 import { CountdownTime } from "@/types";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
 
-export default function Countdown() {
-  const [timeLeft, setTimeLeft] = useState<CountdownTime>({
+function calculateTimeLeft(): CountdownTime {
+  const difference = +siteConfig.wedding.date - +new Date();
+
+  if (difference > 0) {
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  return {
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
-  });
-  const [mounted, setMounted] = useState(false);
+  };
+}
+
+export default function Countdown() {
+  const [timeLeft, setTimeLeft] = useState<CountdownTime>(calculateTimeLeft);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
-    
-    const calculateTimeLeft = () => {
-      const difference = +siteConfig.wedding.date - +new Date();
-
-      if (difference > 0) {
-        return {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        };
-      }
-
-      return {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      };
-    };
-
-    setTimeLeft(calculateTimeLeft());
-
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

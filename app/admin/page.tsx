@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FamilyRSVPWithGuests } from "@/types";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
@@ -43,8 +43,8 @@ export default function AdminPage() {
       setRsvps(data.data || []);
       setStats(data.stats || null);
       setIsAuthenticated(true);
-    } catch (err: any) {
-      setError(err.message || "Error al autenticar");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al autenticar");
     } finally {
       setIsLoading(false);
     }
@@ -68,8 +68,8 @@ export default function AdminPage() {
       const data = await response.json();
       setRsvps(data.data || []);
       setStats(data.stats || null);
-    } catch (err: any) {
-      setError(err.message || "Error al actualizar datos");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al actualizar datos");
     } finally {
       setIsLoading(false);
     }

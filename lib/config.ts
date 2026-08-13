@@ -52,11 +52,11 @@ export const siteConfig = {
   photos: {
     hero: "/puesta-anillo.jpg",
     story: [
-      "/placeholders/story-1.svg",
-      "/placeholders/story-2.svg",
-      "/placeholders/story-3.svg",
-      "/placeholders/story-4.svg",
-      "/placeholders/story-5.svg",
+      "/civil-1.jpg",
+      "/civil-2.jpg",
+      "/civil-3.jpg",
+      "/civil-4.jpg",
+      "/civil-5.jpg",
     ],
     gallery: [
       "/placeholders/gallery-1.svg",

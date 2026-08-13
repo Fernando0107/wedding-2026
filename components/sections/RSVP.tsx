@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
@@ -9,24 +9,22 @@ import FadeIn from "@/components/animations/FadeIn";
 import ImageReveal from "@/components/animations/ImageReveal";
 import RSVPForm from "@/components/forms/RSVPForm";
 
+// Leer familyKey de query params (/?fam=gonzalez#rsvp) o del hash (/#rsvp?fam=gonzalez)
+function getFamilyKeyFromLocation(): string | null {
+  const fromQuery = new URLSearchParams(window.location.search).get("fam");
+  if (fromQuery) return fromQuery;
+
+  const hashMatch = window.location.hash.match(/[?&]fam=([^&]+)/);
+  return hashMatch ? hashMatch[1] : null;
+}
+
 export default function RSVP() {
-  const [familyKey, setFamilyKey] = useState<string | null>(null);
+  const familyKey = useSyncExternalStore(
+    () => () => {},
+    getFamilyKeyFromLocation,
+    () => null
+  );
 
-  // Leer familyKey de query params o del hash
-  useEffect(() => {
-    // Primero intentar desde query parameters (formato: /?fam=gonzalez#rsvp)
-    let fam = new URLSearchParams(window.location.search).get("fam");
-
-    // Si no está en query params, intentar leer del hash (formato: /#rsvp?fam=gonzalez)
-    if (!fam) {
-      const hashMatch = window.location.hash.match(/[?&]fam=([^&]+)/);
-      if (hashMatch) {
-        fam = hashMatch[1];
-      }
-    }
-
-    setFamilyKey(fam);
-  }, []);
   return (
     <Section id="rsvp" background="white">
       <Container>
