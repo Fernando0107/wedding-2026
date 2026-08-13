@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ZodError } from 'zod';
 import { getSql } from '@/lib/db';
 import { rsvpFormSchema } from '@/lib/validations';
 import { FamilyRSVP, FamilyRSVPWithGuests, RSVPResponse } from '@/types';
@@ -137,11 +138,10 @@ export async function POST(request: NextRequest) {
     };
     
     return NextResponse.json(response, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error al guardar RSVP:', error);
-    
-    // Si es error de validación de Zod
-    if (error.name === 'ZodError') {
+
+    if (error instanceof ZodError) {
       return NextResponse.json(
         {
           success: false,

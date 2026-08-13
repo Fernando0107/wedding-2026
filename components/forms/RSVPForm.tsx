@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { rsvpFormSchema, RSVPFormData } from "@/lib/validations";
@@ -63,8 +63,7 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
+    control,
     setValue,
   } = useForm<RSVPFormData>({
     resolver: zodResolver(rsvpFormSchema),
@@ -94,7 +93,7 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
     }
   }, [guests, setValue]);
 
-  const guestConfirmations = watch("guestConfirmations");
+  const guestConfirmations = useWatch({ control, name: "guestConfirmations" });
 
   const onSubmit = async (data: RSVPFormData) => {
     setIsSubmitting(true);
@@ -117,7 +116,7 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
 
       setSubmitStatus("success");
       // No resetear el formulario, solo mostrar el mensaje de éxito
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -183,7 +182,7 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
         </div>
         <div className="pt-4 border-t border-dusty-rose/30">
           <p className="text-xs text-mauve/70 font-sans italic">
-            "Tu presencia es el mejor regalo"
+            &ldquo;Tu presencia es el mejor regalo&rdquo;
           </p>
         </div>
       </motion.div>
@@ -236,9 +235,8 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
                     defaultValue="si"
                     className={selectClasses}
                     onChange={(e) => {
-                      const current = watch("guestConfirmations") || {};
                       setValue("guestConfirmations", {
-                        ...current,
+                        ...guestConfirmations,
                         [guest]: e.target.value as "si" | "no"
                       });
                     }}
