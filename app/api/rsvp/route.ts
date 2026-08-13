@@ -3,6 +3,11 @@ import { getSql } from '@/lib/db';
 import { rsvpFormSchema } from '@/lib/validations';
 import { FamilyRSVP, FamilyRSVPWithGuests, RSVPResponse } from '@/types';
 import { familyExists, getFamilyGuests } from '@/lib/families';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+
+const RSVP_WRITE_LIMIT = 10;
+const RSVP_READ_LIMIT = 30;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 
 interface RSVPRow {
   family_key: string;
@@ -32,8 +37,16 @@ function rowToRSVP(row: RSVPRow): FamilyRSVP {
 // POST /api/rsvp - Guardar una confirmación RSVP
 export async function POST(request: NextRequest) {
   try {
+    const clientIp = getClientIp(request);
+    if (!checkRateLimit(`rsvp:write:${clientIp}`, RSVP_WRITE_LIMIT, RATE_LIMIT_WINDOW_MS)) {
+      return NextResponse.json(
+        { success: false, message: 'Demasiadas solicitudes. Por favor intenta de nuevo más tarde.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
-    
+
     // Validar datos del formulario
     const validatedData = rsvpFormSchema.parse(body);
     
@@ -152,9 +165,17 @@ export async function POST(request: NextRequest) {
 // GET /api/rsvp - Obtener RSVP por familyKey
 export async function GET(request: NextRequest) {
   try {
+    const clientIp = getClientIp(request);
+    if (!checkRateLimit(`rsvp:read:${clientIp}`, RSVP_READ_LIMIT, RATE_LIMIT_WINDOW_MS)) {
+      return NextResponse.json(
+        { success: false, message: 'Demasiadas solicitudes. Por favor intenta de nuevo más tarde.' },
+        { status: 429 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const familyKey = searchParams.get('familyKey');
-    
+
     if (!familyKey) {
       return NextResponse.json(
         { success: false, message: 'Se requiere familyKey' },

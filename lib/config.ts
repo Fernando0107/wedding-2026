@@ -179,7 +179,6 @@ export const siteConfig = {
     dressCode: {
       title: "Código de Vestimenta",
       description: "Etiqueta Formal",
-      details: "",
     },
     codeOfConduct: {
       title: "Código de Conducta",

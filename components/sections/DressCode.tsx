@@ -28,10 +28,6 @@ export default function DressCode() {
               </span>
             </div>
 
-            <p className="text-lg text-mauve font-sans leading-relaxed mb-10">
-              {siteConfig.content.dressCode.details}
-            </p>
-
             {/* Sugerencias visuales */}
             <div className="grid grid-cols-2 gap-6 mt-8">
               <FadeIn delay={0.2}>
