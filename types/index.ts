@@ -31,8 +31,8 @@ export interface VenueInfo {
 // RSVP Types
 export type RSVPStatus = "pending" | "confirmed" | "declined";
 
-// Estructura simplificada guardada en Redis
-// Los datos de la familia (guests) vienen del JSON, no se guardan en Redis
+// Estructura simplificada guardada en la tabla rsvps (Postgres)
+// Los datos de la familia (guests) vienen del JSON, no se guardan en la base de datos
 // Guardamos quiénes confirmaron "si" y quiénes declinaron "no"
 export interface FamilyRSVP {
   familyKey: string; // e.g., "gonzalez"

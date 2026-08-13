@@ -1,7 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { redis } from '@/lib/redis';
+import { getSql } from '@/lib/db';
 import { FamilyRSVP, FamilyRSVPWithGuests } from '@/types';
 import { getFamilyGuests, getAllFamilyKeys, getTotalGuests, getFamily } from '@/lib/families';
+
+interface RSVPRow {
+  family_key: string;
+  status: FamilyRSVP['status'];
+  confirmed_guests: string[] | null;
+  declined_guests: string[] | null;
+  allergies: string | null;
+  message: string | null;
+  submitted_at: string | Date;
+  updated_at: string | Date | null;
+}
+
+// Convierte una fila de la tabla rsvps al shape de FamilyRSVP
+function rowToRSVP(row: RSVPRow): FamilyRSVP {
+  return {
+    familyKey: row.family_key,
+    status: row.status,
+    confirmedGuests: row.confirmed_guests || undefined,
+    declinedGuests: row.declined_guests || undefined,
+    allergies: row.allergies || undefined,
+    message: row.message || undefined,
+    submittedAt: new Date(row.submitted_at).toISOString(),
+    updatedAt: row.updated_at ? new Date(row.updated_at).toISOString() : undefined,
+  };
+}
 
 // Autenticación básica - puedes cambiar esta contraseña
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'wedding2026';
@@ -26,33 +51,20 @@ export async function GET(request: NextRequest) {
     // Obtener todas las familias del JSON
     const allFamiliesFromJSON = getAllFamilyKeys();
     
-    // Obtener todas las familias que tienen RSVP en Redis
-    const familyKeysFromRedis = await redis.keys('family:*');
-    
-    // Obtener todos los RSVPs y agregar guests del JSON
-    const rsvps: FamilyRSVPWithGuests[] = [];
-    const familyKeysWithRSVP = new Set<string>();
-    
-    for (const key of familyKeysFromRedis) {
-      const rsvp = await redis.get<FamilyRSVP>(key);
-      if (rsvp) {
-        // Obtener guests del JSON
-        const familyGuests = getFamilyGuests(rsvp.familyKey);
-        rsvps.push({
-          ...rsvp,
-          guests: familyGuests,
-        });
-        // Guardar la key sin el prefijo "family:"
-        familyKeysWithRSVP.add(rsvp.familyKey);
-      }
-    }
-    
-    // Ordenar por fecha de actualización (más recientes primero)
-    rsvps.sort((a, b) => {
-      const dateA = new Date(b.updatedAt || b.submittedAt).getTime();
-      const dateB = new Date(a.updatedAt || a.submittedAt).getTime();
-      return dateA - dateB;
+    // Obtener todos los RSVPs, ordenados por fecha de actualización (más recientes primero)
+    const sql = getSql();
+    const rows = await sql`SELECT * FROM rsvps ORDER BY COALESCE(updated_at, submitted_at) DESC`;
+
+    // Agregar guests del JSON a cada RSVP
+    const rsvps: FamilyRSVPWithGuests[] = rows.map((row) => {
+      const rsvp = rowToRSVP(row as unknown as RSVPRow);
+      return {
+        ...rsvp,
+        guests: getFamilyGuests(rsvp.familyKey),
+      };
     });
+
+    const familyKeysWithRSVP = new Set(rsvps.map((r) => r.familyKey));
     
     // Calcular familias pendientes (están en el JSON pero no tienen RSVP en Redis)
     const pendingFamilies = allFamiliesFromJSON.filter(

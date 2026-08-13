@@ -1,8 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { redis } from '@/lib/redis';
+import { getSql } from '@/lib/db';
 import { rsvpFormSchema } from '@/lib/validations';
 import { FamilyRSVP, FamilyRSVPWithGuests, RSVPResponse } from '@/types';
-import { getFamily, familyExists, getFamilyGuests } from '@/lib/families';
+import { familyExists, getFamilyGuests } from '@/lib/families';
+
+interface RSVPRow {
+  family_key: string;
+  status: FamilyRSVP['status'];
+  confirmed_guests: string[] | null;
+  declined_guests: string[] | null;
+  allergies: string | null;
+  message: string | null;
+  submitted_at: string | Date;
+  updated_at: string | Date | null;
+}
+
+// Convierte una fila de la tabla rsvps al shape de FamilyRSVP
+function rowToRSVP(row: RSVPRow): FamilyRSVP {
+  return {
+    familyKey: row.family_key,
+    status: row.status,
+    confirmedGuests: row.confirmed_guests || undefined,
+    declinedGuests: row.declined_guests || undefined,
+    allergies: row.allergies || undefined,
+    message: row.message || undefined,
+    submittedAt: new Date(row.submitted_at).toISOString(),
+    updatedAt: row.updated_at ? new Date(row.updated_at).toISOString() : undefined,
+  };
+}
 
 // POST /api/rsvp - Guardar una confirmación RSVP
 export async function POST(request: NextRequest) {
@@ -62,26 +87,30 @@ export async function POST(request: NextRequest) {
       status = 'declined';
     }
     
-    // Buscar RSVP existente
-    const redisKey = `family:${validatedData.familyKey}`;
-    const existingRSVP = await redis.get<FamilyRSVP>(redisKey);
-    
-    // Crear o actualizar el RSVP
-    // Guardamos: familyKey, status, confirmedGuests (los que dijeron "si"), declinedGuests (los que dijeron "no"), allergies, message
-    const rsvpData: FamilyRSVP = {
-      familyKey: validatedData.familyKey,
-      status,
-      confirmedGuests: confirmedGuests.length > 0 ? confirmedGuests : undefined,
-      declinedGuests: declinedGuests.length > 0 ? declinedGuests : undefined,
-      allergies: validatedData.allergies || undefined,
-      message: validatedData.message || undefined,
-      submittedAt: existingRSVP?.submittedAt || new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
-    
-    // Guardar en Redis
-    await redis.set(redisKey, rsvpData);
-    
+    // Crear o actualizar el RSVP (upsert atómico, submitted_at se conserva en updates)
+    const sql = getSql();
+    const rows = await sql`
+      INSERT INTO rsvps (family_key, status, confirmed_guests, declined_guests, allergies, message, updated_at)
+      VALUES (
+        ${validatedData.familyKey},
+        ${status},
+        ${confirmedGuests.length > 0 ? confirmedGuests : null},
+        ${declinedGuests.length > 0 ? declinedGuests : null},
+        ${validatedData.allergies || null},
+        ${validatedData.message || null},
+        now()
+      )
+      ON CONFLICT (family_key) DO UPDATE SET
+        status = excluded.status,
+        confirmed_guests = excluded.confirmed_guests,
+        declined_guests = excluded.declined_guests,
+        allergies = excluded.allergies,
+        message = excluded.message,
+        updated_at = excluded.updated_at
+      RETURNING *
+    `;
+    const rsvpData = rowToRSVP(rows[0] as unknown as RSVPRow);
+
     // Preparar respuesta con datos completos (incluyendo guests del JSON)
     const responseData: FamilyRSVPWithGuests = {
       ...rsvpData,
@@ -141,20 +170,21 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    const redisKey = `family:${familyKey}`;
-    
-    const rsvp = await redis.get<FamilyRSVP>(redisKey!);
-    
-    if (!rsvp) {
+    const sql = getSql();
+    const rows = await sql`SELECT * FROM rsvps WHERE family_key = ${familyKey}`;
+
+    if (rows.length === 0) {
       return NextResponse.json(
         { success: false, message: 'RSVP no encontrado' },
         { status: 404 }
       );
     }
-    
+
+    const rsvp = rowToRSVP(rows[0] as unknown as RSVPRow);
+
     // Obtener guests del JSON
     const familyGuests = getFamilyGuests(rsvp.familyKey);
-    
+
     // Preparar respuesta con datos completos
     const responseData: FamilyRSVPWithGuests = {
       ...rsvp,
