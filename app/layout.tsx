@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Carol Castillo y Juan Fernando González. 14 de noviembre de 2026 en Ciudad de Guatemala.",
   keywords: ["boda", "Carol Castillo", "Juan Fernando González", "save the date", "wedding", "Guatemala", "noviembre 2026"],
   authors: [{ name: "Carol & Juan Fernando" }],
-  robots: "index, follow",
+  robots: "noindex, nofollow",
   openGraph: {
     title: "Save the Date - Carol & Juan Fernando",
     description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Boda Carol & Juan Fernando",
     images: [
       {
-        url: "/portada.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Carol & Juan Fernando - Save the Date",
@@ -74,16 +74,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Save the Date - Carol & Juan Fernando",
     description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
-    images: ["/portada.jpg"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: [
-      { url: "/logo/logo.png", type: "image/png" },
+      { url: "/logo/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/logo/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [
-      { url: "/logo/logo.png", type: "image/png" },
+      { url: "/logo/apple-icon-180.png", type: "image/png", sizes: "180x180" },
     ],
-    shortcut: "/logo/logo.png",
+    shortcut: "/logo/favicon-32.png",
   },
 };
 

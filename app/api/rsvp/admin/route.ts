@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSql } from '@/lib/db';
 import { FamilyRSVP, FamilyRSVPWithGuests } from '@/types';
 import { getFamilyGuests, getAllFamilyKeys, getTotalGuests, getFamily } from '@/lib/families';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+
+const ADMIN_AUTH_LIMIT = 10;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 
 interface RSVPRow {
   family_key: string;
@@ -34,10 +38,18 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'wedding2026';
 // GET /api/rsvp/admin - Obtener todas las confirmaciones (requiere autenticación)
 export async function GET(request: NextRequest) {
   try {
+    const clientIp = getClientIp(request);
+    if (!checkRateLimit(`admin:auth:${clientIp}`, ADMIN_AUTH_LIMIT, RATE_LIMIT_WINDOW_MS)) {
+      return NextResponse.json(
+        { success: false, message: 'Demasiados intentos. Por favor intenta de nuevo más tarde.' },
+        { status: 429 }
+      );
+    }
+
     // Verificar autenticación
     const authHeader = request.headers.get('authorization');
     const password = authHeader?.replace('Bearer ', '');
-    
+
     if (password !== ADMIN_PASSWORD) {
       return NextResponse.json(
         { success: false, message: 'No autorizado' },
