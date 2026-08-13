@@ -39,7 +39,7 @@ export default function Program() {
                 <FadeIn key={index} delay={0.15 * index}>
                   <div className="flex gap-6 md:gap-8 items-start relative">
                     {/* Hora */}
-                    <div className="flex-shrink-0 w-20 md:w-24 text-right">
+                    <div className="flex-shrink-0 w-20 md:w-24 text-center">
                       <span className="text-xl md:text-2xl font-serif text-rosewood">
                         {event.time}
                       </span>
@@ -50,7 +50,7 @@ export default function Program() {
                       <div className="w-10 h-10 rounded-full bg-gold-light border-2 border-gold/50
                                       flex items-center justify-center
                                       shadow-[0_2px_8px_rgba(201,168,76,0.2)]">
-                        <Icon className="w-4 h-4 text-gold-dark" />
+                        <Icon className="w-4 h-4 text-beige-light" />
                       </div>
                     </div>
 

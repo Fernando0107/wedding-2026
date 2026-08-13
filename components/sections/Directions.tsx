@@ -54,10 +54,6 @@ export default function Directions() {
                 {siteConfig.wedding.ceremony.city}
               </p>
 
-              <p className="text-sm text-mauve mb-4">
-                {siteConfig.content.directions.ceremony.description}
-              </p>
-
               <div className="mt-auto">
                 <div className="h-44 md:h-48 mb-4 rounded-xl overflow-hidden">
                   <MapEmbed
@@ -114,10 +110,6 @@ export default function Directions() {
               </p>
               <p className="text-old-rose font-sans mb-6">
                 {siteConfig.wedding.reception.city}
-              </p>
-
-              <p className="text-sm text-mauve mb-4">
-                {siteConfig.content.directions.reception.description}
               </p>
 
               <div className="mt-auto">

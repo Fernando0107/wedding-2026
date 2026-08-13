@@ -19,6 +19,9 @@
   --gold:         #c9a84c;
   --gold-light:   #f7f0d8;
   --gold-dark:    #8a6d1a;
+
+  /* Beige accent */
+  --beige-light:  #d9c7a3;
 }
 
 @theme inline {
@@ -47,6 +50,8 @@
   --color-gold:       var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark:  var(--gold-dark);
+
+  --color-beige-light: var(--beige-light);
 
   /* Sombras suaves */
   --shadow-soft: 0 2px 8px rgba(139, 90, 90, 0.08);

@@ -30,14 +30,14 @@ This is a **Next.js 16 App Router** wedding invitation site with a serverless RS
 - `components/animations/` — `FadeIn`, `Aurora`, `ImageReveal`, `Parallax` wrappers used by sections
 - `components/forms/RSVPForm.tsx` — React Hook Form + Zod, family key validation
 - `lib/families.ts` + `data/families.json` — Guest list; RSVP submissions are validated against this
-- `lib/redis.ts` — Upstash Redis client for RSVP persistence
+- `lib/db.ts` — Neon Postgres client (`rsvps` table) for RSVP persistence
 - `lib/validations.ts` — Zod schema shared between frontend and API
 
 ### RSVP Flow
 
 1. URL `/?fam=<familyKey>#rsvp` pre-fills the family in the RSVP form
 2. `RSVPForm` validates via Zod, then POSTs to `/api/rsvp`
-3. API re-validates the family key against `families.json`, then writes to Redis
+3. API re-validates the family key against `families.json`, then upserts into the `rsvps` table
 4. Admin accesses `/admin` with `ADMIN_PASSWORD` (stored in `.env.local`)
 
 ### Styling
@@ -51,6 +51,5 @@ This is a **Next.js 16 App Router** wedding invitation site with a serverless RS
 
 ```
 ADMIN_PASSWORD=...
-UPSTASH_REDIS_REST_URL=...
-UPSTASH_REDIS_REST_TOKEN=...
+DATABASE_URL=...
 ```
