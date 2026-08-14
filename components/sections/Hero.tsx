@@ -1,12 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { scrollToSection } from "@/lib/utils";
-import Button from "@/components/ui/Button";
 import FadeIn from "@/components/animations/FadeIn";
 
+const SCROLL_HINT_THRESHOLD_PX = 80;
+const SCROLL_HINT_APPEAR_DELAY_MS = 1500;
+
 export default function Hero() {
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const [hintMounted, setHintMounted] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollHint(window.scrollY < SCROLL_HINT_THRESHOLD_PX);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    const appearTimer = setTimeout(() => setHintMounted(true), SCROLL_HINT_APPEAR_DELAY_MS);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(appearTimer);
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Imagen de fondo */}
@@ -51,58 +69,39 @@ export default function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.8}>
-          <div className="flex items-center justify-center mb-12">
+          <div className="flex items-center justify-center">
             <p className="text-lg md:text-xl lg:text-2xl font-serif text-white/90 tracking-[0.2em] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.25)]">
               {siteConfig.wedding.day} · {siteConfig.wedding.month} · {siteConfig.wedding.year}
             </p>
           </div>
         </FadeIn>
-
-        <FadeIn delay={1}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => scrollToSection("rsvp")}
-              className="min-w-[220px] text-lg !bg-rosewood hover:!bg-mulberry hover:!scale-105 transition-all duration-300"
-            >
-              Confirmar Asistencia
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => scrollToSection("calendar")}
-              className="min-w-[220px] text-lg !text-white !border-white/60 hover:!bg-white/10"
-            >
-              Agregar al Calendario
-            </Button>
-          </div>
-        </FadeIn>
       </div>
 
       {/* Indicador de scroll */}
-      <FadeIn delay={1.5}>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <button
-            onClick={() => scrollToSection("story")}
-            className="flex flex-col items-center gap-2 text-rosewood/60 hover:text-rosewood transition-colors cursor-pointer"
-            aria-label="Desplazarse hacia abajo"
+      <div
+        className={`fixed bottom-12 inset-x-0 z-30 flex justify-center transition-opacity duration-700 ${
+          hintMounted && showScrollHint ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <button
+          onClick={() => scrollToSection("story")}
+          className="flex flex-col items-center gap-2 text-white hover:text-white/80 transition-colors cursor-pointer drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]"
+          aria-label="Desplazarse hacia abajo"
+        >
+          <span className="text-sm font-sans tracking-wide">Desliza</span>
+          <svg
+            className="w-6 h-6 animate-bounce"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <span className="text-sm font-sans tracking-wide">Desliza</span>
-            <svg
-              className="w-6 h-6 animate-bounce"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </button>
-        </div>
-      </FadeIn>
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </button>
+      </div>
     </section>
   );
 }

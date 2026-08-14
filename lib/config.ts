@@ -181,7 +181,7 @@ export const siteConfig = {
     },
     codeOfConduct: {
       title: "Código de Conducta",
-      description: "No fumar cigarros, ni cigarros electrónicos.",
+      description: "No se permite fumar, ni utilizar cigarros electrónicos.",
       additional: "Agradecemos tu comprensión, para poder cumplir con el reglamento del hotel y evitar inconvenientes.",
     },
     rsvp: {
