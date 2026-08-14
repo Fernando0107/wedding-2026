@@ -1,4 +1,7 @@
 {
+  "gonzalez-castillo": {
+    "guests": ["Juan Fernando González", "Carol de González"]
+  },
   "gonzalez-diaz": {
     "guests": ["Fernando González", "Alicia de González", "Carolina González"]
   },
@@ -27,13 +30,13 @@
       "guests":  ["Tono Rocha"]
   },
     "virginia": {
-      "guests":  ["Virginia"]
+      "guests":  ["Virginia Solórzano"]
   },
     "ush": {
-      "guests":  ["Ush"]
+      "guests":  ["Luz María de León"]
   },
     "mayari": {
-      "guests":  ["Mayari", "Ronald"]
+      "guests":  ["Mayari Mena", "Ronald"]
   },
     "carmen-ma": {
       "guests":  ["Carmen María"]
@@ -45,13 +48,13 @@
       "guests":  ["Evie de Hernández", "Vince Hernández"]
   },
     "gloria": {
-      "guests":  ["Doña Gloria"]
+      "guests":  ["Gloria Mencos"]
   },
     "tio-luis": {
       "guests":  ["Luis Fernando Urbina", "Carol"]
   },
     "claudita": {
-      "guests":  ["Claudia Garcia", "Esposo"]
+      "guests":  ["Claudia Garcia", "Roberto Lara"]
   },
   "--------------------------------------- Fin FAMILIA Fer ---------------------------------------": {
     "guests": []
@@ -99,7 +102,7 @@
     "guests":  ["Celeste", "Juan Gaitán"]
   },
   "carrera": {
-    "guests":  ["Mariano Carrera", "Novia Trikis"]
+    "guests":  ["Mariano Carrera", "Alejandra López"]
   },
   "avila": {
     "guests":  ["George Avila", "Maria José Ochoa"]
@@ -122,17 +125,8 @@
   "lickes": {
     "guests":  ["Kenneth Lickes"]
   },
-  "cristian": {
-    "guests":  ["Cristian Morales", "Lily de Morales"]
-  },
   "rivero": {
     "guests":  ["Victor Rivero"]
-  },
-  "muller": {
-    "guests":  ["Francisco Müller"]
-  },
-  "vela": {
-    "guests":  ["Luis Vela"]
   },
   "brandon": {
     "guests":  ["Brandon Bamaca"]
@@ -143,11 +137,20 @@
   "juan": {
     "guests":  ["Juan de La Fuente"]
   },
+  "cristian": {
+    "guests":  ["Cristian Morales", "Lily de Morales"]
+  },
+  "muller": {
+    "guests":  ["Francisco Müller"]
+  },
+  "vela": {
+    "guests":  ["Luis Vela"]
+  },
   "allan-epaj": {
-    "guests":  ["Allan"]
+    "guests":  ["Allan Macklen"]
   },
   "freddy": {
-    "guests":  ["Freddy"]
+    "guests":  ["Freddy Lopez"]
   },
   "emilio": {
     "guests":  ["Emilio Galindo"]
@@ -156,13 +159,13 @@
     "guests":  ["Edgar Ajuachan"]
   },
   "pablo": {
-    "guests":  ["Pablo EPAJ"]
+    "guests":  ["Pablo Rodríguez"]
   },
   "astrid": {
     "guests":  ["Astrid Toralla"]
   },
   "amparito": {
-    "guests":  ["Amparo"]
+    "guests":  ["Amparito Fetzer"]
   },
   "monica": {
     "guests":  ["Monica Zelada"]
