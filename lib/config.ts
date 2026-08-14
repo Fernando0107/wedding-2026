@@ -28,7 +28,7 @@ export const siteConfig = {
       name: "Real InterContinental Guatemala by IHG",
       address: "14 Calle 2-51, Zona 10",
       city: "Ciudad de Guatemala",
-      time: "19:30",
+      time: "19:00",
       coordinates: {
         lat: 14.5983084,
         lng: -90.5143371,
@@ -72,7 +72,7 @@ export const siteConfig = {
 
   content: {
     hero: {
-      title: "Save the Date",
+      title: "Nuestra Boda",
       subtitle: "Estás cordialmente invitado/a a celebrar con nosotros",
     },
     welcome: {
@@ -183,11 +183,11 @@ export const siteConfig = {
     codeOfConduct: {
       title: "Código de Conducta",
       description: "No fumar cigarros ni cigarros electrónicos.",
-      additional: "Agradecemos tu comprensión. Por favor, confirma tu asistencia antes del 15 de octubre de 2026.",
+      additional: "Agradecemos tu comprensión, para poder cumplir con el reglamento del hotel y evitar inconvenientes.",
     },
     rsvp: {
       title: "Confirma tu Asistencia",
-      description: "Tu presencia es el mejor regalo que podemos recibir. Por favor completa el siguiente formulario para confirmar tu asistencia.",
+      description: "Por favor completa el siguiente formulario para confirmar tu asistencia.",
       deadline: "Fecha límite: 15 de octubre de 2026",
       fields: {
         name: {
@@ -234,34 +234,14 @@ export const siteConfig = {
         outlook: "Outlook",
       },
     },
-    faq: {
-      title: "Preguntas Frecuentes",
-      questions: [
-        {
-          question: "¿Habrá transporte entre la iglesia y el hotel?",
-          answer: "Sí, habrá transporte disponible desde la Iglesia Santa María Reina de la Familia hacia el InterContinental Real Guatemala después de la ceremonia. El transporte partirá aproximadamente a las 17:30.",
-        },
-        {
-          question: "¿Puedo llevar acompañante?",
-          answer: "Por favor verifica tu invitación. Si tu nombre indica +1, eres bienvenido/a a traer un acompañante. Si tienes dudas, no dudes en contactarnos.",
-        },
-        {
-          question: "¿Cuál es el horario completo de la celebración?",
-          answer: "La ceremonia religiosa inicia puntualmente a las 16:00 hrs en la Iglesia Santa María Reina de la Familia. El cóctel de bienvenida en el InterContinental será a las 19:00 hrs, la recepción formal comienza a las 20:00 hrs y la fiesta continúa hasta la 1:00 de la madrugada.",
-        },
-        {
-          question: "¿Hay estacionamiento disponible?",
-          answer: "Sí, tanto la iglesia como el hotel cuentan con estacionamiento para invitados. El estacionamiento del InterContinental tiene capacidad amplia y estará disponible toda la noche.",
-        },
-        {
-          question: "¿Habrá opciones para dietas especiales?",
-          answer: "Por supuesto. Tendremos opciones vegetarianas, veganas y sin gluten. Por favor indícalo en el formulario de RSVP para que podamos atenderte correctamente.",
-        },
-        {
-          question: "¿Puedo tomar fotos durante la ceremonia?",
-          answer: "Te pedimos que durante la ceremonia religiosa dejes la fotografía en manos de nuestros fotógrafos profesionales. En la recepción, ¡toma todas las fotos que quieras y compártelas con nosotros!",
-        },
-      ],
+    summary: {
+      title: "Resumen del Día",
+      ceremony: {
+        label: "Misa",
+      },
+      reception: {
+        label: "Fiesta",
+      },
     },
     gifts: {
       title: "Lista de Regalos",
@@ -270,9 +250,9 @@ export const siteConfig = {
         title: "Transferencia Bancaria",
         details: [
           { label: "Banco", value: "Banco Industrial" },
-          { label: "Tipo Cuenta", value: "Monetaria" },
-          { label: "No. de Cuenta", value: "000-000000-0" },
-          { label: "A nombre de", value: "Carol & Juan Fernando" }
+          { label: "Tipo Cuenta", value: "Ahorros" },
+          { label: "No. de Cuenta", value: "5554458843" },
+          { label: "A nombre de", value: "Carol Castillo" }
         ],
       },
       honeymoon: {

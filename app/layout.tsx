@@ -50,13 +50,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://boda-carol-juanfernando.com"),
-  title: "Save the Date - Carol & Juan Fernando | 14 de Noviembre 2026",
+  title: "Nuestra Boda - Carol & Juan Fernando | 14 de Noviembre 2026",
   description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Carol Castillo y Juan Fernando González. 14 de noviembre de 2026 en Ciudad de Guatemala.",
-  keywords: ["boda", "Carol Castillo", "Juan Fernando González", "save the date", "wedding", "Guatemala", "noviembre 2026"],
+  keywords: ["boda", "Carol Castillo", "Juan Fernando González", "nuestra boda", "wedding", "Guatemala", "noviembre 2026"],
   authors: [{ name: "Carol & Juan Fernando" }],
   robots: "noindex, nofollow",
   openGraph: {
-    title: "Save the Date - Carol & Juan Fernando",
+    title: "Nuestra Boda - Carol & Juan Fernando",
     description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
     type: "website",
     locale: "es_GT",
@@ -66,13 +66,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Carol & Juan Fernando - Save the Date",
+        alt: "Carol & Juan Fernando - Nuestra Boda",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Save the Date - Carol & Juan Fernando",
+    title: "Nuestra Boda - Carol & Juan Fernando",
     description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Sábado 14 de noviembre de 2026.",
     images: ["/og-image.jpg"],
   },
