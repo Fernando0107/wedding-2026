@@ -188,6 +188,9 @@
   "omar": {
     "guests":  ["Omar", "Esposa"]
   },
+  "sanchez": {
+    "guests":  ["Ada de Sánchez", "Alejandro Sánchez"]
+  },
   "--------------------------------------- Fin AMIGOS Fer ---------------------------------------": {
     "guests": []
   },
@@ -314,7 +317,7 @@
   "pablo-alvarez": {
     "guests": ["Pablo Álvarez"]
   },
-  "sanchez": {
+  "andres-sanchez": {
     "guests": ["Andrés Sánchez"]
   },
   "pereira": {

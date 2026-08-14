@@ -92,9 +92,6 @@ export default function Countdown() {
             <p className="text-xl md:text-2xl text-old-rose font-serif">
               {siteConfig.wedding.dateString}
             </p>
-            <p className="text-sm text-mauve mt-2">
-              {siteConfig.wedding.ceremony.name}
-            </p>
           </div>
         </FadeIn>
       </Container>

@@ -2,6 +2,7 @@ import EnvelopeIntro from "@/components/EnvelopeIntro";
 import Hero from "@/components/sections/Hero";
 import Welcome from "@/components/sections/Welcome";
 import Story from "@/components/sections/Story";
+import Summary from "@/components/sections/Summary";
 // import Gallery from "@/components/sections/Gallery";
 import Countdown from "@/components/sections/Countdown";
 import Program from "@/components/sections/Program";
@@ -13,7 +14,6 @@ import CodeOfConduct from "@/components/sections/CodeOfConduct";
 import RSVP from "@/components/sections/RSVP";
 import Calendar from "@/components/sections/Calendar";
 import Gifts from "@/components/sections/Gifts";
-import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -27,6 +27,7 @@ export default function Home() {
         <Hero />
         <Welcome />
         <Story />
+        <Summary />
         {/* <Gallery /> */}
         <Countdown />
         <Program />
@@ -38,7 +39,6 @@ export default function Home() {
         <Calendar />
         <Hospedaje />
         <Gifts />
-        <FAQ />
         <Footer />
       </main>
     </>

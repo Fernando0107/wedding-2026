@@ -11,11 +11,6 @@ export interface ProgramEvent {
   description: string;
 }
 
-export interface FAQItem {
-  question: string;
-  answer: string;
-}
-
 export interface VenueInfo {
   name: string;
   address: string;

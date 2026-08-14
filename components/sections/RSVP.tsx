@@ -84,11 +84,8 @@ export default function RSVP() {
             {/* Mensaje adicional */}
             <FadeIn delay={0.6}>
               <div className="mt-6 text-center">
-                <p className="text-rosewood font-serif text-lg italic">
-                  &ldquo;Tu presencia es el mejor regalo&rdquo;
-                </p>
                 <p className="text-sm text-mauve mt-2">
-                  Esperamos celebrar este día tan especial contigo
+                  ¡Esperamos celebrar este día tan especial contigo!
                 </p>
               </div>
             </FadeIn>

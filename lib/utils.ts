@@ -30,7 +30,7 @@ export function generateICSFile(config: {
   const icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Wedding//Save the Date//ES",
+    "PRODID:-//Wedding//Nuestra Boda//ES",
     "BEGIN:VEVENT",
     `UID:${Date.now()}@wedding.com`,
     `DTSTAMP:${formatICSDate(new Date())}`,
