@@ -8,7 +8,7 @@ export const siteConfig = {
   
   wedding: {
     date: new Date("2026-11-14T16:00:00"),
-    dateString: "Sábado 14 de noviembre de 2026",
+    dateString: "Sábado 14 de noviembre del 2026",
     day: "14",
     month: "Noviembre",
     year: "2026",
