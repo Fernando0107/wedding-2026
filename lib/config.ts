@@ -244,7 +244,7 @@ export const siteConfig = {
     },
     gifts: {
       title: "Lista de Regalos",
-      description: "Tu presencia es el mayor regalo que podemos recibir. Sin embargo, si deseas obsequiarnos algo, te compartimos algunas opciones con mucho cariño.",
+      description: "Tu presencia es el mayor regalo que podemos recibir. Sin embargo, si deseas obsequiarnos algo, te compartimos algunas opciones.",
       bankTransfer: {
         title: "Transferencia Bancaria",
         details: [
