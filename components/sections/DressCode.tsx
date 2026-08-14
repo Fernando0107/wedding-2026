@@ -34,7 +34,9 @@ export default function DressCode() {
                 <div className="bg-blush rounded-xl p-6 shadow-soft">
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                     <svg className="w-6 h-6 text-rosewood" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25c0-4.3 3.7-7.75 8-7.75s8 3.45 8 7.75" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.5 7.5v9L10.5 12 3.5 7.5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.5 7.5v9L13.5 12l7-4.5z" />
+                      <rect x="10.5" y="10" width="3" height="4" rx="1" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <h3 className="font-serif text-lg text-rosewood mb-2">Caballeros</h3>
@@ -46,7 +48,7 @@ export default function DressCode() {
                 <div className="bg-blush rounded-xl p-6 shadow-soft">
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-dusty-rose/20 flex items-center justify-center">
                     <svg className="w-6 h-6 text-rosewood" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25c0-4.3 3.7-7.75 8-7.75s8 3.45 8 7.75" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 4Q12 7 15 4L14 12L18 20H6L10 12Z" />
                     </svg>
                   </div>
                   <h3 className="font-serif text-lg text-rosewood mb-2">Damas</h3>

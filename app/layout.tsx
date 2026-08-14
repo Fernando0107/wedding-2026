@@ -49,7 +49,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://boda-carol-juanfernando.com"),
+  metadataBase: new URL("https://gonzalez-castillo.wedding"),
   title: "Nuestra Boda - Carol & Juan Fernando | 14 de Noviembre 2026",
   description: "Estás cordialmente invitado/a a celebrar con nosotros nuestra boda. Carol Castillo y Juan Fernando González. 14 de noviembre de 2026 en Ciudad de Guatemala.",
   keywords: ["boda", "Carol Castillo", "Juan Fernando González", "nuestra boda", "wedding", "Guatemala", "noviembre 2026"],

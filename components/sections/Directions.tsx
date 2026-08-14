@@ -22,12 +22,6 @@ export default function Directions() {
           </h2>
         </FadeIn>
 
-        <FadeIn delay={0.2}>
-          <p className="text-center text-mauve mb-12 font-sans max-w-2xl mx-auto">
-            {siteConfig.content.directions.description}
-          </p>
-        </FadeIn>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Ceremonia */}
           <FadeIn delay={0.3}>

@@ -606,7 +606,18 @@
   }
 }
 
-/* "SAVE THE DATE" */
+/* "Estás cordialmente invitado" */
+.invitationGreeting {
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+  font-style: italic;
+  color: #8b5a5a;
+  margin: 0 0 0.35rem 0;
+  opacity: 1;
+  animation: fadeInUp 0.5s ease 1.4s both;
+}
+
+/* "a la boda de" */
 .invitationLabel {
   font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: clamp(0.75rem, 2vw, 0.875rem);

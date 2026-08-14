@@ -47,10 +47,10 @@ export default function Program() {
 
                     {/* Punto del timeline */}
                     <div className="flex-shrink-0 relative z-10">
-                      <div className="w-10 h-10 rounded-full bg-gold-light border-2 border-gold/50
+                      <div className="w-10 h-10 rounded-full bg-dusty-rose/15 border-2 border-dusty-rose/30
                                       flex items-center justify-center
-                                      shadow-[0_2px_8px_rgba(201,168,76,0.2)]">
-                        <Icon className="w-4 h-4 text-beige-light" />
+                                      shadow-[0_2px_8px_rgba(212,165,165,0.2)]">
+                        <Icon className="w-4 h-4 text-rosewood" />
                       </div>
                     </div>
 
