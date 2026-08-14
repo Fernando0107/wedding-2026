@@ -86,14 +86,6 @@ export default function Countdown() {
             </FadeIn>
           ))}
         </div>
-
-        <FadeIn delay={0.7}>
-          <div className="text-center mt-12">
-            <p className="text-xl md:text-2xl text-old-rose font-serif">
-              {siteConfig.wedding.dateString}
-            </p>
-          </div>
-        </FadeIn>
       </Container>
     </Section>
   );

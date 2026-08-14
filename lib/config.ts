@@ -91,7 +91,7 @@ export const siteConfig = {
       },
     },
     program: {
-      title: "Programa del Día",
+      title: "Programa",
       events: [
         {
           time: "16:00",
@@ -127,7 +127,6 @@ export const siteConfig = {
     },
     directions: {
       title: "Cómo Llegar",
-      description: "Nuestra celebración tendrá dos ubicaciones",
       ceremony: {
         title: "Misa",
       },
@@ -235,7 +234,7 @@ export const siteConfig = {
       },
     },
     summary: {
-      title: "Resumen del Día",
+      title: "Detalles del Evento",
       ceremony: {
         label: "Misa",
       },

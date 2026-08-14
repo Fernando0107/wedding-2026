@@ -131,7 +131,8 @@ export default function EnvelopeIntro() {
             
             {/* Contenido de la tarjeta */}
             <div className={styles.invitationContent}>
-              <p className={styles.invitationLabel}>Save the Date</p>
+              <p className={styles.invitationGreeting}>Estás cordialmente invitado</p>
+              <p className={styles.invitationLabel}>a la boda de</p>
               
               <div className={styles.invitationNames}>
                 <p className={styles.invitationName}>{siteConfig.couple.shortName1}</p>
