@@ -33,8 +33,33 @@ export default function Gifts() {
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {/* Transferencia bancaria */}
+          {/* Fondo de luna de miel */}
           <FadeIn delay={0.3}>
+            <div className="bg-white rounded-2xl p-8 shadow-soft h-full flex flex-col">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
+                  <ShoppingBag className="w-6 h-6 text-rosewood" />
+                </div>
+                <h3 className="text-xl font-serif text-rosewood">
+                  {gifts.honeymoon.title}
+                </h3>
+              </div>
+              <p className="text-mauve font-sans text-sm mb-8 flex-1 leading-relaxed">
+                {gifts.honeymoon.description}
+              </p>
+              <a
+                href={gifts.honeymoon.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-dusty-rose text-white rounded-xl font-sans font-medium hover:bg-soft-berry transition-all duration-200 shadow-soft hover:shadow-soft-lg"
+              >
+                {gifts.honeymoon.linkText}
+              </a>
+            </div>
+          </FadeIn>
+
+          {/* Transferencia bancaria */}
+          <FadeIn delay={0.4}>
             <div className="bg-white rounded-2xl p-8 shadow-soft h-full">
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
@@ -56,31 +81,6 @@ export default function Gifts() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </FadeIn>
-
-          {/* Fondo de luna de miel */}
-          <FadeIn delay={0.4}>
-            <div className="bg-white rounded-2xl p-8 shadow-soft h-full flex flex-col">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dusty-rose/20 flex items-center justify-center">
-                  <ShoppingBag className="w-6 h-6 text-rosewood" />
-                </div>
-                <h3 className="text-xl font-serif text-rosewood">
-                  {gifts.honeymoon.title}
-                </h3>
-              </div>
-              <p className="text-mauve font-sans text-sm mb-8 flex-1 leading-relaxed">
-                {gifts.honeymoon.description}
-              </p>
-              <a
-                href={gifts.honeymoon.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-dusty-rose text-white rounded-xl font-sans font-medium hover:bg-soft-berry transition-all duration-200 shadow-soft hover:shadow-soft-lg"
-              >
-                {gifts.honeymoon.linkText}
-              </a>
             </div>
           </FadeIn>
         </div>
