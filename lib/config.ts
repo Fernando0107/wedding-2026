@@ -106,7 +106,7 @@ export const siteConfig = {
         {
           time: "20:00",
           title: "Recepción",
-          description: "Cena de gala con servicio a la mesa y barra libre.",
+          description: "Cena de gala.",
         },
         {
           time: "20:15",
@@ -181,7 +181,7 @@ export const siteConfig = {
     },
     codeOfConduct: {
       title: "Código de Conducta",
-      description: "No fumar cigarros ni cigarros electrónicos.",
+      description: "No fumar cigarros, ni cigarros electrónicos.",
       additional: "Agradecemos tu comprensión, para poder cumplir con el reglamento del hotel y evitar inconvenientes.",
     },
     rsvp: {

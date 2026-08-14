@@ -50,16 +50,14 @@ export default function Story() {
 
           <div className="rotate-0 md:-translate-y-2">
             <ImageReveal delay={0.5} className="w-24 md:w-28">
-              <div className="aspect-square rounded-full bg-gradient-to-br from-blush to-vintage-pink border-2 border-gold/40 shadow-soft-lg flex items-center justify-center">
-                <div className="relative w-16 h-16 md:w-20 md:h-20">
-                  <Image
-                    src="/logo/icon-512.png"
-                    alt="Logo Carol & Juan Fernando"
-                    fill
-                    className="object-contain rounded-full"
-                    sizes="80px"
-                  />
-                </div>
+              <div className="relative aspect-square">
+                <Image
+                  src="/logo/icon-512.png"
+                  alt="Logo Carol & Juan Fernando"
+                  fill
+                  className="object-contain rounded-full shadow-soft-lg"
+                  sizes="112px"
+                />
               </div>
             </ImageReveal>
           </div>

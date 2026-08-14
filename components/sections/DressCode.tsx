@@ -52,7 +52,7 @@ export default function DressCode() {
                     </svg>
                   </div>
                   <h3 className="font-serif text-lg text-rosewood mb-2">Damas</h3>
-                  <p className="text-sm text-mauve">Vestido largo o cocktail</p>
+                  <p className="text-sm text-mauve">Vestido largo</p>
                 </div>
               </FadeIn>
             </div>

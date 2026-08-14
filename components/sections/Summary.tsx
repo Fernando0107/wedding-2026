@@ -39,9 +39,17 @@ export default function Summary() {
     <Section id="summary" background="pink" className="py-10 md:py-14 lg:py-16">
       <Container size="sm">
         <FadeIn>
-          <h2 className="text-2xl md:text-3xl font-heading text-rosewood text-center mb-6">
+          <h2 className="text-2xl md:text-3xl font-heading text-rosewood text-center mb-3">
             {siteConfig.content.summary.title}
           </h2>
+        </FadeIn>
+
+        <FadeIn delay={0.05}>
+          <div className="flex justify-center mb-6">
+            <span className="inline-flex items-center px-5 py-1.5 rounded-full bg-dusty-rose/10 border border-dusty-rose/25 text-sm md:text-base font-serif text-mulberry tracking-wide">
+              {siteConfig.wedding.dateString}
+            </span>
+          </div>
         </FadeIn>
 
         <FadeIn delay={0.1}>
