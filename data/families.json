@@ -36,13 +36,13 @@
       "guests":  ["Luz María de León"]
   },
     "mayari": {
-      "guests":  ["Mayari Mena", "Ronald"]
+      "guests":  ["Mayari Mena", "Ronald Ochaeta"]
   },
     "carmen-ma": {
-      "guests":  ["Carmen María"]
+      "guests":  ["Carmen María de León"]
   },
     "mirtala-rimeldo": {
-      "guests":  ["Mirtala", "Rimeldo"]
+      "guests":  ["Mirtala de Quinto", "Rimeldo Quinto"]
   },
     "hernandez": {
       "guests":  ["Evie de Hernández", "Vince Hernández"]
@@ -51,7 +51,7 @@
       "guests":  ["Gloria Mencos"]
   },
     "tio-luis": {
-      "guests":  ["Luis Fernando Urbina", "Carol"]
+      "guests":  ["Luis Fernando González", "Carolina de González"]
   },
     "claudita": {
       "guests":  ["Claudia Garcia", "Roberto Lara"]
@@ -173,26 +173,29 @@
   "victoria": {
     "guests":  ["Victoria", "Esposo"]
   },
-  "allan-ap": {
-    "guests":  ["Allan"]
+  "allan-mendez": {
+    "guests":  ["Allan Méndez"]
   },
-  "ale-ap": {
-    "guests":  ["Alejandro"]
+  "ale-car": {
+    "guests":  ["Alejandro Cardona"]
   },
   "aldo": {
-    "guests":  ["Aldo", "Esposa"]
+    "guests":  ["Aldo Méndez", "Silvia Sole de Méndez"]
   },
   "edwin": {
-    "guests":  ["Edwin", "Esposa"]
+    "guests":  ["Edwin Figueroa", "Gaby Algara"]
   },
   "jose": {
-    "guests":  ["Jose", "Esposa"]
+    "guests":  ["José Miguel Nájera", "Liliana Milian"]
   },
   "omar": {
-    "guests":  ["Omar", "Esposa"]
+    "guests":  ["Omar Molina", "Irene de Molina"]
   },
   "sanchez": {
     "guests":  ["Ada de Sánchez", "Alejandro Sánchez"]
+  },
+  "bonilla": {
+    "guests":  ["Luis Pedro Bonilla", "Sofia Morales"]
   },
   "--------------------------------------- Fin AMIGOS Fer ---------------------------------------": {
     "guests": []
@@ -291,7 +294,7 @@
     "guests": ["Elena Guerra"]
   },
   "cordon": {
-    "guests": ["Salvador Cordón"]
+    "guests": ["Salvador Cordón", "Stefan Archila"]
   },
   "lemus": {
     "guests": ["Jose Manuel Lemus"]
@@ -349,5 +352,17 @@
   },
   "guillermo-gonzalez": {
     "guests": ["Guillermo González"]
+  },
+  "michelle": {
+    "guests": ["Michelle Cancinos", "Novio"]
+  },
+  "anne": {
+    "guests": ["Anne de Logemann", "Novio"]
+  },
+  "enrique": {
+    "guests": ["Enrique Moll", "Lorena de Moll"]
+  },
+  "jorge": {
+    "guests": ["Jorge Canale"]
   }
 }

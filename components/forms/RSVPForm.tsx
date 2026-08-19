@@ -182,7 +182,7 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
         </div>
         <div className="pt-4 border-t border-dusty-rose/30">
           <p className="text-xs text-mauve/70 font-sans italic">
-            &ldquo;Tu presencia es el mejor regalo&rdquo;
+            ¡Esperamos verte pronto!
           </p>
         </div>
       </motion.div>
