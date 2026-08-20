@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FamilyRSVPWithGuests } from "@/types";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
@@ -15,13 +15,65 @@ interface RSVPStats {
   totalGuests: number; // Total de invitados según el JSON
 }
 
+const ADMIN_PASSWORD_STORAGE_KEY = "wedding-admin-password";
+
+class AuthError extends Error {
+  constructor(message: string, public status: number) {
+    super(message);
+  }
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [rsvps, setRsvps] = useState<FamilyRSVPWithGuests[]>([]);
   const [stats, setStats] = useState<RSVPStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const authenticate = async (pwd: string) => {
+    const response = await fetch("/api/rsvp/admin", {
+      headers: {
+        Authorization: `Bearer ${pwd}`,
+      },
+    });
+
+    if (!response.ok) {
+      const message =
+        response.status === 429
+          ? "Demasiados intentos. Por favor intenta de nuevo más tarde."
+          : "Contraseña incorrecta";
+      throw new AuthError(message, response.status);
+    }
+
+    return response.json();
+  };
+
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
+    const storedPassword = localStorage.getItem(ADMIN_PASSWORD_STORAGE_KEY);
+
+    Promise.resolve()
+      .then(() => (storedPassword ? authenticate(storedPassword) : null))
+      .then((data) => {
+        if (!data) return;
+        setPassword(storedPassword as string);
+        setRsvps(data.data || []);
+        setStats(data.stats || null);
+        setIsAuthenticated(true);
+      })
+      .catch((err) => {
+        if (err instanceof AuthError && err.status === 401) {
+          localStorage.removeItem(ADMIN_PASSWORD_STORAGE_KEY);
+        } else if (err instanceof AuthError) {
+          setError(err.message);
+        }
+      })
+      .finally(() => setIsCheckingSession(false));
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,17 +81,8 @@ export default function AdminPage() {
     setError(null);
 
     try {
-      const response = await fetch("/api/rsvp/admin", {
-        headers: {
-          Authorization: `Bearer ${password}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Contraseña incorrecta");
-      }
-
-      const data = await response.json();
+      const data = await authenticate(password);
+      localStorage.setItem(ADMIN_PASSWORD_STORAGE_KEY, password);
       setRsvps(data.data || []);
       setStats(data.stats || null);
       setIsAuthenticated(true);
@@ -55,17 +98,7 @@ export default function AdminPage() {
     setError(null);
 
     try {
-      const response = await fetch("/api/rsvp/admin", {
-        headers: {
-          Authorization: `Bearer ${password}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al obtener datos");
-      }
-
-      const data = await response.json();
+      const data = await authenticate(password);
       setRsvps(data.data || []);
       setStats(data.stats || null);
     } catch (err) {
@@ -96,6 +129,18 @@ export default function AdminPage() {
         return "Pendiente";
     }
   };
+
+  if (isCheckingSession) {
+    return (
+      <Section id="admin" background="white">
+        <Container>
+          <div className="min-h-screen flex items-center justify-center py-20">
+            <p className="text-mauve font-sans">Cargando...</p>
+          </div>
+        </Container>
+      </Section>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
