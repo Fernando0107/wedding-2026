@@ -56,6 +56,9 @@
     "claudita": {
       "guests":  ["Claudia Garcia", "Roberto Lara"]
   },
+    "melany": {
+      "guests":  ["Melany"]
+  },
   "--------------------------------------- Fin FAMILIA Fer ---------------------------------------": {
     "guests": []
   },
@@ -216,7 +219,10 @@
     "guests": ["María Elvira de Castillo"]
   },
   "gonzalez-cordova": {
-    "guests": ["Mauricio González", "Silvia Córdova", "Valeria González", "José Mauricio González", "Juan Fernando Márquez"]
+    "guests": ["Mauricio González", "Silvia Córdova", "Valeria González", "José Mauricio González"]
+  },
+  "chipi": {
+    "guests": ["Juan Fernando Márquez"]
   },
   "alejos-cordova": {
     "guests": ["Alejandro Alejos", "Evelyn Córdova"]
@@ -225,7 +231,7 @@
     "guests": ["Guillermo Claverie", "Ana Cecilia Córdova", "Ana Cecilia Claverie", "Camila Claverie"]
   },
   "carlos-flor-castillo": {
-    "guests": ["Carlos Castillo", "Flor Castillo"]
+    "guests": ["Carlos Castillo", "Flor de Castillo"]
   },
   "carlos-castillo": {
     "guests": ["Carlos Castillo"]
@@ -249,7 +255,7 @@
     "guests": ["Sofía Falla"]
   },
   "tita-cordova": {
-    "guests": ["Tita Córdova"]
+    "guests": ["Tita de Cordero"]
   },
   "luis-cordero": {
     "guests": ["Luis Cordero"]
@@ -297,7 +303,7 @@
     "guests": ["Salvador Cordón", "Stefan Archila"]
   },
   "lemus": {
-    "guests": ["Jose Manuel Lemus"]
+    "guests": ["José Manuel Lemus"]
   },
   "rose": {
     "guests": ["Rocío Santos"]
@@ -330,7 +336,7 @@
     "guests": ["Lucía Pereira", "José Pablo Krische"]
   },
   "jean": {
-    "guests": ["Jean"]
+    "guests": ["Jean Guerra"]
   },
   "cazares": {
     "guests": ["Natalia Cázares"]
@@ -357,7 +363,7 @@
     "guests": ["Michelle Cancinos", "Novio"]
   },
   "anne": {
-    "guests": ["Anne de Logemann", "Novio"]
+    "guests": ["Anne de Logemann", "Günther Logemann"]
   },
   "enrique": {
     "guests": ["Enrique Moll", "Lorena de Moll"]
