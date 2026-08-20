@@ -5,7 +5,8 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
-import { Church, PartyPopper, Navigation } from "lucide-react";
+import { Church, PartyPopper } from "lucide-react";
+import { SiWaze } from "react-icons/si";
 
 const MapEmbed = dynamic(() => import("@/components/ui/MapEmbed"), {
   ssr: false,
@@ -63,7 +64,7 @@ function SummaryItem({
         rel="noopener noreferrer"
         className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose text-white hover:bg-soft-berry transition-colors text-sm font-sans self-center"
       >
-        <Navigation className="w-4 h-4" />
+        <SiWaze className="w-4 h-4" />
         {wazeLabel}
       </a>
     </div>
