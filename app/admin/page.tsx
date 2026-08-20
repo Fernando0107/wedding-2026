@@ -17,6 +17,12 @@ interface RSVPStats {
 
 const ADMIN_PASSWORD_STORAGE_KEY = "wedding-admin-password";
 
+class AuthError extends Error {
+  constructor(message: string, public status: number) {
+    super(message);
+  }
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,13 +40,20 @@ export default function AdminPage() {
     });
 
     if (!response.ok) {
-      throw new Error("Contraseña incorrecta");
+      const message =
+        response.status === 429
+          ? "Demasiados intentos. Por favor intenta de nuevo más tarde."
+          : "Contraseña incorrecta";
+      throw new AuthError(message, response.status);
     }
 
     return response.json();
   };
 
   useEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
     const storedPassword = localStorage.getItem(ADMIN_PASSWORD_STORAGE_KEY);
 
     Promise.resolve()
@@ -52,8 +65,12 @@ export default function AdminPage() {
         setStats(data.stats || null);
         setIsAuthenticated(true);
       })
-      .catch(() => {
-        localStorage.removeItem(ADMIN_PASSWORD_STORAGE_KEY);
+      .catch((err) => {
+        if (err instanceof AuthError && err.status === 401) {
+          localStorage.removeItem(ADMIN_PASSWORD_STORAGE_KEY);
+        } else if (err instanceof AuthError) {
+          setError(err.message);
+        }
       })
       .finally(() => setIsCheckingSession(false));
   }, []);
