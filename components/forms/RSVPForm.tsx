@@ -231,8 +231,8 @@ export default function RSVPForm({ familyKey }: RSVPFormProps) {
                 <div className="flex-1 sm:max-w-xs">
                   <select
                     id={`guest-${guest}`}
-                    {...register(`guestConfirmations.${guest}` as const)}
-                    defaultValue="si"
+                    name={`guestConfirmations.${index}`}
+                    value={guestConfirmations?.[guest] ?? "si"}
                     className={selectClasses}
                     onChange={(e) => {
                       setValue("guestConfirmations", {
