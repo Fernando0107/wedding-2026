@@ -12,13 +12,13 @@
       "guests":  ["Cony de Díaz", "Roberto Díaz"]
   },
     "gonzalez-guerra": {
-      "guests":  ["Juan José González", "Wendy Guerra"]
+      "guests":  ["Juan José González", "Wendy Guerra de González"]
   },
     "diaz-leal": {
       "guests":  ["Claudia Díaz", "María Paula Leal", "Gaby Leal", "Melissa Leal"]
   },
     "diaz-rocha": {
-      "guests":  ["Carlos Díaz", "Baty Rocha", "Ignacio Díaz", "Javier Rocha", "Pilar Díaz"]
+      "guests":  ["Carlos Díaz", "Beatriz Rocha", "Ignacio Díaz", "Javier Díaz", "Pilar Díaz"]
   },
     "daniela": {
       "guests":  ["Daniela Tercero"]
@@ -45,7 +45,7 @@
       "guests":  ["Mirtala de Quinto", "Rimeldo Quinto"]
   },
     "hernandez": {
-      "guests":  ["Evie de Hernández", "Vince Hernández"]
+      "guests":  ["Evelisse Hernandez", "Vince Hernandez"]
   },
     "gloria": {
       "guests":  ["Gloria Mencos"]
@@ -72,7 +72,10 @@
     "guests":  ["Diego Saenz", "Mariana Pérez"]
   },
   "jose-morales": {
-    "guests":  ["Jose Pedro Morales", "Sussan Campos"]
+    "guests":  ["Jose Pedro Morales"]
+  },
+  "campos": {
+    "guests":  ["Sussan Campos"]
   },
   "ramiro-morales": {
     "guests":  ["Ramiro Morales"]
@@ -102,13 +105,13 @@
     "guests":  ["Pamela Milián"]
   },
   "celeste-gaitan": {
-    "guests":  ["Celeste", "Juan Gaitán"]
+    "guests":  ["Maria Celeste Ortiz", "Juan Gaitán"]
   },
   "carrera": {
     "guests":  ["Mariano Carrera", "Alejandra López"]
   },
   "avila": {
-    "guests":  ["George Avila", "Maria José Ochoa"]
+    "guests":  ["Jorge Avila", "Maria José Ochoa"]
   },
   "guzman": {
     "guests":  ["José Guzmán", "Lily de Guzmán"]
@@ -123,7 +126,7 @@
     "guests":  ["Diego Quan"]
   },
   "madrazo": {
-    "guests":  ["Alejandro Madrazo", "Fabi"]
+    "guests":  ["Alejandro Madrazo", "Fabiana Moure de Madrazo"]
   },
   "lickes": {
     "guests":  ["Kenneth Lickes"]
@@ -138,7 +141,7 @@
     "guests":  ["Sofi"]
   },
   "juan": {
-    "guests":  ["Juan de La Fuente"]
+    "guests":  ["Juan Andrés Lafuent"]
   },
   "cristian": {
     "guests":  ["Cristian Morales", "Lily de Morales"]
@@ -179,7 +182,7 @@
   "allan-mendez": {
     "guests":  ["Allan Méndez"]
   },
-  "ale-car": {
+  "ale-cardona": {
     "guests":  ["Alejandro Cardona"]
   },
   "aldo": {
@@ -243,7 +246,7 @@
     "guests": ["Mario Castillo", "Iris Castillo"]
   },
   "chiky": {
-    "guests": ["Chiky", "Cristina"]
+    "guests": ["Eugenia Álvarez", "Cristina"]
   },
   "burton": {
     "guests": ["Stephany Burton", "Chris Burton"]
@@ -318,7 +321,7 @@
     "guests": ["Daniela Gutiérrez", "Sebastián Romero"]
   },
   "valladares": {
-    "guests": ["Katia Valladares", "Ale"]
+    "guests": ["Katia Valladares", "Alejandro García"]
   },
   "santiago-leon": {
     "guests": ["Santiago de León"]
@@ -369,6 +372,6 @@
     "guests": ["Enrique Moll", "Lorena de Moll"]
   },
   "jorge": {
-    "guests": ["Jorge Canale"]
+    "guests": ["Jorge Canale", "María Fernanda Canale"]
   }
 }
