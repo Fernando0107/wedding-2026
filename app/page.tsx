@@ -6,8 +6,6 @@ import Summary from "@/components/sections/Summary";
 // import Gallery from "@/components/sections/Gallery";
 import Countdown from "@/components/sections/Countdown";
 import Program from "@/components/sections/Program";
-import Directions from "@/components/sections/Directions";
-import Waze from "@/components/sections/Waze";
 import Hospedaje from "@/components/sections/Hospedaje";
 import DressCode from "@/components/sections/DressCode";
 import CodeOfConduct from "@/components/sections/CodeOfConduct";
@@ -31,8 +29,6 @@ export default function Home() {
         {/* <Gallery /> */}
         <Countdown />
         <Program />
-        <Directions />
-        <Waze />
         <DressCode />
         <CodeOfConduct />
         <RSVP />
