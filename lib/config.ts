@@ -126,7 +126,7 @@ export const siteConfig = {
       ],
     },
     directions: {
-      title: "Cómo Llegar",
+      title: "Dónde Será",
       ceremony: {
         title: "Misa",
       },
@@ -135,7 +135,7 @@ export const siteConfig = {
       },
     },
     waze: {
-      title: "Navega con Waze",
+      title: "Cómo Llegar",
       description: "Abre la dirección directamente en Waze para llegar sin contratiempos",
       buttonText: "Abrir en Waze",
       ceremonyButton: "Ir a la Iglesia",
