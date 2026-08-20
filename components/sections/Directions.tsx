@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/config";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/animations/FadeIn";
-import { Church, Building2, MapPin, Navigation } from "lucide-react";
+import { Church, Building2, MapPin } from "lucide-react";
 
 const MapEmbed = dynamic(() => import("@/components/ui/MapEmbed"), {
   ssr: false,
@@ -67,15 +67,6 @@ export default function Directions() {
                     <MapPin className="w-4 h-4" />
                     Google Maps
                   </a>
-                  <a
-                    href={siteConfig.wedding.ceremony.wazeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                  >
-                    <Navigation className="w-4 h-4" />
-                    Waze
-                  </a>
                 </div>
               </div>
             </div>
@@ -124,15 +115,6 @@ export default function Directions() {
                   >
                     <MapPin className="w-4 h-4" />
                     Google Maps
-                  </a>
-                  <a
-                    href={siteConfig.wedding.reception.wazeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dusty-rose/10 text-rosewood hover:bg-dusty-rose/20 transition-colors text-sm font-sans"
-                  >
-                    <Navigation className="w-4 h-4" />
-                    Waze
                   </a>
                 </div>
               </div>

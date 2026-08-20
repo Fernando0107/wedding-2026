@@ -9,7 +9,7 @@ import { Church, Building2, Navigation } from "lucide-react";
 
 export default function Waze() {
   return (
-    <Section id="waze" background="blush">
+    <Section id="waze" background="blush" className="py-10 md:py-14 lg:py-16">
       <Container size="md">
         <FadeIn>
           <div className="text-center">
