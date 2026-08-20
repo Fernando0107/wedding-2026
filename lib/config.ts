@@ -125,22 +125,6 @@ export const siteConfig = {
         },
       ],
     },
-    directions: {
-      title: "Dónde Será",
-      ceremony: {
-        title: "Misa",
-      },
-      reception: {
-        title: "Recepción y Cena",
-      },
-    },
-    waze: {
-      title: "Cómo Llegar",
-      description: "Abre la dirección directamente en Waze para llegar sin contratiempos",
-      buttonText: "Abrir en Waze",
-      ceremonyButton: "Ir a la Iglesia",
-      receptionButton: "Ir al Hotel",
-    },
     accommodation: {
       title: "Hospedaje",
       description: "Para aquellos invitados que deseen quedarse en el hotel, pueden hospedarse en el Real InterContinental Guatemala. Nuestros invitados tienen acceso a una tarifa especial por nuestra boda.",
@@ -237,9 +221,11 @@ export const siteConfig = {
       title: "Detalles del Evento",
       ceremony: {
         label: "Misa",
+        wazeButton: "Ir a la Iglesia",
       },
       reception: {
         label: "Fiesta",
+        wazeButton: "Ir al Hotel",
       },
     },
     gifts: {
