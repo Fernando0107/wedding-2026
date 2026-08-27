@@ -56,7 +56,7 @@ Edita `lib/config.ts` líneas 72-95:
 ```typescript
 events: [
   {
-    time: "16:00",
+    time: "15:30",
     title: "Ceremonia",
     description: "La ceremonia comenzará puntualmente",
   },

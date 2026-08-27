@@ -7,7 +7,7 @@ export const siteConfig = {
   },
   
   wedding: {
-    date: new Date("2026-11-14T16:00:00"),
+    date: new Date("2026-11-14T15:30:00"),
     dateString: "Sábado 14 de noviembre del 2026",
     day: "14",
     month: "Noviembre",
@@ -16,7 +16,7 @@ export const siteConfig = {
       name: "Iglesia Santa María Reina de la Familia, Cayala",
       address: "Ciudad Cayala, Zona 16",
       city: "Ciudad de Guatemala",
-      time: "16:00",
+      time: "15:30",
       coordinates: {
         lat: 14.6114485,
         lng: -90.4857199,
@@ -94,7 +94,7 @@ export const siteConfig = {
       title: "Programa",
       events: [
         {
-          time: "16:00",
+          time: "15:30",
           title: "Misa",
           description: "Iglesia Santa María Reina de la Familia. Te pedimos llegar con anticipación.",
         },
