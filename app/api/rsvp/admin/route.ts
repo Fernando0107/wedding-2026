@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSql } from '@/lib/db';
 import { FamilyRSVP, FamilyRSVPWithGuests } from '@/types';
-import { getFamilyGuests, getAllFamilyKeys, getTotalGuests, getFamily } from '@/lib/families';
+import { getFamilyGuests, getAllFamilyKeys, getTotalGuests } from '@/lib/families';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 
 const ADMIN_AUTH_LIMIT = 10;
@@ -77,16 +77,23 @@ export async function GET(request: NextRequest) {
     });
 
     const familyKeysWithRSVP = new Set(rsvps.map((r) => r.familyKey));
-    
+
     // Calcular familias pendientes (están en el JSON pero no tienen RSVP en Redis)
-    const pendingFamilies = allFamiliesFromJSON.filter(
+    // Se excluyen las entradas separadoras del JSON (guests vacío), que no son familias reales
+    const pendingFamilyKeys = allFamiliesFromJSON.filter(
       (familyKey) => !familyKeysWithRSVP.has(familyKey)
     );
-    
+
+    const pendingFamilies = pendingFamilyKeys
+      .map((familyKey) => ({
+        familyKey,
+        guests: getFamilyGuests(familyKey),
+      }))
+      .filter((family) => family.guests.length > 0);
+
     // Calcular total de invitados pendientes (sumar guests de familias pendientes)
-    const totalPendingGuests = pendingFamilies.reduce((sum, familyKey) => {
-      const family = getFamily(familyKey);
-      return sum + (family?.guests?.length || 0);
+    const totalPendingGuests = pendingFamilies.reduce((sum, family) => {
+      return sum + family.guests.length;
     }, 0);
     
     // Calcular estadísticas - TODO viene de Redis, excepto totalGuests y pending que vienen del JSON
@@ -101,17 +108,12 @@ export async function GET(request: NextRequest) {
       totalGuests: totalGuestsFromJSON, // Total de invitados según el JSON
     };
     
-    // Si no hay RSVPs, calcular pendientes desde el JSON
+    // Si no hay RSVPs, todas las familias del JSON están pendientes
     if (rsvps.length === 0) {
-      const allFamiliesFromJSON = getAllFamilyKeys();
-      const totalPendingGuests = allFamiliesFromJSON.reduce((sum, familyKey) => {
-        const family = getFamily(familyKey);
-        return sum + (family?.guests?.length || 0);
-      }, 0);
-      
       return NextResponse.json({
         success: true,
         data: [],
+        pendingFamilies,
         stats: {
           total: 0,
           confirmed: 0,
@@ -122,10 +124,11 @@ export async function GET(request: NextRequest) {
         },
       });
     }
-    
+
     return NextResponse.json({
       success: true,
       data: rsvps,
+      pendingFamilies,
       stats,
     });
   } catch (error) {

@@ -15,6 +15,13 @@ interface RSVPStats {
   totalGuests: number; // Total de invitados según el JSON
 }
 
+interface PendingFamily {
+  familyKey: string;
+  guests: string[];
+}
+
+type StatusFilter = "all" | "confirmed" | "declined" | "pending";
+
 const ADMIN_PASSWORD_STORAGE_KEY = "wedding-admin-password";
 
 class AuthError extends Error {
@@ -28,9 +35,11 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [rsvps, setRsvps] = useState<FamilyRSVPWithGuests[]>([]);
+  const [pendingFamilies, setPendingFamilies] = useState<PendingFamily[]>([]);
   const [stats, setStats] = useState<RSVPStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
 
   const authenticate = async (pwd: string) => {
     const response = await fetch("/api/rsvp/admin", {
@@ -62,6 +71,7 @@ export default function AdminPage() {
         if (!data) return;
         setPassword(storedPassword as string);
         setRsvps(data.data || []);
+        setPendingFamilies(data.pendingFamilies || []);
         setStats(data.stats || null);
         setIsAuthenticated(true);
       })
@@ -84,6 +94,7 @@ export default function AdminPage() {
       const data = await authenticate(password);
       localStorage.setItem(ADMIN_PASSWORD_STORAGE_KEY, password);
       setRsvps(data.data || []);
+      setPendingFamilies(data.pendingFamilies || []);
       setStats(data.stats || null);
       setIsAuthenticated(true);
     } catch (err) {
@@ -100,6 +111,7 @@ export default function AdminPage() {
     try {
       const data = await authenticate(password);
       setRsvps(data.data || []);
+      setPendingFamilies(data.pendingFamilies || []);
       setStats(data.stats || null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al actualizar datos");
@@ -129,6 +141,27 @@ export default function AdminPage() {
         return "Pendiente";
     }
   };
+
+  const filteredRsvps =
+    statusFilter === "all"
+      ? rsvps
+      : statusFilter === "pending"
+      ? []
+      : statusFilter === "declined"
+      ? rsvps.filter((rsvp) => (rsvp.declinedGuests?.length || 0) > 0)
+      : rsvps.filter((rsvp) => rsvp.status === statusFilter);
+
+  const filteredGuestCount =
+    statusFilter === "confirmed"
+      ? filteredRsvps.reduce((sum, r) => sum + (r.confirmedGuests?.length || 0), 0)
+      : statusFilter === "declined"
+      ? filteredRsvps.reduce((sum, r) => sum + (r.declinedGuests?.length || 0), 0)
+      : filteredRsvps.length;
+
+  const pendingGuestCount = pendingFamilies.reduce(
+    (sum, family) => sum + family.guests.length,
+    0
+  );
 
   if (isCheckingSession) {
     return (
@@ -223,49 +256,135 @@ export default function AdminPage() {
               animate={{ opacity: 1, y: 0 }}
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8"
             >
-              <div className="bg-green-50 rounded-xl p-4 border-2 border-green-300">
+              <button
+                type="button"
+                onClick={() =>
+                  setStatusFilter((f) => (f === "confirmed" ? "all" : "confirmed"))
+                }
+                className={`text-left bg-green-50 rounded-xl p-4 border-2 transition-all ${
+                  statusFilter === "confirmed"
+                    ? "border-green-600 ring-2 ring-green-300"
+                    : "border-green-300 hover:border-green-500"
+                }`}
+              >
                 <div className="text-2xl font-serif text-green-800">
                   {stats.totalConfirmedGuests}
                 </div>
                 <div className="text-sm text-green-700 font-sans">
                   Invitados Confirmados
                 </div>
-              </div>
-              <div className="bg-red-50 rounded-xl p-4 border-2 border-red-300">
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setStatusFilter((f) => (f === "declined" ? "all" : "declined"))
+                }
+                className={`text-left bg-red-50 rounded-xl p-4 border-2 transition-all ${
+                  statusFilter === "declined"
+                    ? "border-red-600 ring-2 ring-red-300"
+                    : "border-red-300 hover:border-red-500"
+                }`}
+              >
                 <div className="text-2xl font-serif text-red-800">
                   {stats.declined}
                 </div>
                 <div className="text-sm text-red-700 font-sans">No asistirán</div>
-              </div>
-              <div className="bg-gray-50 rounded-xl p-4 border-2 border-gray-300">
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setStatusFilter((f) => (f === "pending" ? "all" : "pending"))
+                }
+                className={`text-left bg-gray-50 rounded-xl p-4 border-2 transition-all ${
+                  statusFilter === "pending"
+                    ? "border-gray-600 ring-2 ring-gray-300"
+                    : "border-gray-300 hover:border-gray-500"
+                }`}
+              >
                 <div className="text-2xl font-serif text-gray-800">
                   {stats.pending}
                 </div>
                 <div className="text-sm text-gray-700 font-sans">Pendientes</div>
-              </div>
-              <div className="bg-vintage-pink/30 rounded-xl p-4 border-2 border-vintage-pink/50">
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatusFilter("all")}
+                className={`text-left bg-vintage-pink/30 rounded-xl p-4 border-2 transition-all ${
+                  statusFilter === "all"
+                    ? "border-dusty-rose ring-2 ring-dusty-rose/40"
+                    : "border-vintage-pink/50 hover:border-dusty-rose/50"
+                }`}
+              >
                 <div className="text-2xl font-serif text-rosewood">
                   {stats.totalGuests || 0}
                 </div>
                 <div className="text-sm text-mauve font-sans">
                   Invitados Totales
                 </div>
-              </div>
+              </button>
             </motion.div>
           )}
 
           {/* Lista de RSVPs */}
           <div className="bg-blush/30 rounded-2xl p-6 shadow-soft">
-            <h2 className="text-2xl font-serif text-rosewood mb-6">
-              Confirmaciones ({rsvps.length})
-            </h2>
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+              <h2 className="text-2xl font-serif text-rosewood">
+                {statusFilter === "confirmed" && `Confirmados (${filteredGuestCount})`}
+                {statusFilter === "declined" && `No asistirán (${filteredGuestCount})`}
+                {statusFilter === "pending" && `Pendientes (${pendingGuestCount})`}
+                {statusFilter === "all" && `Confirmaciones (${rsvps.length})`}
+              </h2>
+              {statusFilter !== "all" && (
+                <button
+                  type="button"
+                  onClick={() => setStatusFilter("all")}
+                  className="text-sm font-sans text-dusty-rose hover:text-soft-berry underline"
+                >
+                  Ver todos
+                </button>
+              )}
+            </div>
             <div className="space-y-4">
-              {rsvps.length === 0 ? (
+              {statusFilter === "pending" ? (
+                pendingFamilies.length === 0 ? (
+                  <p className="text-center text-mauve py-8">
+                    No hay familias pendientes
+                  </p>
+                ) : (
+                  pendingFamilies.map((family, index) => (
+                    <motion.div
+                      key={family.familyKey}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="bg-white rounded-xl p-6 border-2 border-vintage-pink/50 hover:border-dusty-rose/50 transition-all"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-serif text-rosewood">
+                          Familia: {family.familyKey}
+                        </h3>
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-sans font-medium border ${getStatusColor(
+                            "pending"
+                          )}`}
+                        >
+                          {getStatusLabel("pending")}
+                        </span>
+                      </div>
+                      <p className="text-sm text-mauve font-sans">
+                        <span className="font-medium">Invitados:</span>{" "}
+                        {family.guests.join(", ")} ({family.guests.length}{" "}
+                        {family.guests.length === 1 ? "persona" : "personas"})
+                      </p>
+                    </motion.div>
+                  ))
+                )
+              ) : filteredRsvps.length === 0 ? (
                 <p className="text-center text-mauve py-8">
                   No hay confirmaciones aún
                 </p>
               ) : (
-                rsvps.map((rsvp, index) => (
+                filteredRsvps.map((rsvp, index) => (
                   <motion.div
                     key={rsvp.familyKey}
                     initial={{ opacity: 0, x: -20 }}
