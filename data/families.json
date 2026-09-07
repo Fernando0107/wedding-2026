@@ -155,8 +155,8 @@
   "vela": {
     "guests":  ["Luis Vela"]
   },
-  "allan-epaj": {
-    "guests":  ["Allan Macklen"]
+  "macklen-lemun": {
+    "guests":  ["Allan Macklen", "Andrea Lemus"]
   },
   "freddy": {
     "guests":  ["Freddy Lopez"]
@@ -315,7 +315,7 @@
     "guests": ["Rocío Santos"]
   },
   "yayo": {
-    "guests": ["Edgar Palomo"]
+    "guests": ["Yayo Palomo", "Edgar Palomo", "Adriana de Palomo"]
   },
   "vivar": {
     "guests": ["Lourdes Vivar"]
