@@ -3,6 +3,8 @@ import { z } from "zod";
 export const rsvpFormSchema = z.object({
   familyKey: z
     .string()
+    .trim()
+    .toLowerCase()
     .min(1, { message: "La clave de familia es requerida" }),
   
   // Confirmaciones por invitado: { "Juan Fer": "si", "Alice": "no", ... }
