@@ -385,5 +385,14 @@
   },
   "hanna": {
     "guests": ["Hanna Estrada"]
+  },
+  "minera-eugenia": {
+    "guests": ["Arturo Minera", "María Eugenia"]
+  },
+  "ovalle": {
+    "guests": ["Diego Ovalle"]
+  },
+  "aldo-hermana": {
+    "guests": ["Hermana Aldo :)"]
   }
 }
