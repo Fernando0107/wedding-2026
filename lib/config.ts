@@ -251,6 +251,23 @@ export const siteConfig = {
       message: "Con todo nuestro amor,",
       names: "Carol & Juan Fernando",
     },
+    tables: {
+      metaTitle: "Encuentra tu Mesa - Carol & Juan Fernando",
+      title: "Encuentra tu",
+      titleScript: "Mesa",
+      intro: "Escribe tu nombre o apellido.",
+      searchLabel: "Buscar tu nombre",
+      searchPlaceholder: "Tu nombre…",
+      clearLabel: "Borrar búsqueda",
+      tableLabel: "Mesa",
+      resultSingular: "resultado",
+      resultPlural: "resultados",
+      noResults: "No encontramos",
+      noResultsHint: "Prueba buscando solo tu apellido.",
+      resultTag: "tu mesa es la",
+      tableMatesLabel: "Te acompañan",
+      searchAgain: "Buscar otro nombre",
+    },
   },
 
   colors: {

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Encuentra tu mesa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdfbfa;
+  --surface:#ffffff;
+  --ink:#4a3f38;
+  --muted:#8c7f74;
+  --taupe:#a8998a;
+  --wine:#9b4a63;
+  --wine-soft:#f4e9ec;
+  --line:#e6dcd6;
+  --serif:"Cormorant","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d1817;--surface:#262020;--ink:#ece3dc;--muted:#ad9f94;--taupe:#c4b4a4;
+    --wine:#d98aa2;--wine-soft:#3a2a2f;--line:#3d3432;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1d1817;--surface:#262020;--ink:#ece3dc;--muted:#ad9f94;--taupe:#c4b4a4;
+  --wine:#d98aa2;--wine-soft:#3a2a2f;--line:#3d3432;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--serif);font-size:1.15rem;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+main{max-width:34rem;margin:0 auto;padding:2.5rem 1.4rem 4rem}
+
+/* Title, echoing the printed sign */
+header{position:relative;padding-bottom:1.6rem;margin-bottom:1.8rem}
+header::after{
+  content:"";position:absolute;left:0;bottom:0;width:62%;height:1px;background:var(--wine);opacity:.55
+}
+h1{margin:0;font-weight:300;color:var(--taupe);line-height:.92;letter-spacing:.02em}
+h1 .l1{display:block;font-size:clamp(3rem,15vw,4.6rem)}
+h1 .l2{display:flex;align-items:baseline;gap:.15em;font-size:clamp(3rem,15vw,4.6rem)}
+h1 .script{font-family:var(--script);font-weight:400;font-size:1.05em;letter-spacing:0;transform:translateY(.08em) rotate(-6deg);display:inline-block}
+.intro{margin:1rem 0 0;color:var(--muted);font-size:1.1rem}
+
+/* Search */
+.search{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:.6rem 0 .8rem}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+label.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.field{position:relative}
+input[type=search]{
+  width:100%;font:inherit;font-size:1.3rem;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line);border-radius:999px;padding:.75rem 3rem .75rem 1.3rem;
+  -webkit-appearance:none;appearance:none;
+}
+input[type=search]::placeholder{color:var(--muted);font-style:italic}
+input[type=search]:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px var(--wine-soft)}
+input[type=search]::-webkit-search-cancel-button{display:none}
+.clear{
+  position:absolute;right:.5rem;top:50%;transform:translateY(-50%);
+  width:2.2rem;height:2.2rem;border-radius:50%;border:0;background:transparent;color:var(--muted);
+  font-size:1.5rem;line-height:1;cursor:pointer;display:none
+}
+.clear.on{display:block}
+.clear:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+
+/* Lists */
+.letter{
+  font-size:2.4rem;font-weight:400;color:var(--wine);margin:1.6rem 0 .2rem;line-height:1
+}
+ul{list-style:none;margin:0;padding:0}
+.row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;width:100%;
+  font:inherit;color:inherit;text-align:left;background:none;border:0;cursor:pointer;
+  padding:.55rem .2rem;border-bottom:1px solid var(--line)
+}
+.row:hover .name{color:var(--wine)}
+.row:focus-visible{outline:2px solid var(--wine);outline-offset:2px;border-radius:4px}
+.name{font-size:1.2rem}
+.name mark{background:var(--wine-soft);color:inherit;border-radius:2px;padding:0 .05em}
+.num{color:var(--muted);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.num b{font-weight:500;color:var(--ink)}
+.empty{color:var(--muted);font-style:italic;padding:1.2rem .2rem}
+
+/* Result */
+.result{text-align:center;padding:1.5rem 0 1rem}
+.result[hidden]{display:none}
+.result .who{font-size:1.5rem;margin:0}
+.result .tag{font-family:var(--script);color:var(--taupe);font-size:2.6rem;line-height:1;margin:1.4rem 0 -.4rem}
+.result .big{
+  font-size:clamp(7rem,40vw,10rem);line-height:1;font-weight:300;color:var(--wine);
+  font-variant-numeric:lining-nums;margin:0
+}
+.mates{margin:1.6rem auto 0;max-width:24rem;text-align:center}
+.mates p{color:var(--muted);margin:0 0 .5rem;font-style:italic}
+.mates ul{columns:2;column-gap:1.4rem;font-size:1.05rem}
+.mates li{break-inside:avoid;padding:.12rem 0}
+.back{
+  margin-top:2rem;font:inherit;font-size:1.1rem;color:var(--wine);background:none;
+  border:1px solid var(--wine);border-radius:999px;padding:.55rem 1.6rem;cursor:pointer
+}
+.back:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+.result .big{animation:pop .5s ease-out}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.result .big{animation:none}}
+@media (max-width:360px){.mates ul{columns:1}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><span class="l1">ENCUENTRA</span><span class="l2">TU <span class="script">Mesa</span></span></h1>
+    <p class="intro">Escribe tu nombre o apellido.</p>
+  </header>
+
+  <div class="search" id="searchBox">
+    <label class="sr" for="q">Buscar tu nombre</label>
+    <div class="field">
+      <input id="q" type="search" placeholder="Tu nombre…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+      <button class="clear" id="clear" type="button" aria-label="Borrar búsqueda">×</button>
+    </div>
+  </div>
+
+  <section class="result" id="result" hidden aria-live="polite"></section>
+  <section id="list" aria-live="polite"></section>
+</main>
+
+<script>
+const RAW = `Ada de Sánchez|1
+Ada Raquel de González|4
+Adriana de Palomo|10
+Aldo Caballero|10
+Aldo Méndez|8
+Aldo Santacruz|11
+Alejandra López|18
+Alejandro Alejos|2
+Alejandro Cardona|8
+Alejandro García|14
+Alejandro Sánchez|1
+Alicia de González|9
+Alison Fernández|7
+Allan Macklen|15
+Amparito Fetzer|12
+Ana Cecilia Claverie|6
+Ana Cecilia Córdova|6
+Ana Lucía Argueta|15
+Ana Lucía Cordero|5
+Ana Paula Ramírez|11
+Analucía de Castillo|6
+Andrea Lemus|15
+Andrés Sánchez|10
+Anne de Logemann|14
+Antonio del Águila|5
+Antonio Rocha|13
+Arantxa Higueros|14
+Arturo Minera|3
+Astrid Toralla|15
+Beatriz Rocha|9
+Bernardo Morales|10
+Boris Wampl|12
+Brandon Bamaca|17
+Camila Claverie|6
+Carlos Díaz|9
+Carlos Morales|16
+Carlos Castillo Jr.|6
+Carlos Castillo Sr.|9
+Carmen María de León|1
+Carolina de Castillo|7
+Carolina González|12
+Chesca Victoria|12
+Claudia Díaz|4
+Claudia García|1
+Cony de Díaz|4
+Daniel Gutiérrez|13
+Daniela Gutiérrez|14
+Daniela Tercero|12
+Diego de la Vega|5
+Diego Quan|17
+Diego Saenz|17
+Edgar Ajuachan|15
+Edgar Palomo Jr.|10
+Edgar Palomo Sr.|10
+Elena Guerra|11
+Emilio Galindo|15
+Enrique Moll|7
+Eugenia Álvarez|3
+Evelisse Hernández|8
+Evelyn Córdova|2
+Evelyn de Klee|1
+Flor de Castillo|9
+Francisco Müller|15
+Freddy Lopez|15
+Gabriel Rocha|13
+Gaby Leal|12
+Gloria Mencos|4
+Guillermo Claverie|6
+Guillermo González|6
+Günther Logemann|14
+Hanna Estrada|5
+Hector Klee Jr.|11
+Hector Klee Sr.|1
+Irene de Klee|11
+Irene de Molina|8
+Iris Castillo|3
+Jacklyn Smith|9
+Javier Aguja|7
+Javier Díaz|12
+Javier González|5
+Jean Guerra|16
+Jimena de León|14
+Jonathan Carpio|18
+Jorge Ávila|18
+Jorge Canale|7
+Jorge Córdova|2
+Jorge Mario Castillo|6
+José Ávila|17
+José Castillo|9
+José González|12
+José Guzmán|17
+José Manuel Lemus|11
+José Mauricio González|5
+José Miguel Nájera|8
+José Pablo Krische|16
+José Pedro Morales|13
+José Roberto González|5
+Juan Gaitán|11
+Juan Andrés Lafuente|17
+Juan Fernando González Sr.|9
+Juan Fernando Márquez|5
+Juan José González Jr.|9
+Juan José González Sr.|4
+Julio Shin|18
+Karla Meléndez|7
+Katia Valladares|14
+Laura Palacios|16
+Liliana Milián|8
+Lily de Guzmán|17
+Lorena de Moll|7
+Lourdes Vivar|10
+Lucía Pereira|16
+Luis Cordero|2
+Luis Vela|15
+Luis Pedro Bonilla|13
+Luis Pedro Figueroa|14
+Luisa Valdéz|6
+Luz María de León|1
+Manuel Calderón|18
+María Eugenia Escobar|3
+María Celeste Ortiz|11
+María Cristina Del Valle|3
+María Elvira de Castillo|2
+María Fernanda Canale|7
+María José Ochoa|18
+María Paula Leal|12
+Mariana Pérez|17
+Mariandré Fernández|16
+Mariano Carrera|18
+Mario Castillo|3
+Mauricio González|2
+Max Florian|18
+Mayarí Mena|1
+Melissa Leal|12
+Michelle Cancinos|14
+Mirtala de Quinto|4
+Natalia Cázares|10
+Nathalie Boyer|3
+Nelson Carreras|11
+Nicole Castillo|6
+Nicole Cordero|5
+Olguita de Córdova|2
+Olga Álvarez|3
+Omar Molina|8
+Oscar Monterroso|18
+Pablo Rodríguez|15
+Pablo Álvarez|16
+Pamela Milián|11
+Paula Méndez|13
+Ramiro Morales|13
+Regina Quinto|4
+Remigio Fernández|7
+Ricardo Amado|16
+Ricardo Farfán|17
+Rimeldo Quinto|4
+Rita Morales|13
+Robert Frank|3
+Roberto Castillo|7
+Roberto Díaz|4
+Roberto Lara|1
+Rocío Santos|10
+Ronald Ochaeta|1
+Salvador Cordón|11
+Santiago de León|16
+Scott Boyer|3
+Sebastián Gordillo|6
+Sebastián Romero|14
+Silvia Córdova|2
+Silvia Sole de Méndez|8
+Sofía Argueta|17
+Sofía Morales|13
+Sussan Campos|13
+Tita de Cordero|2
+Valeria González|5
+Victor Farfán|17
+Victor Rivero|10
+Vince Hernández|8
+Virginia Solórzano|1
+Wendy Guerra de González|9`;
+
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const guests = RAW.trim().split("\n").map(l=>{
+  const [name,t]=l.split("|"); return {name:name.trim(), table:+t, key:norm(name)};
+}).sort((a,b)=>a.key.localeCompare(b.key,"es"));
+
+const $q=document.getElementById("q"), $list=document.getElementById("list"),
+      $res=document.getElementById("result"), $clear=document.getElementById("clear"),
+      $search=document.getElementById("searchBox");
+
+const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function highlight(name, terms){
+  if(!terms.length) return esc(name);
+  const n = norm(name); const marks = new Array(name.length).fill(false);
+  terms.forEach(t=>{let i=n.indexOf(t);while(i>-1){for(let k=i;k<i+t.length;k++)marks[k]=true;i=n.indexOf(t,i+1);}});
+  let out="",open=false;
+  for(let i=0;i<name.length;i++){
+    if(marks[i]&&!open){out+="<mark>";open=true}
+    if(!marks[i]&&open){out+="</mark>";open=false}
+    out+=esc(name[i]);
+  }
+  return out+(open?"</mark>":"");
+}
+
+function row(g, terms){
+  return `<li><button class="row" type="button" data-name="${esc(g.name)}">
+    <span class="name">${highlight(g.name,terms)}</span>
+    <span class="num">Mesa <b>${g.table}</b></span></button></li>`;
+}
+
+function render(){
+  const raw=$q.value.trim();
+  $clear.classList.toggle("on", raw.length>0);
+  const terms=norm(raw).split(/\s+/).filter(Boolean);
+  if(!terms.length){
+    let html="",cur="";
+    guests.forEach(g=>{
+      const L=g.key[0].toUpperCase();
+      if(L!==cur){ if(cur) html+="</ul>"; html+=`<h2 class="letter">${L}</h2><ul>`; cur=L; }
+      html+=row(g,[]);
+    });
+    $list.innerHTML=html+"</ul>";
+    return;
+  }
+  const hits=guests.filter(g=>terms.every(t=>g.key.includes(t)));
+  $list.innerHTML = hits.length
+    ? `<ul>${hits.map(g=>row(g,terms)).join("")}</ul>`
+    : `<p class="empty">No encontramos “${esc(raw)}”. Prueba solo con tu apellido o tu primer nombre.</p>`;
+}
+
+function show(name){
+  const g=guests.find(x=>x.name===name); if(!g) return;
+  const mates=guests.filter(x=>x.table===g.table && x!==g)
+    .sort((a,b)=>a.name.localeCompare(b.name,"es"));
+  $res.innerHTML=`
+    <p class="who">${esc(g.name)}</p>
+    <p class="tag">tu mesa es la</p>
+    <p class="big">${g.table}</p>
+    ${mates.length?`<div class="mates"><p>Te acompañan</p><ul>${mates.map(m=>`<li>${esc(m.name)}</li>`).join("")}</ul></div>`:""}
+    <button class="back" type="button" id="back">Buscar otro nombre</button>`;
+  $res.hidden=false; $list.hidden=true; $search.hidden=true;
+  window.scrollTo({top:0});
+  document.getElementById("back").addEventListener("click",reset);
+  document.getElementById("back").focus({preventScroll:true});
+}
+
+function reset(){
+  $res.hidden=true; $list.hidden=false; $search.hidden=false;
+  $q.value=""; render(); $q.focus();
+}
+
+$q.addEventListener("input",render);
+$clear.addEventListener("click",()=>{$q.value="";render();$q.focus();});
+$list.addEventListener("click",e=>{const b=e.target.closest(".row"); if(b) show(b.dataset.name);});
+render();
+</script>
+</body>
+</html>

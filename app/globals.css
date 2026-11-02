@@ -126,7 +126,9 @@ body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* clip en vez de hidden: hidden convierte al body en contenedor de scroll y rompe position: sticky */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
@@ -144,6 +146,10 @@ html {
 :focus-visible {
   outline: 2px solid var(--dusty-rose);
   outline-offset: 2px;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
 }
 
 /* Scrollbar styling */
